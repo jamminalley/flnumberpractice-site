@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foreign Language Number Practice</title>
+<meta name="description" content="A small iOS app for practicing numbers in the language you're learning. Plus cheat sheets for fourteen languages.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<style>
+  /* Page-specific hero */
+  .hero {
+    padding: 60px 0 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+    align-items: center;
+  }
+  .hero-text { display: flex; flex-direction: column; gap: 20px; }
+  .hero-art {
+    position: relative;
+    aspect-ratio: 1;
+    max-width: 320px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .hero-art .icon-tile {
+    width: 100%; height: 100%;
+    border-radius: 22.37%;
+    overflow: hidden;
+  }
+  .hero-art .icon-tile img {
+    width: 100%; height: 100%; display: block;
+  }
+  .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* Floating number ornaments around hero */
+  .float-nums { position: absolute; inset: -10%; pointer-events: none; }
+  .float-nums span {
+    position: absolute;
+    font-family: var(--serif-font);
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+  .float-nums .a { top: 4%; left: -12%; font-size: 44px; transform: rotate(-8deg); }
+  .float-nums .b { top: 10%; right: -8%; font-size: 36px; transform: rotate(6deg); color: var(--signal-red); }
+  .float-nums .c { bottom: 8%; left: -6%; font-size: 38px; transform: rotate(4deg); }
+  .float-nums .d { bottom: 0%; right: -10%; font-size: 42px; transform: rotate(-8deg); color: var(--signal-red); }
+  .float-nums .e { top: 50%; left: -16%; font-size: 32px; transform: rotate(-3deg); }
+
+  /* "How it works" */
+  .steps {
+    display: grid; gap: 14px;
+    grid-template-columns: 1fr;
+  }
+  .step { display: flex; gap: 16px; padding: 18px; }
+  .step .n {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 28px; line-height: 1; letter-spacing: -0.04em;
+    color: var(--signal-red);
+    min-width: 36px;
+  }
+  .step h3 {
+    margin: 0 0 4px;
+    font-family: var(--ui-font); font-size: 18px; font-weight: 700;
+    letter-spacing: -0.005em;
+  }
+  .step p { margin: 0; font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
+
+  /* Modes pair */
+  .modes {
+    display: grid; gap: 14px; grid-template-columns: 1fr;
+  }
+  .mode {
+    padding: 24px;
+    display: flex; flex-direction: column; gap: 14px;
+    min-height: 220px;
+    position: relative; overflow: hidden;
+  }
+  .mode h3 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: 30px; letter-spacing: -0.01em; line-height: 1.05;
+    margin: 0;
+  }
+  .mode p { font-size: 15px; color: var(--ink-soft); margin: 0; }
+  .mode .demo {
+    margin-top: auto;
+    padding: 16px;
+    background: var(--paper-sunk); border-radius: 12px;
+    font-family: var(--num-font); font-weight: 700;
+    font-size: 32px; letter-spacing: -0.04em; line-height: 1.1;
+    color: var(--ink); text-align: center;
+  }
+  .mode .demo .italic {
+    display: block; font-family: var(--serif-font); font-style: italic;
+    font-size: 16px; font-weight: 400; color: var(--ink-soft);
+    letter-spacing: 0; margin-top: 4px;
+  }
+  .mode.receptive .demo .italic { color: var(--ink-soft); }
+
+  /* Cheat-sheet teaser strip */
+  .teaser {
+    padding: 40px 0;
+  }
+  .teaser-row {
+    display: flex; gap: 10px;
+    overflow-x: auto;
+    margin: 0 calc(var(--pad-page) * -1);
+    padding: 4px var(--pad-page) 20px;
+    scrollbar-width: none;
+  }
+  .teaser-row::-webkit-scrollbar { display: none; }
+  .teaser-card {
+    flex: 0 0 220px;
+    text-decoration: none; color: inherit;
+    background: var(--paper-raised);
+    border: 0.5px solid var(--hair);
+    border-radius: 18px;
+    padding: 18px;
+    display: flex; flex-direction: column; gap: 12px;
+    aspect-ratio: 0.72;
+    position: relative;
+    overflow: hidden;
+  }
+  .teaser-card .native {
+    font-family: var(--serif-font); font-size: 32px; line-height: 1;
+    color: var(--ink);
+  }
+  .teaser-card .name {
+    font-size: 13px; color: var(--ink-soft); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .teaser-card .preview {
+    margin-top: auto;
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 56px; letter-spacing: -0.05em; line-height: 0.9;
+    color: var(--signal-red);
+  }
+  .teaser-card .pseudo {
+    font-family: var(--serif-font); font-style: italic;
+    font-size: 14px; color: var(--ink-soft); line-height: 1.2;
+  }
+
+  /* Section spacing */
+  section { padding: 50px 0; }
+  section .section-head {
+    display: flex; flex-direction: column; gap: 8px;
+    margin-bottom: 28px; max-width: 720px;
+  }
+
+  @media (min-width: 720px) {
+    .hero { grid-template-columns: 1.2fr 1fr; gap: 56px; padding: 100px 0 60px; }
+    .hero-art { max-width: 380px; }
+    .steps { grid-template-columns: repeat(3, 1fr); }
+    .modes { grid-template-columns: 1fr 1fr; }
+    section { padding: 80px 0; }
+  }
+  @media (min-width: 1100px) {
+    .hero { padding: 120px 0 80px; }
+    .hero-art { max-width: 440px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-container site-header-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL&nbsp;Number Practice</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/" class="active">Home</a>
+      <a href="/cheatsheets/">Cheat sheets</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="nav-cta" href="#download">Get the app →</a>
+    <button class="nav-toggle" aria-label="Open menu">
+      <svg width="20" height="14" viewBox="0 0 20 14"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<div class="site-container">
+  <div class="hero">
+    <div class="hero-text">
+      <span class="eyebrow red">An iOS app · Free</span>
+      <h1 class="serif-h1">Numbers, out loud,<br>in any language<br>you're learning.</h1>
+      <p class="lede" style="font-style: normal; font-family: var(--ui-font); font-size: clamp(16px, 2vw, 19px); color: var(--ink-soft);">
+        Hear it, type it. Read it, say it. Drill the part of the language your textbook forgets — until <em style="font-family: var(--serif-font); color: var(--ink);">"setecentos sessenta e três"</em> lands instantly.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-accent" href="#download">
+          <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor"><path d="M11.6 8.5c0-2 1.6-3 1.7-3-.9-1.4-2.4-1.5-2.9-1.5-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7C3.2 4 1.7 4.9 1 6.3c-1.4 2.4-.4 6 1 8 .7 1 1.5 2.1 2.5 2 1 0 1.4-.6 2.6-.6s1.5.6 2.6.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.2-2.3-.1 0-2.3-1-2.3-3.5zM9.7 2.5c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.2 1.2-.5.6-.9 1.5-.8 2.4.9.1 1.7-.4 2.2-1.1z"/></svg>
+          Download on the App Store
+        </a>
+        <a class="btn btn-ghost" href="/cheatsheets/">Browse cheat sheets</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="float-nums">
+        <span class="a">trente-deux</span>
+        <span class="b">٤٢</span>
+        <span class="c">siebenundachtzig</span>
+        <span class="d">四十二</span>
+        <span class="e">сорок</span>
+      </div>
+      <div class="icon-tile">
+        <img src="/AppIcon-1024.png" alt="App icon — speaking head saying 1234">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="site-container">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2 class="serif-h2">Three buttons. <span style="color: var(--ink-soft);">That's the whole app.</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step card">
+        <span class="n">01</span>
+        <div>
+          <h3>Pick a language &amp; a range</h3>
+          <p>Fourteen languages, including regional splits like PT-PT vs PT-BR. Set min, max, and step.</p>
+        </div>
+      </div>
+      <div class="step card">
+        <span class="n">02</span>
+        <div>
+          <h3>Generate a random number</h3>
+          <p>One tap. Hear it spoken — or read the digits silently and say them out loud.</p>
+        </div>
+      </div>
+      <div class="step card">
+        <span class="n">03</span>
+        <div>
+          <h3>Check, repeat, keep going</h3>
+          <p>Type your answer or reveal the spelled-out form. Your session history is right there.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODES -->
+<section>
+  <div class="site-container">
+    <div class="section-head">
+      <span class="eyebrow">Two modes</span>
+      <h2 class="serif-h2">Receptive and productive. <span style="color: var(--ink-soft);">Both halves of fluency.</span></h2>
+    </div>
+    <div class="modes">
+      <div class="mode card receptive">
+        <span class="tag red dot">LISTEN &amp; TYPE</span>
+        <h3>Hear a number,<br>type the digits.</h3>
+        <p>Numbers come at you fast in real life. Train your ear to chunk them without translating.</p>
+        <div class="demo">
+          <span style="color: var(--ink-soft); font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; font-family: var(--ui-font);">▶ Audio</span>
+          <span style="display: block; margin-top: 6px;">763</span>
+          <span class="italic">setecentos sessenta e três</span>
+        </div>
+      </div>
+      <div class="mode card productive">
+        <span class="tag dot">READ &amp; SAY</span>
+        <h3>See digits,<br>say them aloud.</h3>
+        <p>Force the productive side. Your mouth has to find the word before you reveal the answer.</p>
+        <div class="demo">
+          1&nbsp;429
+          <span class="italic">mil quatrocentos e vinte e nove</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHEAT-SHEET TEASER -->
+<section class="teaser" id="cheatsheets-teaser">
+  <div class="site-container">
+    <div class="section-head" style="display: flex; flex-direction: row; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+      <div>
+        <span class="eyebrow">Cheat sheets</span>
+        <h2 class="serif-h2" style="margin-top: 8px;">How numbers work, language&nbsp;by language.</h2>
+      </div>
+      <a href="/cheatsheets/" class="btn btn-ghost">See all 14 →</a>
+    </div>
+  </div>
+  <div class="site-container" style="max-width: 1200px;">
+    <div class="teaser-row">
+      <a class="teaser-card" href="/portuguese-pt/">
+        <span class="native">Português</span>
+        <span class="name">Portugal · PT-PT</span>
+        <span class="preview">763</span>
+        <span class="pseudo">setecentos sessenta e três</span>
+      </a>
+      <a class="teaser-card" href="/cheatsheets/">
+        <span class="native">Español</span>
+        <span class="name">Spanish</span>
+        <span class="preview">42</span>
+        <span class="pseudo">cuarenta y dos</span>
+      </a>
+      <a class="teaser-card" href="/cheatsheets/">
+        <span class="native">Français</span>
+        <span class="name">French</span>
+        <span class="preview">99</span>
+        <span class="pseudo">quatre-vingt-dix-neuf</span>
+      </a>
+      <a class="teaser-card" href="/cheatsheets/">
+        <span class="native">Deutsch</span>
+        <span class="name">German</span>
+        <span class="preview">87</span>
+        <span class="pseudo">siebenundachtzig</span>
+      </a>
+      <a class="teaser-card" href="/cheatsheets/">
+        <span class="native">日本語</span>
+        <span class="name">Japanese</span>
+        <span class="preview">42</span>
+        <span class="pseudo">四十二 · よんじゅうに</span>
+      </a>
+      <a class="teaser-card" href="/cheatsheets/">
+        <span class="native">العربية</span>
+        <span class="name">Arabic</span>
+        <span class="preview">٤٢</span>
+        <span class="pseudo">اثنان وأربعون</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / WHY -->
+<section id="about">
+  <div class="site-container">
+    <div class="section-head">
+      <span class="eyebrow">Why numbers</span>
+      <h2 class="serif-h2" style="max-width: 760px;">The textbook teaches you <em style="font-style: italic;">"one, two, three"</em>. The bus driver shouts <em style="font-style: italic;">"setenta e cinco"</em> and you freeze.</h2>
+    </div>
+    <div class="prose" style="max-width: 680px;">
+      <p>Numbers are the part of a foreign language that hits you when you have to act fast — prices, addresses, train platforms, phone numbers, times. They're also the part most courses spend ten minutes on and never come back to.</p>
+      <p>This app exists for the part that comes after that ten minutes: enough reps, in enough configurations, that you stop translating.</p>
+      <p>The cheat sheets are the companion. One per language, written by someone who's actually used the numbers, not generated from a list. They cover the irregulars, the gender agreement, the regional differences — the things you'd otherwise discover only by getting one wrong.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="download">
+  <div class="site-container">
+    <div class="card" style="display: flex; flex-direction: column; gap: 18px; align-items: flex-start; padding: 36px;">
+      <span class="eyebrow red">Free · iOS 16+</span>
+      <h2 class="serif-h2" style="max-width: 540px;">Drill ten numbers tonight. Notice the difference tomorrow.</h2>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#">
+          <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor"><path d="M11.6 8.5c0-2 1.6-3 1.7-3-.9-1.4-2.4-1.5-2.9-1.5-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7C3.2 4 1.7 4.9 1 6.3c-1.4 2.4-.4 6 1 8 .7 1 1.5 2.1 2.5 2 1 0 1.4-.6 2.6-.6s1.5.6 2.6.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.2-2.3-.1 0-2.3-1-2.3-3.5zM9.7 2.5c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.2 1.2-.5.6-.9 1.5-.8 2.4.9.1 1.7-.4 2.2-1.1z"/></svg>
+          Download on the App Store
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-container footer-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL Number Practice</span>
+    </a>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>App</h4>
+        <a href="#download">Download</a>
+        <a href="#how">How it works</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="footer-col">
+        <h4>Cheat sheets</h4>
+        <a href="/cheatsheets/">All languages</a>
+        <a href="/portuguese-pt/">Português (PT)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="site-container" style="margin-top: 28px; font-size: 12px; color: var(--ink-faint);">
+    © 2026 FL Number Practice
+  </div>
+</footer>
+
+</body>
+</html>

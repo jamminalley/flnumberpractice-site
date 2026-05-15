@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cheat sheets · FL Number Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<style>
+  .page-head {
+    padding: 50px 0 30px;
+    display: flex; flex-direction: column; gap: 14px;
+    max-width: 760px;
+  }
+  .search {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 16px;
+    background: var(--paper-raised);
+    border: 0.5px solid var(--hair);
+    border-radius: 14px;
+    max-width: 520px;
+  }
+  .search input {
+    border: 0; background: transparent; flex: 1;
+    font: inherit; font-size: 15px; outline: none; color: var(--ink);
+  }
+  .search input::placeholder { color: var(--ink-faint); }
+
+  /* Filter chips */
+  .filters {
+    display: flex; gap: 6px;
+    margin: 4px 0 30px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    padding: 6px 14px; border-radius: var(--r-pill);
+    background: var(--paper-sunk); color: var(--ink-soft);
+    font-size: 13px; font-weight: 600;
+    border: 0; cursor: pointer;
+  }
+  .chip.active { background: var(--ink); color: var(--paper); }
+
+  /* Grid */
+  .lang-grid {
+    display: grid; gap: 12px;
+    grid-template-columns: 1fr;
+  }
+  .lang-tile {
+    background: var(--paper-raised);
+    border: 0.5px solid var(--hair);
+    border-radius: 18px;
+    padding: 22px;
+    display: flex; flex-direction: column; gap: 14px;
+    text-decoration: none; color: var(--ink);
+    position: relative; overflow: hidden;
+    transition: transform 0.1s ease, border-color 0.1s ease;
+  }
+  .lang-tile:hover {
+    border-color: var(--ink);
+    transform: translateY(-1px);
+  }
+  .lang-tile.featured {
+    background: var(--ink); color: var(--paper);
+  }
+  .lang-tile.featured .meta { color: rgba(241,236,224,0.55); }
+  .lang-tile.featured .preview-num { color: var(--signal-red); }
+  .lang-tile.featured .pseudo { color: rgba(241,236,224,0.72); }
+
+  .lang-tile-top {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+  }
+  .lang-tile .native {
+    font-family: var(--serif-font); font-size: 36px; line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .lang-tile .name {
+    font-size: 13px; color: var(--ink-soft); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-top: 6px;
+  }
+  .lang-tile .meta {
+    font-size: 12px; color: var(--ink-faint);
+    font-family: var(--num-font); letter-spacing: 0.02em;
+  }
+  .lang-tile .preview {
+    display: flex; align-items: baseline; gap: 12px;
+    margin-top: auto;
+  }
+  .lang-tile .preview-num {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 48px; letter-spacing: -0.05em; line-height: 0.9;
+    color: var(--signal-red);
+  }
+  .lang-tile .pseudo {
+    font-family: var(--serif-font); font-style: italic;
+    color: var(--ink-soft); font-size: 16px; line-height: 1.2;
+  }
+
+  .quirks {
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+
+  /* Group section heads */
+  .group-head {
+    display: flex; align-items: center; gap: 16px;
+    margin: 50px 0 14px;
+  }
+  .group-head h2 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: 26px; letter-spacing: -0.01em; margin: 0;
+  }
+  .group-head .rule { flex: 1; height: 0.5px; background: var(--hair); }
+  .group-head .count {
+    font-family: var(--num-font); font-size: 13px; color: var(--ink-soft);
+  }
+
+  @media (min-width: 720px) {
+    .page-head { padding: 90px 0 50px; gap: 18px; }
+    .lang-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  }
+  @media (min-width: 1100px) {
+    .lang-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-container site-header-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL&nbsp;Number Practice</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/cheatsheets/" class="active">Cheat sheets</a>
+      <a href="/#about">About</a>
+    </nav>
+    <a class="nav-cta" href="/#download">Get the app →</a>
+    <button class="nav-toggle" aria-label="Open menu">
+      <svg width="20" height="14" viewBox="0 0 20 14"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="site-container">
+
+  <div class="page-head">
+    <span class="eyebrow">Cheat sheets</span>
+    <h1 class="serif-h1">How numbers work,<br>language by language.</h1>
+    <p style="font-size: 17px; color: var(--ink-soft); max-width: 580px; line-height: 1.5; margin: 0;">
+      Short, scannable explainers — what's regular, what's irregular, and where the regional splits land.
+      Use them next to the app or on their own.
+    </p>
+  </div>
+
+  <div class="search">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--ink-soft);">
+      <circle cx="7" cy="7" r="5.5"/><path d="M11 11l4 4" stroke-linecap="round"/>
+    </svg>
+    <input type="text" placeholder="Search a language — e.g. portuguese, 日本語, العربية">
+    <kbd style="font-family: var(--num-font); font-size: 11px; color: var(--ink-faint); padding: 2px 6px; border: 0.5px solid var(--hair); border-radius: 4px;">⌘K</kbd>
+  </div>
+
+  <div class="filters">
+    <button class="chip active">All 14</button>
+    <button class="chip">Romance</button>
+    <button class="chip">Germanic</button>
+    <button class="chip">Slavic</button>
+    <button class="chip">CJK</button>
+    <button class="chip">Semitic</button>
+    <button class="chip">Other</button>
+  </div>
+
+  <!-- Romance -->
+  <div class="group-head">
+    <h2>Romance</h2>
+    <div class="rule"></div>
+    <span class="count">5 sheets</span>
+  </div>
+  <div class="lang-grid">
+
+    <a class="lang-tile featured" href="/portuguese-pt/">
+      <div class="lang-tile-top">
+        <div>
+          <div class="native">Português</div>
+          <div class="name" style="color: rgba(241,236,224,0.6);">Portugal · PT-PT</div>
+        </div>
+        <span class="tag red dot" style="background: rgba(214,58,47,0.18); color: #fff;">FEATURED</span>
+      </div>
+      <div class="preview">
+        <span class="preview-num">763</span>
+        <span class="pseudo">setecentos sessenta e três</span>
+      </div>
+      <div class="quirks">
+        <span class="tag" style="background: rgba(255,255,255,0.08); color: rgba(241,236,224,0.85);">gender · dois/duas</span>
+        <span class="tag" style="background: rgba(255,255,255,0.08); color: rgba(241,236,224,0.85);">mil milhões ≠ bilião</span>
+      </div>
+    </a>
+
+    <a class="lang-tile" href="#">
+      <div class="lang-tile-top">
+        <div>
+          <div class="native">Português</div>
+          <div class="name">Brazil · PT-BR</div>
+        </div>
+      </div>
+      <div class="preview">
+        <span class="preview-num">763</span>
+        <span class="pseudo">setecentos sessenta e três</span>
+      </div>
+      <div class="quirks">
+        <span class="tag">dezesseis · dezenove</span>
+      </div>
+    </a>
+
+    <a class="lang-tile" href="#">
+      <div class="lang-tile-top">
+        <div>
+          <div class="native">Español</div>
+          <div class="name">Spanish</div>
+        </div>
+      </div>
+      <div class="preview">
+        <span class="preview-num">42</span>
+        <span class="pseudo">cuarenta y dos</span>
+      </div>
+      <div class="quirks">
+        <span class="tag">y vs. and</span>
+        <span class="tag">quinientos · setecientos</span>
+      </div>
+    </a>
+
+    <a class="lang-tile" href="#">
+      <div class="lang-tile-top">
+        <div>
+          <div class="native">Français</div>
+          <div class="name">French</div>
+        </div>
+      </div>
+      <div class="preview">
+        <span class="preview-num">99</span>
+        <span class="pseudo">quatre-vingt-dix-neuf</span>
+      </div>
+      <div class="quirks">
+        <span class="tag red">70/80/90 math</span>
+      </div>
+    </a>
+
+    <a class="lang-tile" href="#">
+      <div class="lang-tile-top">
+        <div>
+          <div class="native">Italiano</div>
+          <div class="name">Italian</div>
+        </div>
+      </div>
+      <div class="preview">
+        <span class="preview-num">42</span>
+        <span class="pseudo">quarantadue</span>
+      </div>
+      <div class="quirks">
+        <span class="tag">no spaces</span>
+        <span class="tag">vowel elision</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Germanic -->
+  <div class="group-head">
+    <h2>Germanic</h2>
+    <div class="rule"></div>
+    <span class="count">3 sheets</span>
+  </div>
+  <div class="lang-grid">
+
+    <a class="lang-tile" href="#">
+      <div class="lang-tile-top">
+        <div>
+          <div class="native">English</div>
+          <div class="name">English</div>
+        </div>
+      </div>
+      <div class="preview">
+        <span class="preview-num">763</span>
+        <span class="pseudo">seven hundred sixty-three</span>
+      </div>
+      <div class="quirks">
+        <span class="tag">commas every 3</span>
+      </div>
+    </a>
+
+    <a class="lang-tile" href="#">
+      <div class="lang-tile-top">
+        <div>
+          <div class="native">Deutsch</div>
+          <div class="name">German</div>
+        </div>
+      </div>
+      <div class="preview">
+        <span class="preview-num">87</span>
+        <span class="pseudo">siebenundachtzig</span>
+      </div>
+      <div class="quirks">
+        <span class="tag red">reversed pairs</span>
+        <span class="tag">one big word</span>
+      </div>
+    </a>
+
+    <a class="lang-tile" href="#">
+      <div class="lang-tile-top">
+        <div>
+          <div class="native">Nederlands</div>
+          <div class="name">Dutch</div>
+        </div>
+      </div>
+      <div class="preview">
+        <span class="preview-num">87</span>
+        <span class="pseudo">zevenentachtig</span>
+      </div>
+      <div class="quirks">
+        <span class="tag red">reversed pairs</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Slavic -->
+  <div class="group-head">
+    <h2>Slavic</h2>
+    <div class="rule"></div>
+    <span class="count">1 sheet</span>
+  </div>
+  <div class="lang-grid">
+
+    <a class="lang-tile" href="#">
+      <div class="lang-tile-top">
+        <div>
+          <div class="native">Русский</div>
+          <div class="name">Russian</div>
+        </div>
+      </div>
+      <div class="preview">
+        <span class="preview-num">42</span>
+        <span class="pseudo">сорок два</span>
+      </div>
+      <div class="quirks">
+        <span class="tag red">case agreement</span>
+        <span class="tag">сорок ≠ четыре + tens</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- CJK -->
+  <div class="group-head">
+    <h2>CJK</h2>
+    <div class="rule"></div>
+    <span class="count">3 sheets</span>
+  </div>
+  <div class="lang-grid">
+
+    <a class="lang-tile" href="#">
+      <div class="lang-tile-top">
+        <div>
+          <div class="native">日本語</div>
+          <div class="name">Japanese</div>
+        </div>
+      </div>
+      <div class="preview">
+        <span class="preview-num">42</span>
+        <span class="pseudo">四十二 · よんじゅうに</span>
+      </div>
+      <div class="quirks">
+        <span class="tag red">counters</span>
+        <span class="tag">native vs Sino</span>
+      </div>
+    </a>
+
+    <a class="lang-tile" href="#">
+      <div class="lang-tile-top">
+        <div>
+          <div class="native">한국어</div>
+          <div class="name">Korean</div>
+        </div>
+      </div>
+      <div class="preview">
+        <span class="preview-num">42</span>
+        <span class="pseudo">사십이 · 마흔둘</span>
+      </div>
+      <div class="quirks">
+        <span class="tag red">two systems</span>
+      </div>
+    </a>
+
+    <a class="lang-tile" href="#">
+      <div class="lang-tile-top">
+        <div>
+          <div class="native">中文</div>
+          <div class="name">Mandarin</div>
+        </div>
+      </div>
+      <div class="preview">
+        <span class="preview-num">42</span>
+        <span class="pseudo">四十二 · sìshí èr</span>
+      </div>
+      <div class="quirks">
+        <span class="tag">万 grouping (10⁴)</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Semitic + Other -->
+  <div class="group-head">
+    <h2>Semitic &amp; other</h2>
+    <div class="rule"></div>
+    <span class="count">2 sheets</span>
+  </div>
+  <div class="lang-grid">
+
+    <a class="lang-tile" href="#">
+      <div class="lang-tile-top">
+        <div>
+          <div class="native">العربية</div>
+          <div class="name">Arabic</div>
+        </div>
+      </div>
+      <div class="preview">
+        <span class="preview-num">٤٢</span>
+        <span class="pseudo">اثنان وأربعون</span>
+      </div>
+      <div class="quirks">
+        <span class="tag red">RTL · digits LTR</span>
+        <span class="tag">gender + case</span>
+      </div>
+    </a>
+
+    <a class="lang-tile" href="#">
+      <div class="lang-tile-top">
+        <div>
+          <div class="native">Bahasa</div>
+          <div class="name">Indonesian</div>
+        </div>
+      </div>
+      <div class="preview">
+        <span class="preview-num">42</span>
+        <span class="pseudo">empat puluh dua</span>
+      </div>
+      <div class="quirks">
+        <span class="tag">no irregulars</span>
+      </div>
+    </a>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-container footer-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL Number Practice</span>
+    </a>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>App</h4>
+        <a href="/#download">Download</a>
+        <a href="/#how">How it works</a>
+        <a href="/#about">About</a>
+      </div>
+      <div class="footer-col">
+        <h4>Cheat sheets</h4>
+        <a href="/cheatsheets/">All languages</a>
+        <a href="/portuguese-pt/">Português (PT)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="site-container" style="margin-top: 28px; font-size: 12px; color: var(--ink-faint);">© 2026 FL Number Practice</div>
+</footer>
+
+</body>
+</html>

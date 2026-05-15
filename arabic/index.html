@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>العربية — Numbers cheat sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<style>
+  /* Card-layout shared styles */
+  .sheet-head { padding: 40px 0 24px; display: flex; flex-direction: column; gap: 14px; }
+  .crumbs { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-soft); }
+  .crumbs a { text-decoration: none; }
+  .crumbs .sep { color: var(--ink-faint); }
+
+  .hero-card {
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px; padding: 32px 28px 28px;
+    display: grid; gap: 18px; margin: 8px 0 18px;
+  }
+  .hero-card h1 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: clamp(40px, 9vw, 80px); line-height: 0.96;
+    letter-spacing: -0.02em; margin: 0;
+  }
+  .hero-card .native {
+    color: rgba(241,236,224,0.6); font-family: 'Noto Naskh Arabic', var(--serif-font), serif;
+    font-size: 22px; line-height: 1.4; margin: 6px 0 0;
+    direction: rtl;
+  }
+  .hero-card .stats {
+    display: flex; gap: 24px; flex-wrap: wrap; margin-top: 8px;
+    font-family: var(--num-font); font-size: 13px; color: rgba(241,236,224,0.55);
+  }
+  .hero-card .stats > div {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .hero-card .stats b {
+    font-size: 20px; color: var(--paper); font-weight: 700; letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  .hero-card .display {
+    border-top: 0.5px solid rgba(241,236,224,0.16);
+    padding-top: 20px; display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  }
+  .hero-card .display .num {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: clamp(64px, 14vw, 132px); letter-spacing: -0.05em; line-height: 0.9;
+    color: var(--signal-red); font-variant-numeric: tabular-nums;
+  }
+  .hero-card .display .num-eastern {
+    font-family: 'Noto Naskh Arabic', serif; font-weight: 700;
+    font-size: clamp(40px, 8vw, 76px); line-height: 0.9;
+    color: rgba(241,236,224,0.55);
+    direction: rtl;
+  }
+  .hero-card .display .pseudo {
+    font-family: 'Noto Naskh Arabic', var(--serif-font), serif;
+    font-size: clamp(28px, 4vw, 38px); line-height: 1.4;
+    color: var(--paper); max-width: 480px;
+    direction: rtl; font-weight: 600;
+  }
+  .hero-card .display .romaji {
+    font-family: var(--num-font); font-weight: 500;
+    font-size: clamp(13px, 1.6vw, 16px); letter-spacing: 0.02em;
+    color: rgba(241,236,224,0.6); line-height: 1.2;
+    margin-top: 4px; display: block;
+  }
+
+  .sec { padding: 36px 0 8px; border-top: 0.5px solid var(--hair); }
+  .sec:first-of-type { border-top: 0; padding-top: 20px; }
+  .sec-head { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: baseline; margin-bottom: 18px; }
+  .sec-n { font-family: var(--num-font); font-weight: 800; font-size: clamp(44px, 7vw, 68px); line-height: 0.8; letter-spacing: -0.05em; color: var(--signal-red); }
+  .sec-title { font-family: var(--serif-font); font-weight: 400; font-size: clamp(26px, 4vw, 34px); line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 6px; }
+  .sec-blurb { font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; max-width: 600px; }
+  .sec-blurb em { font-family: var(--serif-font); color: var(--ink); font-style: italic; }
+  .sec-blurb strong { color: var(--ink); font-weight: 700; }
+  .sec-blurb .ar { font-family: 'Noto Naskh Arabic', serif; direction: rtl; unicode-bidi: isolate; font-style: normal; }
+
+  /* Number cards — Arabic-aware */
+  .nums { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ncard {
+    background: var(--paper-raised); border: 0.5px solid var(--hair);
+    border-radius: 14px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 4px; position: relative;
+  }
+  .ncard .n {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 22px; letter-spacing: -0.04em; color: var(--ink);
+    line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  /* When both Western + Eastern digits shown */
+  .ncard .n .east {
+    font-family: 'Noto Naskh Arabic', serif; color: var(--ink-soft);
+    font-weight: 700; font-size: 0.85em; letter-spacing: 0;
+    margin-left: 6px; direction: rtl; unicode-bidi: isolate;
+  }
+  /* Native (Arabic) word — RTL, large */
+  .ncard .w {
+    font-family: 'Noto Naskh Arabic', var(--serif-font), serif;
+    font-size: 24px; color: var(--ink); line-height: 1.4;
+    font-weight: 600; direction: rtl; unicode-bidi: isolate;
+    text-align: right;
+  }
+  .ncard .r {
+    font-family: var(--num-font); font-weight: 500;
+    font-size: 13px; color: var(--ink-soft); line-height: 1.2;
+    letter-spacing: 0.01em;
+  }
+
+  .ncard.irreg { background: var(--signal-red); border-color: var(--signal-red); }
+  .ncard.irreg .n, .ncard.irreg .w { color: var(--paper); }
+  .ncard.irreg .n .east { color: rgba(255,255,255,0.7); }
+  .ncard.irreg .r { color: rgba(255,255,255,0.75); }
+  .ncard .badge {
+    position: absolute; top: 10px; right: 10px;
+    font-family: var(--ui-font); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    background: rgba(0,0,0,0.06); color: var(--ink-soft);
+  }
+  .ncard.irreg .badge { background: rgba(255,255,255,0.18); color: var(--paper); }
+  .ncard.wide { grid-column: span 2; }
+  .ncard.wide .n { font-size: 32px; }
+  .ncard.wide .w { font-size: 30px; }
+
+  .callout-card {
+    grid-column: 1 / -1;
+    background: color-mix(in srgb, var(--signal-red) 8%, var(--paper-raised));
+    border: 1px solid color-mix(in srgb, var(--signal-red) 30%, transparent);
+    border-radius: 14px; padding: 16px 18px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .callout-card .icon {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--signal-red); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif-font); font-size: 18px;
+  }
+  .callout-card .b { font-size: 14.5px; line-height: 1.5; }
+  .callout-card .b strong { font-weight: 700; }
+  .callout-card .b em { font-family: var(--serif-font); font-style: italic; color: var(--ink); }
+  .callout-card .b .ar { font-family: 'Noto Naskh Arabic', serif; direction: rtl; unicode-bidi: isolate; }
+  .callout-card.muted { background: var(--paper-sunk); border-color: var(--hair); }
+  .callout-card.muted .icon { background: var(--ink); }
+
+  /* Comparison */
+  .compare { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  .compare-cell { padding: 22px; border-radius: 14px; background: var(--paper-raised); border: 0.5px solid var(--hair); }
+  .compare-cell.dark { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .compare-cell .label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--signal-red); }
+  .compare-cell .pair {
+    display: flex; gap: 14px; align-items: baseline; margin-top: 8px;
+    margin-bottom: 12px;
+  }
+  .compare-cell .digit { font-family: var(--num-font); font-weight: 800; font-size: 36px; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .compare-cell .digit-east { font-family: 'Noto Naskh Arabic', serif; font-weight: 700; font-size: 36px; line-height: 1; direction: rtl; unicode-bidi: isolate; color: var(--ink-soft); }
+  .compare-cell.dark .digit-east { color: rgba(241,236,224,0.55); }
+  .compare-cell .says { font-family: 'Noto Naskh Arabic', serif; font-size: 26px; margin-top: 12px; line-height: 1.4; direction: rtl; unicode-bidi: isolate; text-align: right; font-weight: 600; }
+  .compare-cell.dark .says { color: var(--signal-red); }
+  .compare-cell .romaji-line { font-family: var(--num-font); font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+  .compare-cell.dark .romaji-line { color: rgba(241,236,224,0.55); }
+  .compare-cell p { font-size: 13px; margin: 8px 0 0; opacity: 0.65; }
+
+  .practice-cta {
+    margin: 50px 0 0; padding: 32px;
+    background: var(--ink); color: var(--paper); border-radius: 22px;
+    display: flex; flex-direction: column; gap: 14px; align-items: flex-start;
+  }
+  .practice-cta h3 { font-family: var(--serif-font); font-weight: 400; font-size: 28px; letter-spacing: -0.01em; margin: 0; max-width: 480px; line-height: 1.1; }
+  .practice-cta p { color: rgba(241,236,224,0.65); font-size: 14.5px; margin: 0; max-width: 460px; }
+  .practice-cta .btn-primary { background: var(--signal-red); color: #fff; }
+
+  .toc-side { display: none; }
+
+  @media (min-width: 720px) {
+    .sheet-head { padding: 80px 0 30px; }
+    .hero-card { padding: 44px 40px 40px; }
+    .nums { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1100px) {
+    .toc-side { display: block; position: sticky; top: 96px; align-self: start; }
+    .toc-side .toc-list { display: flex; flex-direction: column; gap: 2px; }
+    .toc-side a { display: block; padding: 8px 12px; border-radius: 8px; font-size: 13.5px; color: var(--ink-soft); text-decoration: none; }
+    .toc-side a:hover { background: var(--paper-sunk); color: var(--ink); }
+    .toc-side a.active { background: var(--ink); color: var(--paper); }
+    .with-sidebar { grid-template-columns: 240px 1fr; gap: 56px; }
+    .nums { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-container site-header-row">
+    <a class="brand" href="/"><span class="mark">№</span><span class="name">FL&nbsp;Number Practice</span></a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/cheatsheets/" class="active">Cheat sheets</a>
+      <a href="/#about">About</a>
+    </nav>
+    <a class="nav-cta" href="/#download">Get the app →</a>
+  </div>
+</header>
+
+<main class="site-container">
+
+  <div class="sheet-head">
+    <nav class="crumbs">
+      <a href="/cheatsheets/">Cheat sheets</a>
+      <span class="sep">/</span>
+      <span>Semitic</span>
+      <span class="sep">/</span>
+      <span style="color: var(--ink);">العربية</span>
+    </nav>
+  </div>
+
+  <div class="hero-card">
+    <div>
+      <span class="eyebrow" style="color: var(--signal-red);">Semitic · MSA</span>
+      <h1>Numbers in<br><em style="font-family: 'Noto Naskh Arabic', serif; font-style: normal; direction: rtl; unicode-bidi: isolate;">العربية</em></h1>
+      <div class="native">Modern Standard Arabic · two digit systems, RTL text, LTR numerals</div>
+    </div>
+    <div class="stats">
+      <div><b>15 min</b>read</div>
+      <div><b>8</b>sections</div>
+      <div><b>2</b>digit systems</div>
+    </div>
+    <div class="display">
+      <div>
+        <div class="num">42</div>
+      </div>
+      <div>
+        <div class="num-eastern">٤٢</div>
+      </div>
+      <div>
+        <div class="pseudo">اثنان وأربعون</div>
+        <div class="romaji">ithnāni wa-arbaʿūn</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#big-picture" class="current">Big picture</a>
+    <a href="#digits">Two digit systems</a>
+    <a href="#zero-ten">0–10</a>
+    <a href="#teens">11–19</a>
+    <a href="#tens">Tens</a>
+    <a href="#compound">Compound</a>
+    <a href="#hundreds">Hundreds &amp; up</a>
+    <a href="#remember">Remember</a>
+  </nav>
+
+  <div class="with-sidebar">
+
+    <aside class="toc-side">
+      <div class="eyebrow" style="margin-bottom: 8px;">On this page</div>
+      <div class="toc-list">
+        <a href="#big-picture" class="active">The big picture</a>
+        <a href="#digits">Two digit systems</a>
+        <a href="#zero-ten">0 – 10</a>
+        <a href="#teens">11 – 19</a>
+        <a href="#tens">The tens (20 – 90)</a>
+        <a href="#compound">Compound numbers</a>
+        <a href="#hundreds">Hundreds &amp; up</a>
+        <a href="#remember">Things to remember</a>
+      </div>
+      <div class="lang-rail lang-rail-sticky" style="margin-top: 28px;">
+        <div class="lang-rail-head"><span class="eyebrow">More languages</span></div>
+        <a href="/portuguese-pt/">Português <span class="native">PT</span></a>
+        <a href="/japanese/">日本語 <span class="native">JP</span></a>
+        <a href="/arabic/" class="active">العربية <span class="native">AR</span></a>
+        <a href="#">한국어 <span class="native">KO</span></a>
+        <a href="#">中文 <span class="native">ZH</span></a>
+        <a href="/cheatsheets/" style="color: var(--signal-red); font-weight: 600;">See all 14 →</a>
+      </div>
+    </aside>
+
+    <article>
+
+      <section class="sec" id="big-picture">
+        <div class="sec-head">
+          <div class="sec-n">00</div>
+          <div>
+            <h2 class="sec-title">The big picture</h2>
+            <p class="sec-blurb">
+              Arabic text flows right-to-left, but <strong>numerals flow left-to-right</strong> — so within an RTL paragraph, the digits <span class="ar">٤٢</span> still read "42." Spoken numbers add complexity that the digits hide: gender agreement, polarity rules, and the famous <em>units before tens</em> pattern (eleven becomes "one and twenty" rather than "twenty one" when speaking).
+            </p>
+          </div>
+        </div>
+        <div class="callout-card muted">
+          <div class="icon">i</div>
+          <div class="b">
+            <strong>This sheet covers Modern Standard Arabic (MSA / فُصْحَى).</strong> Dialects (Egyptian, Levantine, Gulf) simplify the case and gender rules considerably. Start here, then specialize.
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="digits">
+        <div class="sec-head">
+          <div class="sec-n">01</div>
+          <div>
+            <h2 class="sec-title">Two digit systems</h2>
+            <p class="sec-blurb">
+              Both systems are used. <strong>Eastern Arabic-Indic digits</strong> (<span class="ar">٠ ١ ٢ ٣</span>) appear in Egypt, Iran, and most printed books and signage. <strong>Western Arabic numerals</strong> (the 0-9 you see on this page) are increasingly common in Maghreb countries (Morocco, Tunisia, Algeria) and on the web globally. Read both.
+            </p>
+          </div>
+        </div>
+        <div class="compare">
+          <div class="compare-cell dark">
+            <div class="label">Eastern Arabic-Indic</div>
+            <div class="pair">
+              <div class="digit-east">٠ ١ ٢ ٣ ٤ ٥</div>
+            </div>
+            <div class="romaji-line">Used in: Egypt, Saudi, Iran, Pakistan. Most Arabic-language printed material.</div>
+          </div>
+          <div class="compare-cell">
+            <div class="label" style="color: var(--ink);">Western Arabic</div>
+            <div class="pair">
+              <div class="digit">0 1 2 3 4 5</div>
+            </div>
+            <div class="romaji-line">Used in: Maghreb, web, science, money. The form you already know.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="zero-ten">
+        <div class="sec-head">
+          <div class="sec-n">02</div>
+          <div>
+            <h2 class="sec-title">Zero to ten</h2>
+            <p class="sec-blurb">Forms below are masculine. Numbers 3–10 have a feminine partner that drops the <em>tāʾ marbūṭa</em> when counting feminine nouns — see "polarity" below.</p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">0<span class="east">٠</span></div><div class="w">صِفر</div><div class="r">ṣifr</div></div>
+          <div class="ncard"><div class="n">1<span class="east">١</span></div><div class="w">واحِد</div><div class="r">wāḥid</div></div>
+          <div class="ncard"><div class="n">2<span class="east">٢</span></div><div class="w">اِثنان</div><div class="r">ithnān</div></div>
+          <div class="ncard"><div class="n">3<span class="east">٣</span></div><div class="w">ثَلاثة</div><div class="r">thalātha</div></div>
+          <div class="ncard"><div class="n">4<span class="east">٤</span></div><div class="w">أَربَعة</div><div class="r">arbaʿa</div></div>
+          <div class="ncard"><div class="n">5<span class="east">٥</span></div><div class="w">خَمسة</div><div class="r">khamsa</div></div>
+          <div class="ncard"><div class="n">6<span class="east">٦</span></div><div class="w">سِتّة</div><div class="r">sitta</div></div>
+          <div class="ncard"><div class="n">7<span class="east">٧</span></div><div class="w">سَبعة</div><div class="r">sabʿa</div></div>
+          <div class="ncard"><div class="n">8<span class="east">٨</span></div><div class="w">ثَمانية</div><div class="r">thamāniya</div></div>
+          <div class="ncard"><div class="n">9<span class="east">٩</span></div><div class="w">تِسعة</div><div class="r">tisʿa</div></div>
+          <div class="ncard"><div class="n">10<span class="east">١٠</span></div><div class="w">عَشَرة</div><div class="r">ʿashara</div></div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>Polarity (reversed gender agreement).</strong> Numbers 3–10 take the <em>opposite</em> gender of the noun they count. <span class="ar">ثلاثة رِجال</span> (<em>thalāthat rijāl</em>, "three men") uses the feminine-looking form for masculine men. Counterintuitive — but consistent.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="teens">
+        <div class="sec-head">
+          <div class="sec-n">03</div>
+          <div>
+            <h2 class="sec-title">Eleven to nineteen</h2>
+            <p class="sec-blurb">Each teen is two words: unit + <em>ʿashar</em> ("ten"). The unit comes first.</p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">11<span class="east">١١</span></div><div class="w">أَحَدَ عَشَر</div><div class="r">aḥada ʿashar</div></div>
+          <div class="ncard"><div class="n">12<span class="east">١٢</span></div><div class="w">اِثنا عَشَر</div><div class="r">ithnā ʿashar</div></div>
+          <div class="ncard"><div class="n">13<span class="east">١٣</span></div><div class="w">ثَلاثةَ عَشَر</div><div class="r">thalāthata ʿashar</div></div>
+          <div class="ncard"><div class="n">14<span class="east">١٤</span></div><div class="w">أَربَعةَ عَشَر</div><div class="r">arbaʿata ʿashar</div></div>
+          <div class="ncard"><div class="n">15<span class="east">١٥</span></div><div class="w">خَمسةَ عَشَر</div><div class="r">khamsata ʿashar</div></div>
+          <div class="ncard"><div class="n">16<span class="east">١٦</span></div><div class="w">سِتّةَ عَشَر</div><div class="r">sittata ʿashar</div></div>
+          <div class="ncard"><div class="n">17<span class="east">١٧</span></div><div class="w">سَبعةَ عَشَر</div><div class="r">sabʿata ʿashar</div></div>
+          <div class="ncard"><div class="n">18<span class="east">١٨</span></div><div class="w">ثَمانيةَ عَشَر</div><div class="r">thamāniyata ʿashar</div></div>
+          <div class="ncard"><div class="n">19<span class="east">١٩</span></div><div class="w">تِسعةَ عَشَر</div><div class="r">tisʿata ʿashar</div></div>
+        </div>
+      </section>
+
+      <section class="sec" id="tens">
+        <div class="sec-head">
+          <div class="sec-n">04</div>
+          <div>
+            <h2 class="sec-title">The tens (20 – 90)</h2>
+            <p class="sec-blurb">The tens are highly regular: take the unit root, attach <em>-ūn</em>. The only special case is <em>20</em>, which uses the root of "two" not "two times ten."</p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard irreg"><span class="badge">special</span><div class="n">20<span class="east">٢٠</span></div><div class="w">عِشرون</div><div class="r">ʿishrūn</div></div>
+          <div class="ncard"><div class="n">30<span class="east">٣٠</span></div><div class="w">ثَلاثون</div><div class="r">thalāthūn</div></div>
+          <div class="ncard"><div class="n">40<span class="east">٤٠</span></div><div class="w">أَربَعون</div><div class="r">arbaʿūn</div></div>
+          <div class="ncard"><div class="n">50<span class="east">٥٠</span></div><div class="w">خَمسون</div><div class="r">khamsūn</div></div>
+          <div class="ncard"><div class="n">60<span class="east">٦٠</span></div><div class="w">سِتّون</div><div class="r">sittūn</div></div>
+          <div class="ncard"><div class="n">70<span class="east">٧٠</span></div><div class="w">سَبعون</div><div class="r">sabʿūn</div></div>
+          <div class="ncard"><div class="n">80<span class="east">٨٠</span></div><div class="w">ثَمانون</div><div class="r">thamānūn</div></div>
+          <div class="ncard"><div class="n">90<span class="east">٩٠</span></div><div class="w">تِسعون</div><div class="r">tisʿūn</div></div>
+        </div>
+      </section>
+
+      <section class="sec" id="compound">
+        <div class="sec-head">
+          <div class="sec-n">05</div>
+          <div>
+            <h2 class="sec-title">Compound numbers — units first</h2>
+            <p class="sec-blurb">
+              Arabic says the unit <strong>before</strong> the ten, joined by <strong>wa-</strong> ("and"). 42 is literally <em>"two and forty"</em>. Same pattern as German <em>zweiundvierzig</em>, opposite of English and Romance languages.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">21<span class="east">٢١</span></div><div class="w">واحِد وعِشرون</div><div class="r">wāḥid wa-ʿishrūn</div></div>
+          <div class="ncard"><div class="n">35<span class="east">٣٥</span></div><div class="w">خَمسة وثَلاثون</div><div class="r">khamsa wa-thalāthūn</div></div>
+          <div class="ncard"><div class="n">52<span class="east">٥٢</span></div><div class="w">اِثنان وخَمسون</div><div class="r">ithnān wa-khamsūn</div></div>
+          <div class="ncard"><div class="n">76<span class="east">٧٦</span></div><div class="w">سِتّة وسَبعون</div><div class="r">sitta wa-sabʿūn</div></div>
+          <div class="ncard"><div class="n">99<span class="east">٩٩</span></div><div class="w">تِسعة وتِسعون</div><div class="r">tisʿa wa-tisʿūn</div></div>
+          <div class="ncard wide" style="background: var(--ink); color: var(--paper); border-color: var(--ink);">
+            <div class="n" style="color: var(--signal-red);">42 <span class="east" style="color: rgba(255,255,255,0.55); margin-left: 12px;">٤٢</span></div>
+            <div class="w" style="color: var(--paper);">اثنان وأربعون</div>
+            <div class="r" style="color: rgba(255,255,255,0.6);">ithnān wa-arbaʿūn · "two and forty"</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="hundreds">
+        <div class="sec-head">
+          <div class="sec-n">06</div>
+          <div>
+            <h2 class="sec-title">Hundreds &amp; up</h2>
+            <p class="sec-blurb">
+              <em>Miʾa</em> (مِئة) for 100, <em>alf</em> (ألف) for 1,000, <em>milyūn</em> (مليون) for 1,000,000. The hundreds 200, 300, 400 are mostly regular — but 200 has its own dual form.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">100<span class="east">١٠٠</span></div><div class="w">مِئة</div><div class="r">miʾa</div></div>
+          <div class="ncard irreg"><span class="badge">dual</span><div class="n">200<span class="east">٢٠٠</span></div><div class="w">مِئَتان</div><div class="r">miʾatān</div></div>
+          <div class="ncard"><div class="n">300<span class="east">٣٠٠</span></div><div class="w">ثَلاثُمِئة</div><div class="r">thalāthumiʾa</div></div>
+          <div class="ncard"><div class="n">500<span class="east">٥٠٠</span></div><div class="w">خَمسُمِئة</div><div class="r">khamsumiʾa</div></div>
+          <div class="ncard"><div class="n">1 000<span class="east">١٠٠٠</span></div><div class="w">ألف</div><div class="r">alf</div></div>
+          <div class="ncard irreg"><span class="badge">dual</span><div class="n">2 000<span class="east">٢٠٠٠</span></div><div class="w">ألفان</div><div class="r">alfān</div></div>
+          <div class="ncard"><div class="n">5 000<span class="east">٥٠٠٠</span></div><div class="w">خَمسة آلاف</div><div class="r">khamsat ālāf</div></div>
+          <div class="ncard"><div class="n">1 M<span class="east">١٠⁶</span></div><div class="w">مليون</div><div class="r">milyūn</div></div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>The dual form (-ān).</strong> Arabic has a grammatical dual just for "two of something." 200 = <em>miʾatān</em> ("two hundreds"), 2,000 = <em>alfān</em> ("two thousands"). You don't say <em>ithnān miʾa</em> — the dual ending replaces the number "two."
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="remember">
+        <div class="sec-head">
+          <div class="sec-n">07</div>
+          <div>
+            <h2 class="sec-title">Things to remember</h2>
+            <p class="sec-blurb">Five rules that cover the most common mistakes.</p>
+          </div>
+        </div>
+        <div class="nums" style="grid-template-columns: 1fr;">
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">1.</div>
+            <div class="w" style="font-size: 20px; direction: ltr; text-align: left; font-family: var(--serif-font); font-style: italic;">Digits flow LTR even inside RTL text. <span class="ar" style="font-style: normal;">٤٢ كم</span> reads "42 km" — the digits keep their normal order.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">2.</div>
+            <div class="w" style="font-size: 20px; direction: ltr; text-align: left; font-family: var(--serif-font); font-style: italic;">Units come before tens. <em>Khamsa wa-thalāthūn</em> ("five and thirty") = 35. Same pattern as German.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">3.</div>
+            <div class="w" style="font-size: 20px; direction: ltr; text-align: left; font-family: var(--serif-font); font-style: italic;">Numbers 3 – 10 use polarity: feminine-looking form with masculine nouns, and vice versa.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">4.</div>
+            <div class="w" style="font-size: 20px; direction: ltr; text-align: left; font-family: var(--serif-font); font-style: italic;">Use the <em>dual</em> for "two of X" — 200 is <em>miʾatān</em>, not <em>ithnān miʾa</em>.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">5.</div>
+            <div class="w" style="font-size: 20px; direction: ltr; text-align: left; font-family: var(--serif-font); font-style: italic;">Recognize both digit systems. The web and Maghreb use <em>0-9</em>; the Mashriq uses <em><span class="ar" style="font-style: normal;">٠-٩</span></em>.</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="practice-cta">
+        <span class="eyebrow" style="color: var(--signal-red);">Drill it</span>
+        <h3>The hardest part is the unit-first order.</h3>
+        <p>The companion iOS app reads numbers in MSA at adjustable speed. Train your ear to chunk "unit · wa · ten" automatically.</p>
+        <a class="btn btn-primary" href="/#download">Get the app</a>
+      </div>
+
+    </article>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-container footer-row">
+    <a class="brand" href="/"><span class="mark">№</span><span class="name">FL Number Practice</span></a>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>App</h4>
+        <a href="/#download">Download</a>
+        <a href="/#how">How it works</a>
+        <a href="/#about">About</a>
+      </div>
+      <div class="footer-col">
+        <h4>Cheat sheets</h4>
+        <a href="/cheatsheets/">All languages</a>
+        <a href="/portuguese-pt/">Português (PT)</a>
+        <a href="/japanese/">日本語</a>
+        <a href="/arabic/">العربية</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a><a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="site-container" style="margin-top: 28px; font-size: 12px; color: var(--ink-faint);">© 2026 FL Number Practice</div>
+</footer>
+
+</body>
+</html>
