@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English — Numbers cheat sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<style>
+  .sheet-head { padding: 40px 0 24px; display: flex; flex-direction: column; gap: 14px; }
+  .crumbs { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-soft); }
+  .crumbs a { text-decoration: none; }
+  .crumbs a:hover { color: var(--ink); }
+  .crumbs .sep { color: var(--ink-faint); }
+
+  .hero-card {
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px; padding: 32px 28px 28px;
+    position: relative; overflow: hidden;
+    display: grid; gap: 18px; margin: 8px 0 18px;
+  }
+  .hero-card h1 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: clamp(40px, 9vw, 80px); line-height: 0.96;
+    letter-spacing: -0.02em; margin: 0;
+  }
+  .hero-card .native {
+    color: rgba(241,236,224,0.6); font-family: var(--serif-font);
+    font-size: 22px; line-height: 1.2; margin: 6px 0 0;
+  }
+  .hero-card .stats {
+    display: flex; gap: 24px; flex-wrap: wrap; margin-top: 8px;
+    font-family: var(--num-font); font-size: 13px;
+    color: rgba(241,236,224,0.55);
+  }
+  .hero-card .stats > div { display: flex; flex-direction: column; gap: 2px; }
+  .hero-card .stats b {
+    font-size: 20px; color: var(--paper);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+  }
+  .hero-card .display {
+    border-top: 0.5px solid rgba(241,236,224,0.16); padding-top: 20px;
+    display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  }
+  .hero-card .display .num {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: clamp(48px, 10vw, 92px); letter-spacing: -0.04em; line-height: 0.9;
+    color: var(--signal-red); font-variant-numeric: tabular-nums;
+  }
+  .hero-card .display .pseudo {
+    font-family: var(--serif-font); font-style: italic;
+    color: var(--paper); font-size: clamp(20px, 2.8vw, 30px);
+    line-height: 1.15; max-width: 460px;
+  }
+
+  .sec { padding: 36px 0 8px; border-top: 0.5px solid var(--hair); }
+  .sec:first-of-type { border-top: 0; padding-top: 20px; }
+  .sec-head { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: baseline; margin-bottom: 18px; }
+  .sec-n { font-family: var(--num-font); font-weight: 800; font-size: clamp(44px, 7vw, 68px); line-height: 0.8; letter-spacing: -0.05em; color: var(--signal-red); }
+  .sec-title { font-family: var(--serif-font); font-weight: 400; font-size: clamp(26px, 4vw, 34px); line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 6px; }
+  .sec-blurb { font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; max-width: 600px; }
+  .sec-blurb em { font-family: var(--serif-font); color: var(--ink); font-style: italic; }
+  .sec-blurb strong { color: var(--ink); font-weight: 700; }
+
+  .nums { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ncard {
+    background: var(--paper-raised); border: 0.5px solid var(--hair);
+    border-radius: 14px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 4px; position: relative;
+  }
+  .ncard .n {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 26px; letter-spacing: -0.04em;
+    color: var(--ink); line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .ncard .w {
+    font-family: var(--serif-font); font-size: 18px;
+    color: var(--ink); line-height: 1.15;
+  }
+  .ncard .w .alt {
+    color: var(--ink-soft); font-size: 0.85em; margin-left: 4px;
+  }
+  .ncard.irreg { background: var(--signal-red); border-color: var(--signal-red); }
+  .ncard.irreg .n, .ncard.irreg .w { color: var(--paper); }
+  .ncard .badge {
+    position: absolute; top: 10px; right: 10px;
+    font-family: var(--ui-font); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    background: rgba(0,0,0,0.06); color: var(--ink-soft);
+  }
+  .ncard.irreg .badge { background: rgba(255,255,255,0.18); color: var(--paper); }
+
+  .ncard.wide { grid-column: span 2; }
+  .ncard.wide .n { font-size: 36px; }
+  .ncard.wide .w { font-size: 22px; }
+
+  /* The hyphen connector in 21-99 — like PT's "e", FR's "et", DE's "und" */
+  .ncard .hy {
+    color: var(--signal-red); font-weight: 800;
+    font-family: var(--ui-font); font-style: normal;
+    margin: 0 1px;
+  }
+  .ncard.irreg .hy { color: var(--paper); }
+
+  /* Spelling oddity highlight */
+  .ncard .hi {
+    color: var(--signal-red); font-weight: 800; font-style: normal;
+  }
+  .ncard.irreg .hi {
+    color: var(--paper); text-decoration: underline; text-decoration-thickness: 2px;
+  }
+
+  .ncard .breakdown {
+    margin-top: 8px;
+    font-family: var(--num-font); font-size: 12px;
+    letter-spacing: 0.04em; color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .ncard.irreg .breakdown { color: rgba(255,255,255,0.7); }
+
+  .callout-card {
+    grid-column: 1 / -1;
+    background: color-mix(in srgb, var(--signal-red) 8%, var(--paper-raised));
+    border: 1px solid color-mix(in srgb, var(--signal-red) 30%, transparent);
+    border-radius: 14px; padding: 16px 18px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .callout-card .icon {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--signal-red); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif-font); font-size: 18px;
+  }
+  .callout-card .b { font-size: 14.5px; line-height: 1.55; }
+  .callout-card .b strong { font-weight: 700; }
+  .callout-card .b em { font-family: var(--serif-font); font-style: italic; color: var(--ink); }
+  .callout-card.muted { background: var(--paper-sunk); border-color: var(--hair); }
+  .callout-card.muted .icon { background: var(--ink); }
+
+  /* US vs UK compare (also EN vs Europe) */
+  .compare { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  .compare-cell {
+    padding: 22px; border-radius: 14px;
+    background: var(--paper-raised); border: 0.5px solid var(--hair);
+  }
+  .compare-cell.en {
+    background: var(--ink); color: var(--paper); border-color: var(--ink);
+  }
+  .compare-cell .label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 700; color: var(--signal-red);
+  }
+  .compare-cell .digit {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 26px; letter-spacing: -0.04em; margin-top: 8px;
+    line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .compare-cell .says {
+    font-family: var(--serif-font); font-size: 20px;
+    margin-top: 6px; line-height: 1.2;
+  }
+  .compare-cell.en .says { color: var(--signal-red); }
+  .compare-cell p { font-size: 13px; margin: 8px 0 0; opacity: 0.65; }
+
+  .practice-cta {
+    margin: 50px 0 0; padding: 32px;
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px;
+    display: flex; flex-direction: column; gap: 14px;
+    align-items: flex-start;
+  }
+  .practice-cta h3 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: 28px; letter-spacing: -0.01em; margin: 0;
+    max-width: 480px; line-height: 1.1;
+  }
+  .practice-cta p { color: rgba(241,236,224,0.65); font-size: 14.5px; margin: 0; max-width: 460px; }
+  .practice-cta .btn-primary { background: var(--signal-red); color: #fff; }
+
+  .toc-side { display: none; }
+
+  @media (min-width: 720px) {
+    .sheet-head { padding: 80px 0 30px; }
+    .hero-card { padding: 44px 40px 40px; }
+    .nums { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1100px) {
+    .toc-side {
+      display: block; position: sticky; top: 96px; align-self: start;
+    }
+    .toc-side .toc-list { display: flex; flex-direction: column; gap: 2px; }
+    .toc-side a {
+      display: block; padding: 8px 12px; border-radius: 8px;
+      font-size: 13.5px; color: var(--ink-soft); text-decoration: none;
+    }
+    .toc-side a:hover { background: var(--paper-sunk); color: var(--ink); }
+    .toc-side a.active { background: var(--ink); color: var(--paper); }
+    .with-sidebar { grid-template-columns: 240px 1fr; gap: 56px; }
+    .nums { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-container site-header-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL&nbsp;Number Practice</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/cheatsheets/" class="active">Cheat sheets</a>
+      <a href="/#about">About</a>
+    </nav>
+    <a class="nav-cta" href="/#download">Get the app →</a>
+    <button class="nav-toggle" aria-label="Open menu">
+      <svg width="20" height="14" viewBox="0 0 20 14"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="site-container">
+
+  <div class="sheet-head">
+    <nav class="crumbs">
+      <a href="/cheatsheets/">Cheat sheets</a>
+      <span class="sep">/</span>
+      <span>Germanic</span>
+      <span class="sep">/</span>
+      <span style="color: var(--ink);">English</span>
+    </nav>
+  </div>
+
+  <!-- HERO CARD -->
+  <div class="hero-card">
+    <div>
+      <span class="eyebrow" style="color: var(--signal-red);">Germanic · Worldwide</span>
+      <h1>Numbers in<br><em style="font-style: italic;">English</em></h1>
+      <div class="native">Hyphens, commas, no-and, short billion.</div>
+    </div>
+    <div class="stats">
+      <div><b>10 min</b>read</div>
+      <div><b>7</b>sections</div>
+      <div><b>billion = 10⁹</b>(short scale)</div>
+    </div>
+    <div class="display">
+      <div class="num">1,000,000,000</div>
+      <div class="pseudo">one billion</div>
+    </div>
+  </div>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#big-picture" class="current">Big picture</a>
+    <a href="#zero-twenty">0–20</a>
+    <a href="#tens-and-hyphens">20–99</a>
+    <a href="#hundreds">Hundreds</a>
+    <a href="#millions">Millions</a>
+    <a href="#ordinals">Ordinals</a>
+    <a href="#remember">Remember</a>
+  </nav>
+
+  <div class="with-sidebar">
+
+    <aside class="toc-side">
+      <div class="eyebrow" style="margin-bottom: 8px;">On this page</div>
+      <div class="toc-list">
+        <a href="#big-picture" class="active">The big picture</a>
+        <a href="#zero-twenty">0 – 20</a>
+        <a href="#tens-and-hyphens">20 – 99: tens &amp; hyphens</a>
+        <a href="#hundreds">Hundreds &amp; thousands</a>
+        <a href="#millions">Millions &amp; the short billion</a>
+        <a href="#ordinals">Ordinals</a>
+        <a href="#remember">Things to remember</a>
+      </div>
+      <div class="lang-rail lang-rail-sticky" style="margin-top: 28px;">
+        <div class="lang-rail-head"><span class="eyebrow">More languages</span></div>
+        <a href="/portuguese-pt/">Português <span class="native">PT</span></a>
+        <a href="/portuguese-br/">Português <span class="native">BR</span></a>
+        <a href="/spanish/">Español <span class="native">ES</span></a>
+        <a href="/french/">Français <span class="native">FR</span></a>
+        <a href="/italian/">Italiano <span class="native">IT</span></a>
+        <a href="/german/">Deutsch <span class="native">DE</span></a>
+        <a href="/dutch/">Nederlands <span class="native">NL</span></a>
+        <a href="/english/" class="active">English <span class="native">EN</span></a>
+        <a href="/russian/">Русский <span class="native">RU</span></a>
+        <a href="/japanese/">日本語 <span class="native">JP</span></a>
+        <a href="/mandarin/">中文 <span class="native">ZH</span></a>
+        <a href="/arabic/">العربية <span class="native">AR</span></a>
+        <a href="/cheatsheets/" style="color: var(--signal-red); font-weight: 600;">See all 14 →</a>
+      </div>
+    </aside>
+
+    <article>
+
+      <!-- BIG PICTURE -->
+      <section class="sec" id="big-picture">
+        <div class="sec-head">
+          <div class="sec-n">00</div>
+          <div>
+            <h2 class="sec-title">The big picture</h2>
+            <p class="sec-blurb">
+              English is the baseline most learners on this site are coming <em>from</em>. It has fewer rules than its neighbors — no gender, no case agreement, no fused compounds. But it does have spelling oddities every native struggles to explain (<em>forty</em>, not <em>fourty</em>), a regional <strong>and</strong>-split between UK and US, and the <strong>short-scale billion</strong> that confuses everyone in Europe.
+            </p>
+          </div>
+        </div>
+        <div class="callout-card muted">
+          <div class="icon">i</div>
+          <div class="b">
+            <strong>If you only remember one thing:</strong> a <strong>billion</strong> in English is <strong>10⁹</strong>, not 10¹². If you came here from Spanish, French, German, Italian, Dutch, or Russian — your <em>billón / milliard / Milliarde / miliardo / miljard / миллиард</em> is the English <em>billion</em>. Your <em>billón / Billion / biljoen</em> is the English <em>trillion</em>.
+          </div>
+        </div>
+      </section>
+
+      <!-- 0 – 20 -->
+      <section class="sec" id="zero-twenty">
+        <div class="sec-head">
+          <div class="sec-n">01</div>
+          <div>
+            <h2 class="sec-title">Zero to twenty</h2>
+            <p class="sec-blurb">0–12 are unique words. 13–19 use the <em>-teen</em> suffix, with internal vowel shifts on <em>fifteen</em> and <em>eighteen</em> (the latter only one <em>t</em>, not two).</p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">0</div><div class="w">zero</div></div>
+          <div class="ncard"><div class="n">1</div><div class="w">one</div></div>
+          <div class="ncard"><div class="n">2</div><div class="w">two</div></div>
+          <div class="ncard"><div class="n">3</div><div class="w">three</div></div>
+          <div class="ncard"><div class="n">4</div><div class="w">four</div></div>
+          <div class="ncard"><div class="n">5</div><div class="w">five</div></div>
+          <div class="ncard"><div class="n">6</div><div class="w">six</div></div>
+          <div class="ncard"><div class="n">7</div><div class="w">seven</div></div>
+          <div class="ncard"><div class="n">8</div><div class="w">eight</div></div>
+          <div class="ncard"><div class="n">9</div><div class="w">nine</div></div>
+          <div class="ncard"><div class="n">10</div><div class="w">ten</div></div>
+          <div class="ncard"><div class="n">11</div><div class="w">eleven</div></div>
+          <div class="ncard"><div class="n">12</div><div class="w">twelve</div></div>
+          <div class="ncard"><div class="n">13</div><div class="w">thirteen</div></div>
+          <div class="ncard"><div class="n">14</div><div class="w">fourteen</div></div>
+          <div class="ncard irreg"><span class="badge">v→f</span><div class="n">15</div><div class="w">f<span class="hi">i</span>fteen</div></div>
+          <div class="ncard"><div class="n">16</div><div class="w">sixteen</div></div>
+          <div class="ncard"><div class="n">17</div><div class="w">seventeen</div></div>
+          <div class="ncard irreg"><span class="badge">one t</span><div class="n">18</div><div class="w">eigh<span class="hi">t</span>een</div></div>
+          <div class="ncard"><div class="n">19</div><div class="w">nineteen</div></div>
+          <div class="ncard"><div class="n">20</div><div class="w">twenty</div></div>
+        </div>
+      </section>
+
+      <!-- 20 - 99: TENS AND HYPHENS -->
+      <section class="sec" id="tens-and-hyphens">
+        <div class="sec-head">
+          <div class="sec-n">02</div>
+          <div>
+            <h2 class="sec-title">20 – 99: tens &amp; hyphens</h2>
+            <p class="sec-blurb">
+              The tens have a quirk every native gets wrong on muscle memory: <strong>forty</strong>, not <em>fourty</em>. Compound numbers 21–99 always use a <strong>hyphen</strong> between the ten and the unit: <em>twenty-one</em>, <em>forty-two</em>, <em>ninety-nine</em>.
+            </p>
+          </div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 8px 0 12px;">The tens</h3>
+        <div class="nums">
+          <div class="ncard"><div class="n">20</div><div class="w">twenty</div></div>
+          <div class="ncard"><div class="n">30</div><div class="w">thirty</div></div>
+          <div class="ncard irreg"><span class="badge">no u</span><div class="n">40</div><div class="w">f<span class="hi">o</span>rty</div></div>
+          <div class="ncard irreg"><span class="badge">v→f</span><div class="n">50</div><div class="w">f<span class="hi">i</span>fty</div></div>
+          <div class="ncard"><div class="n">60</div><div class="w">sixty</div></div>
+          <div class="ncard"><div class="n">70</div><div class="w">seventy</div></div>
+          <div class="ncard irreg"><span class="badge">one t</span><div class="n">80</div><div class="w">eigh<span class="hi">t</span>y</div></div>
+          <div class="ncard"><div class="n">90</div><div class="w">ninety</div></div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 30px 0 12px;">Compounds 21 – 99: hyphen required</h3>
+        <div class="nums">
+          <div class="ncard"><div class="n">21</div><div class="w">twenty<span class="hy">-</span>one</div></div>
+          <div class="ncard"><div class="n">35</div><div class="w">thirty<span class="hy">-</span>five</div></div>
+          <div class="ncard irreg"><div class="n">42</div><div class="w">forty<span class="hy">-</span>two</div></div>
+          <div class="ncard"><div class="n">58</div><div class="w">fifty<span class="hy">-</span>eight</div></div>
+          <div class="ncard"><div class="n">67</div><div class="w">sixty<span class="hy">-</span>seven</div></div>
+          <div class="ncard"><div class="n">76</div><div class="w">seventy<span class="hy">-</span>six</div></div>
+          <div class="ncard"><div class="n">89</div><div class="w">eighty<span class="hy">-</span>nine</div></div>
+          <div class="ncard"><div class="n">99</div><div class="w">ninety<span class="hy">-</span>nine</div></div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>The hyphen is grammatical.</strong> Numbers from twenty-one to ninety-nine take a hyphen when written out, even in continuous prose. "She is twenty<strong style="color: var(--signal-red);">-</strong>three years old." Style guides agree on this — it's not optional.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HUNDREDS & THOUSANDS -->
+      <section class="sec" id="hundreds">
+        <div class="sec-head">
+          <div class="sec-n">03</div>
+          <div>
+            <h2 class="sec-title">Hundreds &amp; thousands</h2>
+            <p class="sec-blurb">
+              Predictable composition — just put the digit before <em>hundred</em>, <em>thousand</em>. Two regional things to know: <strong>UK English inserts "and"</strong> between hundreds and tens (<em>two hundred and forty-five</em>), <strong>US English doesn't</strong> (<em>two hundred forty-five</em>). And commas separate every three digits.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><span class="badge">one / a</span><div class="n">100</div><div class="w">one hundred <span class="alt">/ a hundred</span></div></div>
+          <div class="ncard"><div class="n">200</div><div class="w">two hundred</div></div>
+          <div class="ncard"><div class="n">500</div><div class="w">five hundred</div></div>
+          <div class="ncard"><div class="n">900</div><div class="w">nine hundred</div></div>
+          <div class="ncard"><span class="badge">one / a</span><div class="n">1,000</div><div class="w">one thousand <span class="alt">/ a thousand</span></div></div>
+          <div class="ncard"><div class="n">2,000</div><div class="w">two thousand</div></div>
+          <div class="ncard"><div class="n">10,000</div><div class="w">ten thousand</div></div>
+          <div class="ncard"><div class="n">100,000</div><div class="w">one hundred thousand</div></div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 30px 0 12px;">UK vs US: the "and"</h3>
+        <div class="compare">
+          <div class="compare-cell en">
+            <div class="label">UK English</div>
+            <div class="digit">245</div>
+            <div class="says">two hundred <span style="color: var(--paper); font-weight: 700;">and</span> forty-five</div>
+            <p>British convention puts <em>and</em> between the hundreds and the rest. Standard in British schoolbooks, newspapers, the BBC.</p>
+          </div>
+          <div class="compare-cell">
+            <div class="label" style="color: var(--ink);">US English</div>
+            <div class="digit">245</div>
+            <div class="says">two hundred forty-five</div>
+            <p>American convention drops the <em>and</em>. Including it sounds slightly old-fashioned or British to American ears.</p>
+          </div>
+        </div>
+
+        <div class="callout-card" style="margin-top: 12px;">
+          <div class="icon">!</div>
+          <div class="b">
+            <strong>The "and" is decimals territory in US English.</strong> Americans reserve <em>and</em> for the spot the decimal point would go: <em>two hundred and fifty-five hundredths</em> = 200.55. Conflating that with a thousands-separator <em>and</em> can cause confusion in formal/financial contexts.
+          </div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 30px 0 12px;">In the wild</h3>
+        <div class="nums">
+          <div class="ncard wide">
+            <div class="n">245</div>
+            <div class="w">two hundred forty<span class="hy">-</span>five <span class="alt">/ two hundred and forty-five (UK)</span></div>
+          </div>
+          <div class="ncard wide">
+            <div class="n">2,345</div>
+            <div class="w">two thousand three hundred forty<span class="hy">-</span>five</div>
+          </div>
+          <div class="ncard wide">
+            <div class="n">10,498</div>
+            <div class="w">ten thousand four hundred ninety<span class="hy">-</span>eight</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MILLIONS & SHORT-SCALE BILLION -->
+      <section class="sec" id="millions">
+        <div class="sec-head">
+          <div class="sec-n">04</div>
+          <div>
+            <h2 class="sec-title">Millions &amp; the short billion</h2>
+            <p class="sec-blurb">
+              English uses the <strong>short scale</strong> — each new "-illion" is 1,000× the last one. <em>Million</em> = 10⁶, <em>billion</em> = 10⁹, <em>trillion</em> = 10¹². Most European languages use the long scale, where their <em>billion</em>-cognate means 10¹². This is the single biggest cross-language gotcha on this site.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">1 M</div><div class="w">one million</div></div>
+          <div class="ncard"><div class="n">2 M</div><div class="w">two million</div></div>
+          <div class="ncard"><div class="n">55 M</div><div class="w">fifty-five million</div></div>
+          <div class="ncard irreg"><span class="badge">10⁹</span><div class="n">1 B</div><div class="w">one billion</div></div>
+          <div class="ncard"><div class="n">2 B</div><div class="w">two billion</div></div>
+          <div class="ncard irreg"><span class="badge">10¹²</span><div class="n">1 T</div><div class="w">one trillion</div></div>
+        </div>
+
+        <div class="compare" style="margin-top: 18px;">
+          <div class="compare-cell en">
+            <div class="label">English · short scale</div>
+            <div class="digit">1,000,000,000</div>
+            <div class="says">one billion</div>
+            <p>Each scale word is 10³ × the previous. <em>Thousand → million → billion → trillion</em>, separated by 10³ each step.</p>
+          </div>
+          <div class="compare-cell">
+            <div class="label" style="color: var(--ink);">European · long scale</div>
+            <div class="digit">1.000.000.000</div>
+            <div class="says">mil millones · milliard · Milliarde · miliardo · miljard · миллиард</div>
+            <p>Each "-illion" word jumps 10⁶ instead of 10³. The intermediate 10⁹ gets a separate <em>milliard</em>-family word. <em>Billion</em>-cognate means 10¹².</p>
+          </div>
+        </div>
+
+        <div class="callout-card" style="margin-top: 12px;">
+          <div class="icon">!</div>
+          <div class="b">
+            <strong>Plural-less in count constructions.</strong> Unlike European number-nouns (Spanish <em>dos millones</em>, French <em>deux millions</em>), English <em>million / billion / trillion</em> stay <strong>singular</strong> when counted: <em>two million dollars</em>, <em>three billion stars</em>. Add an <em>-s</em> only for indefinite "millions of" (<em>millions of people</em>).
+          </div>
+        </div>
+      </section>
+
+      <!-- ORDINALS -->
+      <section class="sec" id="ordinals">
+        <div class="sec-head">
+          <div class="sec-n">05</div>
+          <div>
+            <h2 class="sec-title">Ordinals</h2>
+            <p class="sec-blurb">
+              The first three are irregular: <em>first</em>, <em>second</em>, <em>third</em>. After that, mostly just add <strong>-th</strong> to the cardinal — but four cards below have spelling tweaks that catch even native writers.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard irreg"><span class="badge">irreg</span><div class="n">1st</div><div class="w">first</div></div>
+          <div class="ncard irreg"><span class="badge">irreg</span><div class="n">2nd</div><div class="w">second</div></div>
+          <div class="ncard irreg"><span class="badge">irreg</span><div class="n">3rd</div><div class="w">third</div></div>
+          <div class="ncard"><div class="n">4th</div><div class="w">fourth</div></div>
+          <div class="ncard irreg"><span class="badge">v→f</span><div class="n">5th</div><div class="w">f<span class="hi">i</span>fth</div></div>
+          <div class="ncard"><div class="n">6th</div><div class="w">sixth</div></div>
+          <div class="ncard"><div class="n">7th</div><div class="w">seventh</div></div>
+          <div class="ncard irreg"><span class="badge">one t</span><div class="n">8th</div><div class="w">eigh<span class="hi">t</span>h</div></div>
+          <div class="ncard irreg"><span class="badge">drop e</span><div class="n">9th</div><div class="w">nin<span class="hi">t</span>h</div></div>
+          <div class="ncard"><div class="n">10th</div><div class="w">tenth</div></div>
+          <div class="ncard"><div class="n">11th</div><div class="w">eleventh</div></div>
+          <div class="ncard irreg"><span class="badge">v→f</span><div class="n">12th</div><div class="w">twel<span class="hi">f</span>th</div></div>
+          <div class="ncard"><div class="n">20th</div><div class="w">twentieth</div></div>
+          <div class="ncard"><div class="n">21st</div><div class="w">twenty<span class="hy">-</span>first</div></div>
+          <div class="ncard"><div class="n">100th</div><div class="w">one hundredth</div></div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>Compound ordinals: only the last word becomes ordinal.</strong> 21st = <em>twenty<strong style="color: var(--signal-red);">-first</strong></em>, 43rd = <em>forty<strong style="color: var(--signal-red);">-third</strong></em>, 101st = <em>one hundred <strong style="color: var(--signal-red);">first</strong></em>, 1,000th = <em>one <strong style="color: var(--signal-red);">thousandth</strong></em>. Same logic as the cardinal compound: build left-to-right, only adjust the final piece.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REMEMBER -->
+      <section class="sec" id="remember">
+        <div class="sec-head">
+          <div class="sec-n">06</div>
+          <div>
+            <h2 class="sec-title">Things to remember</h2>
+            <p class="sec-blurb">Five rules that will save you from the most common mistakes — even as a native speaker.</p>
+          </div>
+        </div>
+        <div class="nums" style="grid-template-columns: 1fr;">
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">1.</div>
+            <div class="w"><strong>Billion is 10⁹, not 10¹².</strong> English is short-scale. Every other big European language on this site uses long-scale, where their <em style="font-family: var(--serif-font); color: var(--ink-soft);">billion</em>-cognate is your <em style="font-family: var(--serif-font); color: var(--ink-soft);">trillion</em>.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">2.</div>
+            <div class="w"><strong><em style="font-family: var(--serif-font); color: var(--signal-red);">Forty</em>, not <em style="font-family: var(--serif-font); color: var(--ink-soft);">fourty</em>.</strong> The only ten that drops a letter from the cardinal. Also: <em style="font-family: var(--serif-font); color: var(--ink-soft);">fifteen / fifty</em> (v→f from <em>five</em>), <em style="font-family: var(--serif-font); color: var(--ink-soft);">eighteen / eighty</em> (single <em>t</em>, not double).</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">3.</div>
+            <div class="w"><strong>Hyphenate 21–99.</strong> <em style="font-family: var(--serif-font); color: var(--ink-soft);">Twenty-one</em>, <em style="font-family: var(--serif-font); color: var(--ink-soft);">forty-two</em>, <em style="font-family: var(--serif-font); color: var(--ink-soft);">ninety-nine</em>. Always. Style guides agree.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">4.</div>
+            <div class="w"><strong>UK has "and", US doesn't.</strong> <em style="font-family: var(--serif-font); color: var(--ink-soft);">Two hundred <strong style="color: var(--signal-red);">and</strong> forty-five</em> (UK) vs <em style="font-family: var(--serif-font); color: var(--ink-soft);">two hundred forty-five</em> (US). Pick the convention that matches your audience.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">5.</div>
+            <div class="w"><strong>Four ordinals have spelling exceptions.</strong> <em style="font-family: var(--serif-font); color: var(--ink-soft);">F<strong style="color: var(--signal-red);">i</strong>fth, eigh<strong style="color: var(--signal-red);">t</strong>h, nin<strong style="color: var(--signal-red);">t</strong>h, twel<strong style="color: var(--signal-red);">f</strong>th</em> — the four most-misspelled ordinals in English. The rest are just <em>cardinal + -th</em>.</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="practice-cta">
+        <span class="eyebrow" style="color: var(--signal-red);">Drill it</span>
+        <h3>Reading is one thing.<br>Hearing it at speed is another.</h3>
+        <p>The companion iOS app generates random numbers in your chosen range and reads them aloud in English. Five minutes a day.</p>
+        <a class="btn btn-primary" href="/#download">
+          <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor"><path d="M11.6 8.5c0-2 1.6-3 1.7-3-.9-1.4-2.4-1.5-2.9-1.5-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7C3.2 4 1.7 4.9 1 6.3c-1.4 2.4-.4 6 1 8 .7 1 1.5 2.1 2.5 2 1 0 1.4-.6 2.6-.6s1.5.6 2.6.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.2-2.3-.1 0-2.3-1-2.3-3.5zM9.7 2.5c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.2 1.2-.5.6-.9 1.5-.8 2.4.9.1 1.7-.4 2.2-1.1z"/></svg>
+          Get the app
+        </a>
+      </div>
+
+    </article>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-container footer-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL Number Practice</span>
+    </a>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>App</h4>
+        <a href="/#download">Download</a>
+        <a href="/#how">How it works</a>
+        <a href="/#about">About</a>
+      </div>
+      <div class="footer-col">
+        <h4>Cheat sheets</h4>
+        <a href="/cheatsheets/">All languages</a>
+        <a href="/portuguese-pt/">Português (PT)</a>
+        <a href="/portuguese-br/">Português (BR)</a>
+        <a href="/spanish/">Español</a>
+        <a href="/french/">Français</a>
+        <a href="/italian/">Italiano</a>
+        <a href="/german/">Deutsch</a>
+        <a href="/dutch/">Nederlands</a>
+        <a href="/english/">English</a>
+        <a href="/russian/">Русский</a>
+        <a href="/mandarin/">中文</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="site-container" style="margin-top: 28px; font-size: 12px; color: var(--ink-faint);">© 2026 FL Number Practice</div>
+</footer>
+
+</body>
+</html>
