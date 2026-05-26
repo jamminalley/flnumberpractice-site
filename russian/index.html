@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Русский — Numbers cheat sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&family=Noto+Serif:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<style>
+  .sheet-head { padding: 40px 0 24px; display: flex; flex-direction: column; gap: 14px; }
+  .crumbs { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-soft); }
+  .crumbs a { text-decoration: none; }
+  .crumbs .sep { color: var(--ink-faint); }
+
+  .hero-card {
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px; padding: 32px 28px 28px;
+    display: grid; gap: 18px; margin: 8px 0 18px;
+    position: relative; overflow: hidden;
+  }
+  .hero-card h1 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: clamp(40px, 9vw, 80px); line-height: 0.96;
+    letter-spacing: -0.02em; margin: 0;
+  }
+  .hero-card .native {
+    color: rgba(241,236,224,0.6);
+    font-family: 'Noto Serif', var(--serif-font), serif;
+    font-size: 22px; line-height: 1.2; margin: 6px 0 0;
+  }
+  .hero-card .stats {
+    display: flex; gap: 24px; flex-wrap: wrap; margin-top: 8px;
+    font-family: var(--num-font); font-size: 13px; color: rgba(241,236,224,0.55);
+  }
+  .hero-card .stats > div {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .hero-card .stats b {
+    font-size: 20px; color: var(--paper);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+  }
+  .hero-card .stats b.ru {
+    font-family: 'Noto Serif', var(--serif-font), serif;
+  }
+  .hero-card .display {
+    border-top: 0.5px solid rgba(241,236,224,0.16);
+    padding-top: 20px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .hero-card .display .num {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: clamp(56px, 12vw, 116px); letter-spacing: -0.05em; line-height: 0.9;
+    color: var(--signal-red); font-variant-numeric: tabular-nums;
+  }
+  .hero-card .display .pseudo {
+    font-family: 'Noto Serif', var(--serif-font), serif;
+    font-size: clamp(22px, 3.2vw, 32px); line-height: 1.2;
+    color: var(--paper); font-weight: 600;
+  }
+  .hero-card .display .pinyin {
+    font-family: var(--num-font); font-weight: 500;
+    font-size: clamp(13px, 1.6vw, 16px); letter-spacing: 0.02em;
+    color: rgba(241,236,224,0.6); line-height: 1.2;
+    margin-top: 4px;
+  }
+
+  .sec { padding: 36px 0 8px; border-top: 0.5px solid var(--hair); }
+  .sec:first-of-type { border-top: 0; padding-top: 20px; }
+  .sec-head { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: baseline; margin-bottom: 18px; }
+  .sec-n { font-family: var(--num-font); font-weight: 800; font-size: clamp(44px, 7vw, 68px); line-height: 0.8; letter-spacing: -0.05em; color: var(--signal-red); }
+  .sec-title { font-family: var(--serif-font); font-weight: 400; font-size: clamp(26px, 4vw, 34px); line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 6px; }
+  .sec-title .ru { font-family: 'Noto Serif', var(--serif-font), serif; font-weight: 600; }
+  .sec-blurb { font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; max-width: 600px; }
+  .sec-blurb em { font-family: var(--serif-font); color: var(--ink); font-style: italic; }
+  .sec-blurb strong { color: var(--ink); font-weight: 700; }
+  .sec-blurb .ru { font-family: 'Noto Serif', var(--serif-font), serif; color: var(--ink); font-weight: 600; font-style: normal; }
+
+  .nums { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ncard {
+    background: var(--paper-raised); border: 0.5px solid var(--hair);
+    border-radius: 14px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 4px; position: relative;
+  }
+  .ncard .n {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 26px; letter-spacing: -0.04em; color: var(--ink);
+    line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .ncard .w {
+    font-family: 'Noto Serif', var(--serif-font), serif;
+    font-size: 22px; color: var(--ink); line-height: 1.2;
+    font-weight: 600;
+  }
+  .ncard .r {
+    font-family: var(--num-font); font-weight: 500;
+    font-size: 13px; color: var(--ink-soft); line-height: 1.2;
+    letter-spacing: 0.01em;
+  }
+  .ncard.irreg { background: var(--signal-red); border-color: var(--signal-red); }
+  .ncard.irreg .n, .ncard.irreg .w { color: var(--paper); }
+  .ncard.irreg .r { color: rgba(255,255,255,0.85); }
+  .ncard .badge {
+    position: absolute; top: 10px; right: 10px;
+    font-family: var(--ui-font); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    background: rgba(0,0,0,0.06); color: var(--ink-soft);
+  }
+  .ncard.irreg .badge { background: rgba(255,255,255,0.18); color: var(--paper); }
+
+  .ncard.wide { grid-column: span 2; }
+  .ncard.wide .n { font-size: 36px; }
+  .ncard.wide .w { font-size: 28px; }
+  .ncard.wide .r { font-size: 14px; }
+
+  /* Highlight a stem letter in red */
+  .ncard .hi {
+    color: var(--signal-red); font-weight: 700;
+  }
+  .ncard.irreg .hi { color: var(--paper); text-decoration: underline; text-decoration-thickness: 2px; }
+
+  .ncard .breakdown {
+    margin-top: 8px;
+    font-family: var(--num-font); font-size: 12px;
+    letter-spacing: 0.04em; color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .ncard.irreg .breakdown { color: rgba(255,255,255,0.7); }
+
+  .callout-card {
+    grid-column: 1 / -1;
+    background: color-mix(in srgb, var(--signal-red) 8%, var(--paper-raised));
+    border: 1px solid color-mix(in srgb, var(--signal-red) 30%, transparent);
+    border-radius: 14px; padding: 16px 18px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .callout-card .icon {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--signal-red); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif-font); font-size: 18px;
+  }
+  .callout-card .b { font-size: 14.5px; line-height: 1.55; }
+  .callout-card .b strong { font-weight: 700; }
+  .callout-card .b em { font-family: var(--serif-font); font-style: italic; color: var(--ink); }
+  .callout-card .b .ru { font-family: 'Noto Serif', var(--serif-font), serif; font-weight: 600; color: var(--ink); font-style: normal; }
+  .callout-card.muted { background: var(--paper-sunk); border-color: var(--hair); }
+  .callout-card.muted .icon { background: var(--ink); }
+
+  /* Case ladder — visualizes the 1 / 2-4 / 5+ shift */
+  .case-ladder {
+    display: grid; gap: 10px;
+    grid-template-columns: 1fr;
+    margin-top: 12px;
+  }
+  .case-row {
+    background: var(--paper-raised);
+    border: 0.5px solid var(--hair);
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: center;
+  }
+  .case-row.dark {
+    background: var(--ink); color: var(--paper); border-color: var(--ink);
+  }
+  .case-row .trigger {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 22px; letter-spacing: -0.03em;
+    color: var(--signal-red); font-variant-numeric: tabular-nums;
+  }
+  .case-row .rule {
+    font-family: var(--serif-font); font-size: 16px;
+    line-height: 1.3;
+  }
+  .case-row .rule strong { font-weight: 700; }
+  .case-row .rule .ru {
+    font-family: 'Noto Serif', var(--serif-font), serif; font-weight: 600;
+  }
+  .case-row .label {
+    font-family: var(--ui-font); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink-soft);
+    text-align: right;
+  }
+  .case-row.dark .label { color: rgba(241,236,224,0.55); }
+
+  .practice-cta {
+    margin: 50px 0 0; padding: 32px;
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px;
+    display: flex; flex-direction: column; gap: 14px;
+    align-items: flex-start;
+  }
+  .practice-cta h3 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: 28px; letter-spacing: -0.01em; margin: 0;
+    max-width: 480px; line-height: 1.1;
+  }
+  .practice-cta p { color: rgba(241,236,224,0.65); font-size: 14.5px; margin: 0; max-width: 460px; }
+  .practice-cta .btn-primary { background: var(--signal-red); color: #fff; }
+
+  .toc-side { display: none; }
+
+  @media (min-width: 720px) {
+    .sheet-head { padding: 80px 0 30px; }
+    .hero-card { padding: 44px 40px 40px; }
+    .nums { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1100px) {
+    .toc-side {
+      display: block; position: sticky; top: 96px; align-self: start;
+    }
+    .toc-side .toc-list { display: flex; flex-direction: column; gap: 2px; }
+    .toc-side a {
+      display: block; padding: 8px 12px; border-radius: 8px;
+      font-size: 13.5px; color: var(--ink-soft); text-decoration: none;
+    }
+    .toc-side a:hover { background: var(--paper-sunk); color: var(--ink); }
+    .toc-side a.active { background: var(--ink); color: var(--paper); }
+    .with-sidebar { grid-template-columns: 240px 1fr; gap: 56px; }
+    .nums { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-container site-header-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL&nbsp;Number Practice</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/cheatsheets/" class="active">Cheat sheets</a>
+      <a href="/#about">About</a>
+    </nav>
+    <a class="nav-cta" href="/#download">Get the app →</a>
+    <button class="nav-toggle" aria-label="Open menu">
+      <svg width="20" height="14" viewBox="0 0 20 14"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="site-container">
+
+  <div class="sheet-head">
+    <nav class="crumbs">
+      <a href="/cheatsheets/">Cheat sheets</a>
+      <span class="sep">/</span>
+      <span>Slavic</span>
+      <span class="sep">/</span>
+      <span style="color: var(--ink);">Русский</span>
+    </nav>
+  </div>
+
+  <!-- HERO CARD -->
+  <div class="hero-card">
+    <div>
+      <span class="eyebrow" style="color: var(--signal-red);">Slavic · Россия</span>
+      <h1>Numbers in<br><em style="font-style: italic;">Русский</em></h1>
+      <div class="native">Один рубль, два рубля, пять рублей</div>
+    </div>
+    <div class="stats">
+      <div><b>12 min</b>read</div>
+      <div><b>7</b>sections</div>
+      <div><b class="ru">сорок</b>= 40, the lone outlier</div>
+    </div>
+    <div class="display">
+      <div class="num">1.348</div>
+      <div class="pseudo">тысяча триста сорок восемь</div>
+      <div class="pinyin">tysyacha trista sorok vosem'</div>
+    </div>
+  </div>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#big-picture" class="current">Big picture</a>
+    <a href="#zero-twenty">0–20</a>
+    <a href="#tens">Tens</a>
+    <a href="#hundreds">Hundreds</a>
+    <a href="#thousands">Thousands</a>
+    <a href="#cases">Cases</a>
+    <a href="#remember">Remember</a>
+  </nav>
+
+  <div class="with-sidebar">
+
+    <aside class="toc-side">
+      <div class="eyebrow" style="margin-bottom: 8px;">On this page</div>
+      <div class="toc-list">
+        <a href="#big-picture" class="active">The big picture</a>
+        <a href="#zero-twenty">0 – 20</a>
+        <a href="#tens">Tens (20 – 90)</a>
+        <a href="#hundreds">Hundreds</a>
+        <a href="#thousands">Thousands &amp; millions</a>
+        <a href="#cases">Case agreement</a>
+        <a href="#remember">Things to remember</a>
+      </div>
+      <div class="lang-rail lang-rail-sticky" style="margin-top: 28px;">
+        <div class="lang-rail-head"><span class="eyebrow">More languages</span></div>
+        <a href="/portuguese-pt/">Português <span class="native">PT</span></a>
+        <a href="/portuguese-br/">Português <span class="native">BR</span></a>
+        <a href="/spanish/">Español <span class="native">ES</span></a>
+        <a href="/french/">Français <span class="native">FR</span></a>
+        <a href="/italian/">Italiano <span class="native">IT</span></a>
+        <a href="/german/">Deutsch <span class="native">DE</span></a>
+        <a href="/dutch/">Nederlands <span class="native">NL</span></a>
+        <a href="/russian/" class="active">Русский <span class="native">RU</span></a>
+        <a href="/japanese/">日本語 <span class="native">JP</span></a>
+        <a href="/mandarin/">中文 <span class="native">ZH</span></a>
+        <a href="/arabic/">العربية <span class="native">AR</span></a>
+        <a href="/cheatsheets/" style="color: var(--signal-red); font-weight: 600;">See all 14 →</a>
+      </div>
+    </aside>
+
+    <article>
+
+      <!-- BIG PICTURE -->
+      <section class="sec" id="big-picture">
+        <div class="sec-head">
+          <div class="sec-n">00</div>
+          <div>
+            <h2 class="sec-title">The big picture</h2>
+            <p class="sec-blurb">
+              Russian numbers are <strong>compositional</strong>, written as separate words. The lexical surprises are minor — <span class="ru">сорок</span> (40) and <span class="ru">девяносто</span> (90) are the two outliers. The real difficulty is the <strong>case agreement</strong>: the noun after a number changes form depending on whether the number ends in 1, 2-4, or anything else.
+            </p>
+          </div>
+        </div>
+        <div class="callout-card muted">
+          <div class="icon">i</div>
+          <div class="b">
+            <strong>If you only remember one thing:</strong> the number doesn't change much, but the <em>noun</em> after it does. <span class="ru">Один рубль</span>, <span class="ru">два рубля</span>, <span class="ru">пять рублей</span> — all "rubles," all spelled differently because the number is doing grammar.
+          </div>
+        </div>
+      </section>
+
+      <!-- 0 – 20 -->
+      <section class="sec" id="zero-twenty">
+        <div class="sec-head">
+          <div class="sec-n">01</div>
+          <div>
+            <h2 class="sec-title">Zero to twenty</h2>
+            <p class="sec-blurb">11–19 add the suffix <span class="ru">-надцать</span> to a stem (similar to English <em>-teen</em>). Pay attention to the soft signs (<span class="ru">ь</span>) — they change pronunciation.</p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">0</div><div class="w">ноль</div><div class="r">nol'</div></div>
+          <div class="ncard"><span class="badge">gender</span><div class="n">1</div><div class="w">один</div><div class="r">odin <span style="opacity:0.7;">/ одна / одно</span></div></div>
+          <div class="ncard"><span class="badge">gender</span><div class="n">2</div><div class="w">два</div><div class="r">dva <span style="opacity:0.7;">/ две</span></div></div>
+          <div class="ncard"><div class="n">3</div><div class="w">три</div><div class="r">tri</div></div>
+          <div class="ncard"><div class="n">4</div><div class="w">четыре</div><div class="r">chetyre</div></div>
+          <div class="ncard"><div class="n">5</div><div class="w">пять</div><div class="r">pyat'</div></div>
+          <div class="ncard"><div class="n">6</div><div class="w">шесть</div><div class="r">shest'</div></div>
+          <div class="ncard"><div class="n">7</div><div class="w">семь</div><div class="r">sem'</div></div>
+          <div class="ncard"><div class="n">8</div><div class="w">восемь</div><div class="r">vosem'</div></div>
+          <div class="ncard"><div class="n">9</div><div class="w">девять</div><div class="r">devyat'</div></div>
+          <div class="ncard"><div class="n">10</div><div class="w">десять</div><div class="r">desyat'</div></div>
+          <div class="ncard"><div class="n">11</div><div class="w">одиннадцать</div><div class="r">odinnadtsat'</div></div>
+          <div class="ncard"><div class="n">12</div><div class="w">двенадцать</div><div class="r">dvenadtsat'</div></div>
+          <div class="ncard"><div class="n">13</div><div class="w">тринадцать</div><div class="r">trinadtsat'</div></div>
+          <div class="ncard"><div class="n">14</div><div class="w">четырнадцать</div><div class="r">chetyrnadtsat'</div></div>
+          <div class="ncard"><div class="n">15</div><div class="w">пятнадцать</div><div class="r">pyatnadtsat'</div></div>
+          <div class="ncard"><div class="n">16</div><div class="w">шестнадцать</div><div class="r">shestnadtsat'</div></div>
+          <div class="ncard"><div class="n">17</div><div class="w">семнадцать</div><div class="r">semnadtsat'</div></div>
+          <div class="ncard"><div class="n">18</div><div class="w">восемнадцать</div><div class="r">vosemnadtsat'</div></div>
+          <div class="ncard"><div class="n">19</div><div class="w">девятнадцать</div><div class="r">devyatnadtsat'</div></div>
+          <div class="ncard"><div class="n">20</div><div class="w">двадцать</div><div class="r">dvadtsat'</div></div>
+          <div class="callout-card muted">
+            <div class="icon">i</div>
+            <div class="b">
+              <strong>Gender on 1 and 2.</strong> <span class="ru">Один</span> (masc), <span class="ru">одна</span> (fem), <span class="ru">одно</span> (neut). <span class="ru">Два</span> (masc/neut), <span class="ru">две</span> (fem). The other digits don't change form for gender, but these two do — and you need to match the noun. <span class="ru">Одна книга</span>, <span class="ru">две книги</span>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TENS -->
+      <section class="sec" id="tens">
+        <div class="sec-head">
+          <div class="sec-n">02</div>
+          <div>
+            <h2 class="sec-title">The tens (20 – 90)</h2>
+            <p class="sec-blurb">
+              Two patterns and two outliers. 20 and 30 use <span class="ru">-дцать</span>; 50-80 use <span class="ru">-десят</span>. <strong><span class="ru">Сорок</span> (40) and <span class="ru">девяносто</span> (90)</strong> are lexical exceptions — they don't fit either pattern and have to be memorized.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">20</div><div class="w">двадцать</div><div class="r">dvadtsat'</div></div>
+          <div class="ncard"><div class="n">30</div><div class="w">тридцать</div><div class="r">tridtsat'</div></div>
+          <div class="ncard irreg"><span class="badge">outlier</span><div class="n">40</div><div class="w">сорок</div><div class="r">sorok</div></div>
+          <div class="ncard"><div class="n">50</div><div class="w">пятьдесят</div><div class="r">pyat'desyat</div></div>
+          <div class="ncard"><div class="n">60</div><div class="w">шестьдесят</div><div class="r">shest'desyat</div></div>
+          <div class="ncard"><div class="n">70</div><div class="w">семьдесят</div><div class="r">sem'desyat</div></div>
+          <div class="ncard"><div class="n">80</div><div class="w">восемьдесят</div><div class="r">vosem'desyat</div></div>
+          <div class="ncard irreg"><span class="badge">outlier</span><div class="n">90</div><div class="w">девяносто</div><div class="r">devyanosto</div></div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 30px 0 12px;">Compound tens (21–99)</h3>
+        <p class="sec-blurb" style="margin-bottom: 14px;">Just <strong>ten + unit</strong>, as two separate words. No "and" connector.</p>
+        <div class="nums">
+          <div class="ncard"><div class="n">21</div><div class="w">двадцать один</div><div class="r">dvadtsat' odin</div></div>
+          <div class="ncard"><div class="n">34</div><div class="w">тридцать четыре</div><div class="r">tridtsat' chetyre</div></div>
+          <div class="ncard irreg"><div class="n">42</div><div class="w">сорок два</div><div class="r">sorok dva</div></div>
+          <div class="ncard"><div class="n">57</div><div class="w">пятьдесят семь</div><div class="r">pyat'desyat sem'</div></div>
+          <div class="ncard"><div class="n">68</div><div class="w">шестьдесят восемь</div><div class="r">shest'desyat vosem'</div></div>
+          <div class="ncard irreg"><div class="n">95</div><div class="w">девяносто пять</div><div class="r">devyanosto pyat'</div></div>
+          <div class="ncard wide">
+            <div class="n">99</div>
+            <div class="w">девяносто девять</div>
+            <div class="r">devyanosto devyat'</div>
+            <div class="breakdown">two words — no connector between them</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HUNDREDS -->
+      <section class="sec" id="hundreds">
+        <div class="sec-head">
+          <div class="sec-n">03</div>
+          <div>
+            <h2 class="sec-title">Hundreds</h2>
+            <p class="sec-blurb">
+              Every hundred is a little irregular. 100 is its own word (<span class="ru">сто</span>). 200–400 take <span class="ru">-ста</span> with stem changes. 500–900 take <span class="ru">-сот</span>. Memorize them all individually — there's no clean formula.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">100</div><div class="w">сто</div><div class="r">sto</div></div>
+          <div class="ncard irreg"><span class="badge">-сти</span><div class="n">200</div><div class="w">двести</div><div class="r">dvesti</div></div>
+          <div class="ncard"><div class="n">300</div><div class="w">триста</div><div class="r">trista</div></div>
+          <div class="ncard"><div class="n">400</div><div class="w">четыреста</div><div class="r">chetyresta</div></div>
+          <div class="ncard irreg"><span class="badge">-сот</span><div class="n">500</div><div class="w">пятьсот</div><div class="r">pyat'sot</div></div>
+          <div class="ncard"><div class="n">600</div><div class="w">шестьсот</div><div class="r">shest'sot</div></div>
+          <div class="ncard"><div class="n">700</div><div class="w">семьсот</div><div class="r">sem'sot</div></div>
+          <div class="ncard"><div class="n">800</div><div class="w">восемьсот</div><div class="r">vosem'sot</div></div>
+          <div class="ncard"><div class="n">900</div><div class="w">девятьсот</div><div class="r">devyat'sot</div></div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>Three subgroups, not one rule.</strong> 100 stands alone. 200 (<span class="ru">двести</span>) uses a unique <span class="ru">-сти</span> ending; 300/400 use <span class="ru">-ста</span> (<span class="ru">триста, четыреста</span>). 500–900 all use <span class="ru">-сот</span> (<span class="ru">пятьсот, шестьсот, семьсот, восемьсот, девятьсот</span>). Three patterns, nine forms.
+            </div>
+          </div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 30px 0 12px;">In the wild</h3>
+        <div class="nums">
+          <div class="ncard wide">
+            <div class="n">375</div>
+            <div class="w">триста семьдесят пять</div>
+            <div class="r">trista sem'desyat pyat'</div>
+          </div>
+          <div class="ncard wide">
+            <div class="n">543</div>
+            <div class="w">пятьсот сорок три</div>
+            <div class="r">pyat'sot sorok tri</div>
+          </div>
+          <div class="ncard wide">
+            <div class="n">999</div>
+            <div class="w">девятьсот девяносто девять</div>
+            <div class="r">devyat'sot devyanosto devyat'</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- THOUSANDS & MILLIONS -->
+      <section class="sec" id="thousands">
+        <div class="sec-head">
+          <div class="sec-n">04</div>
+          <div>
+            <h2 class="sec-title">Thousands &amp; millions</h2>
+            <p class="sec-blurb">
+              <span class="ru">Тысяча</span> (1,000), <span class="ru">миллион</span> (10⁶), <span class="ru">миллиард</span> (10⁹). All three are <strong>nouns</strong> — so their own form changes based on the number multiplying them. Same case rule as everything else.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><span class="badge">fem noun</span><div class="n">1.000</div><div class="w">тысяча</div><div class="r">tysyacha</div></div>
+          <div class="ncard irreg"><span class="badge">2-4</span><div class="n">2.000</div><div class="w">две тысячи</div><div class="r">dve tysyachi</div></div>
+          <div class="ncard"><div class="n">3.000</div><div class="w">три тысячи</div><div class="r">tri tysyachi</div></div>
+          <div class="ncard irreg"><span class="badge">5+</span><div class="n">5.000</div><div class="w">пять тысяч</div><div class="r">pyat' tysyach</div></div>
+          <div class="ncard"><div class="n">10.000</div><div class="w">десять тысяч</div><div class="r">desyat' tysyach</div></div>
+          <div class="ncard"><div class="n">100.000</div><div class="w">сто тысяч</div><div class="r">sto tysyach</div></div>
+          <div class="ncard"><div class="n">1 M</div><div class="w">миллион</div><div class="r">million</div></div>
+          <div class="ncard"><div class="n">2 M</div><div class="w">два миллиона</div><div class="r">dva milliona</div></div>
+          <div class="ncard"><div class="n">5 M</div><div class="w">пять миллионов</div><div class="r">pyat' millionov</div></div>
+          <div class="ncard irreg"><span class="badge">10⁹</span><div class="n">1 B</div><div class="w">миллиард</div><div class="r">milliard</div></div>
+          <div class="ncard wide">
+            <div class="n">1.348</div>
+            <div class="w">тысяча триста сорок восемь</div>
+            <div class="r">tysyacha trista sorok vosem'</div>
+            <div class="breakdown">1.000 + 300 + 40 + 8</div>
+          </div>
+          <div class="ncard wide">
+            <div class="n">23.456</div>
+            <div class="w">двадцать три тысячи четыреста пятьдесят шесть</div>
+            <div class="r">dvadtsat' tri tysyachi chetyresta pyat'desyat shest'</div>
+            <div class="breakdown">23 × тысячи + 456</div>
+          </div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>The <span class="ru">тысяча</span> trilogy.</strong> The number agrees: <span class="ru">одна тысяча</span> (1 thousand), <span class="ru">две / три / четыре тысячи</span> (2-4 thousand, genitive singular), <span class="ru">пять / шесть / … тысяч</span> (5+ thousand, genitive plural). Same pattern for <span class="ru">миллион / миллиона / миллионов</span> and <span class="ru">миллиард / миллиарда / миллиардов</span>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CASE AGREEMENT -->
+      <section class="sec" id="cases">
+        <div class="sec-head">
+          <div class="sec-n">05</div>
+          <div>
+            <h2 class="sec-title">Case agreement — the killer rule</h2>
+            <p class="sec-blurb">
+              The noun after a number takes a <strong>different case</strong> depending on the number's last digit. Three buckets. This is what makes Russian numbers feel grammatical rather than lexical — and it applies to <em>every</em> noun.
+            </p>
+          </div>
+        </div>
+
+        <div class="case-ladder">
+          <div class="case-row dark">
+            <span class="trigger">1</span>
+            <span class="rule"><strong>Nominative singular.</strong> The dictionary form. <span class="ru">Один рубль</span>. Also: 21, 31, 41, 101…</span>
+            <span class="label">… 1, 21, 31</span>
+          </div>
+          <div class="case-row">
+            <span class="trigger">2 – 4</span>
+            <span class="rule"><strong>Genitive singular.</strong> "Of one ruble," used three times. <span class="ru">Два рубля, три рубля, четыре рубля</span>. Also: 22-24, 32-34, etc.</span>
+            <span class="label">… 2, 22, 33, 44</span>
+          </div>
+          <div class="case-row">
+            <span class="trigger">5+</span>
+            <span class="rule"><strong>Genitive plural.</strong> "Of rubles." <span class="ru">Пять рублей, десять рублей, сто рублей</span>. Includes <strong>all teens 11-19</strong>, regardless of their last digit.</span>
+            <span class="label">… 5-20, 25, 99</span>
+          </div>
+        </div>
+
+        <div class="callout-card" style="margin-top: 16px;">
+          <div class="icon">!</div>
+          <div class="b">
+            <strong>The teens always go to bucket 3.</strong> 11, 12, 13, 14 use the 5+ rule (gen plur), not their last-digit rule. <span class="ru">Одиннадцать рублей</span>, not <span class="ru">одиннадцать рубль</span>. <span class="ru">Двенадцать рублей</span>, not <span class="ru">двенадцать рубля</span>. The "last digit" rule only kicks in once you're past the teens.
+          </div>
+        </div>
+
+        <div class="callout-card muted" style="margin-top: 12px;">
+          <div class="icon">i</div>
+          <div class="b">
+            <strong>Years use a different form.</strong> "I'm 25 years old" = <em><span class="ru">Мне 25 лет</span></em> ("twenty-five years"), where <span class="ru">лет</span> is the special genitive plural form — not <span class="ru">годов</span>. Dates use neuter ordinals in genitive: <em><span class="ru">2022 год</span></em> = <em><span class="ru">две тысячи двадцать второго года</span></em>.
+          </div>
+        </div>
+      </section>
+
+      <!-- REMEMBER -->
+      <section class="sec" id="remember">
+        <div class="sec-head">
+          <div class="sec-n">06</div>
+          <div>
+            <h2 class="sec-title">Things to remember</h2>
+            <p class="sec-blurb">Five rules that will save you from the most common mistakes.</p>
+          </div>
+        </div>
+        <div class="nums" style="grid-template-columns: 1fr;">
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">1.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>The noun's case follows the number.</strong> <span class="ru" style="font-family: 'Noto Serif', serif; font-weight: 600;">Один рубль</span>, <span class="ru" style="font-family: 'Noto Serif', serif; font-weight: 600;">два рубля</span>, <span class="ru" style="font-family: 'Noto Serif', serif; font-weight: 600;">пять рублей</span> — three forms for "rubles," chosen by the number. <strong>Teens always count as 5+.</strong></div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">2.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>Two tens are outliers:</strong> <span class="ru" style="font-family: 'Noto Serif', serif; font-weight: 600; color: var(--signal-red);">сорок</span> (40) and <span class="ru" style="font-family: 'Noto Serif', serif; font-weight: 600; color: var(--signal-red);">девяносто</span> (90). The other tens fit predictable patterns (-дцать or -десят). Just memorize these two.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">3.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>Gender on 1 and 2 only.</strong> <span class="ru" style="font-family: 'Noto Serif', serif; font-weight: 600;">Один / одна / одно</span>, <span class="ru" style="font-family: 'Noto Serif', serif; font-weight: 600;">два / две</span>. The other digits don't inflect for gender.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">4.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>Hundreds aren't predictable.</strong> 200 = <span class="ru" style="font-family: 'Noto Serif', serif; font-weight: 600;">двести</span>, 300 = <span class="ru" style="font-family: 'Noto Serif', serif; font-weight: 600;">триста</span>, 500 = <span class="ru" style="font-family: 'Noto Serif', serif; font-weight: 600;">пятьсот</span>. Three subpatterns (-сти, -ста, -сот) across the nine forms.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">5.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>Big numbers are separate words.</strong> No fusion (like German), no "and" (like Spanish). 1.348 = <span class="ru" style="font-family: 'Noto Serif', serif; font-weight: 600;">тысяча триста сорок восемь</span>. Four words, four building blocks.</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="practice-cta">
+        <span class="eyebrow" style="color: var(--signal-red);">Drill it</span>
+        <h3>Reading is one thing.<br>Hearing it at speed is another.</h3>
+        <p>The companion iOS app generates random numbers in your chosen range and reads them aloud in Russian. Five minutes a day.</p>
+        <a class="btn btn-primary" href="/#download">
+          <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor"><path d="M11.6 8.5c0-2 1.6-3 1.7-3-.9-1.4-2.4-1.5-2.9-1.5-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7C3.2 4 1.7 4.9 1 6.3c-1.4 2.4-.4 6 1 8 .7 1 1.5 2.1 2.5 2 1 0 1.4-.6 2.6-.6s1.5.6 2.6.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.2-2.3-.1 0-2.3-1-2.3-3.5zM9.7 2.5c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.2 1.2-.5.6-.9 1.5-.8 2.4.9.1 1.7-.4 2.2-1.1z"/></svg>
+          Get the app
+        </a>
+      </div>
+
+    </article>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-container footer-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL Number Practice</span>
+    </a>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>App</h4>
+        <a href="/#download">Download</a>
+        <a href="/#how">How it works</a>
+        <a href="/#about">About</a>
+      </div>
+      <div class="footer-col">
+        <h4>Cheat sheets</h4>
+        <a href="/cheatsheets/">All languages</a>
+        <a href="/portuguese-pt/">Português (PT)</a>
+        <a href="/portuguese-br/">Português (BR)</a>
+        <a href="/spanish/">Español</a>
+        <a href="/french/">Français</a>
+        <a href="/italian/">Italiano</a>
+        <a href="/german/">Deutsch</a>
+        <a href="/dutch/">Nederlands</a>
+        <a href="/russian/">Русский</a>
+        <a href="/mandarin/">中文</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="site-container" style="margin-top: 28px; font-size: 12px; color: var(--ink-faint);">© 2026 FL Number Practice</div>
+</footer>
+
+</body>
+</html>
