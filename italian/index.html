@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Português (Portugal) — Numbers cheat sheet</title>
+<title>Italiano — Numbers cheat sheet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -22,7 +22,6 @@
   .crumbs a:hover { color: var(--ink); }
   .crumbs .sep { color: var(--ink-faint); }
 
-  /* HERO — full-width, asymmetric, the big number is the art */
   .hero-card {
     background: var(--ink);
     color: var(--paper);
@@ -64,20 +63,18 @@
   }
   .hero-card .display .num {
     font-family: var(--num-font); font-weight: 800;
-    font-size: clamp(64px, 14vw, 132px);
+    font-size: clamp(52px, 11vw, 108px);
     letter-spacing: -0.05em; line-height: 0.9;
     color: var(--signal-red); font-variant-numeric: tabular-nums;
   }
   .hero-card .display .pseudo {
     font-family: var(--serif-font); font-style: italic;
-    color: var(--paper); font-size: clamp(18px, 2.4vw, 26px);
-    line-height: 1.15;
-    max-width: 420px;
+    color: var(--paper); font-size: clamp(16px, 2.1vw, 22px);
+    line-height: 1.2;
+    max-width: 480px;
+    word-break: break-word;
   }
 
-  /* Sticky TOC mobile chip strip lives in shared CSS */
-
-  /* Section heads with a big inline numeral */
   .sec {
     padding: 36px 0 8px;
     border-top: 0.5px solid var(--hair);
@@ -109,7 +106,6 @@
   .sec-blurb em { font-family: var(--serif-font); color: var(--ink); font-style: italic; }
   .sec-blurb strong { color: var(--ink); font-weight: 700; }
 
-  /* Grid of number cards — the core visual idiom of this variation */
   .nums {
     display: grid; gap: 10px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -160,10 +156,15 @@
   .ncard.wide .n { font-size: 36px; }
   .ncard.wide .w { font-size: 22px; }
 
-  /* "Decomposed" card showing the e in red */
-  .ncard .ein { color: var(--signal-red); font-weight: 700; font-family: var(--ui-font); }
+  /* "Elision marker" — a small red glyph showing where a vowel was dropped */
+  .ncard .drop {
+    color: var(--signal-red); font-weight: 700; font-family: var(--ui-font);
+    font-size: 0.85em;
+  }
+  .ncard .acc {
+    color: var(--signal-red); font-weight: 700;
+  }
 
-  /* Inline callout */
   .callout-card {
     grid-column: 1 / -1;
     background: color-mix(in srgb, var(--signal-red) 8%, var(--paper-raised));
@@ -184,7 +185,7 @@
   .callout-card.muted { background: var(--paper-sunk); border-color: var(--hair); }
   .callout-card.muted .icon { background: var(--ink); }
 
-  /* PT-vs-BR side-by-side */
+  /* IT vs EN side-by-side for the billion */
   .compare {
     display: grid; gap: 10px;
     grid-template-columns: 1fr;
@@ -193,7 +194,7 @@
     padding: 22px; border-radius: 14px;
     background: var(--paper-raised); border: 0.5px solid var(--hair);
   }
-  .compare-cell.pt {
+  .compare-cell.it {
     background: var(--ink); color: var(--paper);
     border-color: var(--ink);
   }
@@ -211,10 +212,9 @@
     font-family: var(--serif-font); font-size: 26px;
     margin-top: 6px; line-height: 1.1;
   }
-  .compare-cell.pt .says { color: var(--signal-red); }
+  .compare-cell.it .says { color: var(--signal-red); }
   .compare-cell p { font-size: 13px; margin: 8px 0 0; opacity: 0.65; }
 
-  /* Practice CTA */
   .practice-cta {
     margin: 50px 0 0;
     padding: 32px;
@@ -231,7 +231,6 @@
   .practice-cta p { color: rgba(241,236,224,0.65); font-size: 14.5px; margin: 0; max-width: 460px; }
   .practice-cta .btn-primary { background: var(--signal-red); color: #fff; }
 
-  /* Sticky lang rail (desktop) */
   .toc-side { display: none; }
 
   @media (min-width: 720px) {
@@ -287,29 +286,28 @@
       <span class="sep">/</span>
       <span>Romance</span>
       <span class="sep">/</span>
-      <span style="color: var(--ink);">Português (PT)</span>
+      <span style="color: var(--ink);">Italiano</span>
     </nav>
   </div>
 
   <!-- HERO CARD -->
   <div class="hero-card">
     <div>
-      <span class="eyebrow" style="color: var(--signal-red);">Romance · Portugal</span>
-      <h1>Numbers in<br><em style="font-style: italic;">Português&nbsp;(PT)</em></h1>
-      <div class="native">Pronto a falar em sete idades</div>
+      <span class="eyebrow" style="color: var(--signal-red);">Romance · Italia</span>
+      <h1>Numbers in<br><em style="font-style: italic;">Italiano</em></h1>
+      <div class="native">Tutto in una parola sola</div>
     </div>
     <div class="stats">
       <div><b>10 min</b>read</div>
       <div><b>7</b>sections</div>
-      <div><b>4</b>regional splits with BR</div>
+      <div><b>1</b>word per number, always</div>
     </div>
     <div class="display">
-      <div class="num">763</div>
-      <div class="pseudo">setecentos sessenta e&nbsp;três</div>
+      <div class="num">1.643</div>
+      <div class="pseudo">milleseicentoquarantatré</div>
     </div>
   </div>
 
-  <!-- TOC chip strip -->
   <nav class="toc" aria-label="Sections">
     <a href="#big-picture" class="current">Big picture</a>
     <a href="#zero-twenty">0–20</a>
@@ -323,7 +321,6 @@
 
   <div class="with-sidebar">
 
-    <!-- Sticky TOC + language rail (desktop only) -->
     <aside class="toc-side">
       <div class="eyebrow" style="margin-bottom: 8px;">On this page</div>
       <div class="toc-list">
@@ -340,16 +337,14 @@
         <div class="lang-rail-head">
           <span class="eyebrow">More languages</span>
         </div>
-        <a href="/portuguese-pt/" class="active">
-          Português <span class="native">PT</span>
-        </a>
+        <a href="/portuguese-pt/">Português <span class="native">PT</span></a>
         <a href="/portuguese-br/">Português <span class="native">BR</span></a>
         <a href="#">Español <span class="native">ES</span></a>
         <a href="#">Français <span class="native">FR</span></a>
-        <a href="/italian/">Italiano <span class="native">IT</span></a>
+        <a href="/italian/" class="active">Italiano <span class="native">IT</span></a>
         <a href="#">Deutsch <span class="native">DE</span></a>
-        <a href="#">日本語 <span class="native">JP</span></a>
-        <a href="#">العربية <span class="native">AR</span></a>
+        <a href="/japanese/">日本語 <span class="native">JP</span></a>
+        <a href="/arabic/">العربية <span class="native">AR</span></a>
         <a href="/cheatsheets/" style="color: var(--signal-red); font-weight: 600;">See all 14 →</a>
       </div>
     </aside>
@@ -363,14 +358,14 @@
           <div>
             <h2 class="sec-title">The big picture</h2>
             <p class="sec-blurb">
-              Portuguese builds numbers a lot like English, with three twists: an <strong>e</strong> ("and") between groups, <strong>gender agreement</strong> on <em>dois/duas</em> and the hundreds, and a different word for "billion" than Brazilian Portuguese.
+              Italian numbers are stitched into <strong>one continuous word</strong>, with two small rules that govern the seams: <strong>drop the final vowel</strong> before <em>uno</em> or <em>otto</em>, and <strong>add an accent</strong> when a compound ends in <em>tré</em>.
             </p>
           </div>
         </div>
         <div class="callout-card muted">
           <div class="icon">i</div>
           <div class="b">
-            <strong>If you only remember one thing:</strong> Portuguese inserts an <em>e</em> between digit groups. <em>Mil novecentos <strong style="color: var(--signal-red);">e</strong> oitenta <strong style="color: var(--signal-red);">e</strong> quatro</em> = 1984.
+            <strong>If you only remember one thing:</strong> there are no spaces. <em>Milleseicentoquarantatré</em> is one word — 1.643. <em>Centoventotto</em> is 128. The whole number is a single lexical unit.
           </div>
         </div>
       </section>
@@ -381,35 +376,35 @@
           <div class="sec-n">01</div>
           <div>
             <h2 class="sec-title">Zero to twenty</h2>
-            <p class="sec-blurb">Memorize these. The rest of the system bolts onto them.</p>
+            <p class="sec-blurb">The teens collapse a little — <em>diciassette</em>, <em>diciotto</em>, <em>diciannove</em> all fuse <em>dieci</em> with the unit instead of writing them out separately.</p>
           </div>
         </div>
         <div class="nums">
           <div class="ncard"><div class="n">0</div><div class="w">zero</div></div>
-          <div class="ncard"><span class="badge">gender</span><div class="n">1</div><div class="w">um <span class="alt">/ uma</span></div></div>
-          <div class="ncard"><span class="badge">gender</span><div class="n">2</div><div class="w">dois <span class="alt">/ duas</span></div></div>
-          <div class="ncard"><div class="n">3</div><div class="w">três</div></div>
-          <div class="ncard"><div class="n">4</div><div class="w">quatro</div></div>
-          <div class="ncard"><div class="n">5</div><div class="w">cinco</div></div>
-          <div class="ncard"><div class="n">6</div><div class="w">seis</div></div>
-          <div class="ncard"><div class="n">7</div><div class="w">sete</div></div>
-          <div class="ncard"><div class="n">8</div><div class="w">oito</div></div>
+          <div class="ncard"><span class="badge">→ un / una</span><div class="n">1</div><div class="w">uno</div></div>
+          <div class="ncard"><div class="n">2</div><div class="w">due</div></div>
+          <div class="ncard"><div class="n">3</div><div class="w">tre</div></div>
+          <div class="ncard"><div class="n">4</div><div class="w">quattro</div></div>
+          <div class="ncard"><div class="n">5</div><div class="w">cinque</div></div>
+          <div class="ncard"><div class="n">6</div><div class="w">sei</div></div>
+          <div class="ncard"><div class="n">7</div><div class="w">sette</div></div>
+          <div class="ncard"><div class="n">8</div><div class="w">otto</div></div>
           <div class="ncard"><div class="n">9</div><div class="w">nove</div></div>
-          <div class="ncard"><div class="n">10</div><div class="w">dez</div></div>
-          <div class="ncard"><div class="n">11</div><div class="w">onze</div></div>
-          <div class="ncard"><div class="n">12</div><div class="w">doze</div></div>
-          <div class="ncard"><div class="n">13</div><div class="w">treze</div></div>
-          <div class="ncard irreg"><span class="badge">PT-PT</span><div class="n">14</div><div class="w">catorze</div></div>
-          <div class="ncard"><div class="n">15</div><div class="w">quinze</div></div>
-          <div class="ncard irreg"><span class="badge">PT-PT</span><div class="n">16</div><div class="w">dezasseis</div></div>
-          <div class="ncard irreg"><span class="badge">PT-PT</span><div class="n">17</div><div class="w">dezassete</div></div>
-          <div class="ncard"><div class="n">18</div><div class="w">dezoito</div></div>
-          <div class="ncard irreg"><span class="badge">PT-PT</span><div class="n">19</div><div class="w">dezanove</div></div>
-          <div class="ncard"><div class="n">20</div><div class="w">vinte</div></div>
-          <div class="callout-card">
-            <div class="icon">!</div>
+          <div class="ncard"><div class="n">10</div><div class="w">dieci</div></div>
+          <div class="ncard"><div class="n">11</div><div class="w">undici</div></div>
+          <div class="ncard"><div class="n">12</div><div class="w">dodici</div></div>
+          <div class="ncard"><div class="n">13</div><div class="w">tredici</div></div>
+          <div class="ncard"><div class="n">14</div><div class="w">quattordici</div></div>
+          <div class="ncard"><div class="n">15</div><div class="w">quindici</div></div>
+          <div class="ncard"><div class="n">16</div><div class="w">sedici</div></div>
+          <div class="ncard irreg"><span class="badge">fusion</span><div class="n">17</div><div class="w">diciassette</div></div>
+          <div class="ncard irreg"><span class="badge">fusion</span><div class="n">18</div><div class="w">diciotto</div></div>
+          <div class="ncard irreg"><span class="badge">fusion</span><div class="n">19</div><div class="w">diciannove</div></div>
+          <div class="ncard"><div class="n">20</div><div class="w">venti</div></div>
+          <div class="callout-card muted">
+            <div class="icon">i</div>
             <div class="b">
-              <strong>PT-PT vs PT-BR.</strong> Portugal uses <em>catorze, dezasseis, dezassete, dezanove</em>. Brazil uses <em>quatorze, dezesseis, dezessete, dezenove</em>. Both are understood; the local form makes you sound less like a tourist.
+              <strong>17 / 18 / 19 are where the pattern shifts.</strong> <em>Dieci + sette</em> doesn't stay as <em>diecisette</em> — it consolidates into <em>diciassette</em>, with a doubled consonant. Same for <em>diciotto</em> and <em>diciannove</em>. From 20 onward, the joins become regular.
             </div>
           </div>
         </div>
@@ -421,41 +416,56 @@
           <div class="sec-n">02</div>
           <div>
             <h2 class="sec-title">The tens (20 – 90)</h2>
-            <p class="sec-blurb">Mostly regular. <em>Cinquenta, sessenta, setenta</em> all start the same — slow down and listen for the second syllable.</p>
+            <p class="sec-blurb">All seven end in <em>-anta</em> except <em>venti</em>. Memorize the first vowel of each — that's where the meaning lives.</p>
           </div>
         </div>
         <div class="nums">
-          <div class="ncard"><div class="n">20</div><div class="w">vinte</div></div>
-          <div class="ncard"><div class="n">30</div><div class="w">trinta</div></div>
-          <div class="ncard"><div class="n">40</div><div class="w">quarenta</div></div>
-          <div class="ncard"><div class="n">50</div><div class="w">cinquenta</div></div>
-          <div class="ncard"><div class="n">60</div><div class="w">sessenta</div></div>
-          <div class="ncard"><div class="n">70</div><div class="w">setenta</div></div>
-          <div class="ncard"><div class="n">80</div><div class="w">oitenta</div></div>
-          <div class="ncard"><div class="n">90</div><div class="w">noventa</div></div>
+          <div class="ncard"><div class="n">20</div><div class="w">venti</div></div>
+          <div class="ncard"><div class="n">30</div><div class="w">trenta</div></div>
+          <div class="ncard"><div class="n">40</div><div class="w">quaranta</div></div>
+          <div class="ncard"><div class="n">50</div><div class="w">cinquanta</div></div>
+          <div class="ncard"><div class="n">60</div><div class="w">sessanta</div></div>
+          <div class="ncard"><div class="n">70</div><div class="w">settanta</div></div>
+          <div class="ncard"><div class="n">80</div><div class="w">ottanta</div></div>
+          <div class="ncard"><div class="n">90</div><div class="w">novanta</div></div>
         </div>
       </section>
 
-      <!-- COMPOUND -->
+      <!-- COMPOUND — the elision rules -->
       <section class="sec" id="compound">
         <div class="sec-head">
           <div class="sec-n">03</div>
           <div>
-            <h2 class="sec-title">Compound numbers — the "e"</h2>
+            <h2 class="sec-title">Compound numbers — the seams</h2>
             <p class="sec-blurb">
-              From 21 onwards, Portuguese stitches the tens and units with <strong>e</strong> ("and"). This is the single biggest difference from English.
+              Glue the ten and the unit together without a space. Two rules govern the seam: drop the ten's final vowel before <strong>uno</strong> or <strong>otto</strong>, and write <strong>tré</strong> with an acute accent when it ends the word.
             </p>
           </div>
         </div>
         <div class="nums">
-          <div class="ncard"><div class="n">21</div><div class="w">vinte <span class="ein">e</span> um</div></div>
-          <div class="ncard"><div class="n">35</div><div class="w">trinta <span class="ein">e</span> cinco</div></div>
-          <div class="ncard"><div class="n">52</div><div class="w">cinquenta <span class="ein">e</span> dois</div></div>
-          <div class="ncard"><div class="n">76</div><div class="w">setenta <span class="ein">e</span> seis</div></div>
-          <div class="ncard"><div class="n">99</div><div class="w">noventa <span class="ein">e</span> nove</div></div>
+          <div class="ncard"><div class="n">21</div><div class="w">vent<span class="drop">·</span>uno <span class="alt">venti+uno</span></div></div>
+          <div class="ncard"><div class="n">22</div><div class="w">ventidue</div></div>
+          <div class="ncard"><div class="n">23</div><div class="w">ventitr<span class="acc">é</span></div></div>
+          <div class="ncard"><div class="n">24</div><div class="w">ventiquattro</div></div>
+          <div class="ncard"><div class="n">25</div><div class="w">venticinque</div></div>
+          <div class="ncard"><div class="n">26</div><div class="w">ventisei</div></div>
+          <div class="ncard"><div class="n">27</div><div class="w">ventisette</div></div>
+          <div class="ncard irreg"><span class="badge">elision</span><div class="n">28</div><div class="w">vent<span style="color: var(--paper); opacity: 0.7;">·</span>otto</div></div>
+          <div class="ncard"><div class="n">29</div><div class="w">ventinove</div></div>
+          <div class="ncard"><div class="n">33</div><div class="w">trentatr<span class="acc">é</span></div></div>
+          <div class="ncard irreg"><span class="badge">elision</span><div class="n">38</div><div class="w">trent<span style="color: var(--paper); opacity: 0.7;">·</span>otto</div></div>
+          <div class="ncard irreg"><span class="badge">elision</span><div class="n">51</div><div class="w">cinquant<span style="color: var(--paper); opacity: 0.7;">·</span>uno</div></div>
+          <div class="ncard irreg"><span class="badge">elision</span><div class="n">58</div><div class="w">cinquant<span style="color: var(--paper); opacity: 0.7;">·</span>otto</div></div>
+          <div class="ncard"><div class="n">76</div><div class="w">settantasei</div></div>
           <div class="ncard wide" style="background: var(--ink); color: var(--paper); border-color: var(--ink);">
             <div class="n" style="color: var(--signal-red);">42</div>
-            <div class="w" style="color: var(--paper);">quarenta <span style="color: var(--signal-red); font-weight: 700;">e</span> dois</div>
+            <div class="w" style="color: var(--paper);">quarantadue</div>
+          </div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>The elision rule.</strong> When a ten ends in a vowel and the next digit is <em>uno</em> or <em>otto</em>, drop the ten's final vowel: <em>venti → vent-uno</em>, <em>cinquanta → cinquant-otto</em>. Other digits keep the vowel: <em>venti-due, venti-sei, venti-nove</em>.
+            </div>
           </div>
         </div>
       </section>
@@ -467,44 +477,43 @@
           <div>
             <h2 class="sec-title">The hundreds</h2>
             <p class="sec-blurb">
-              <strong>Cem</strong> becomes <strong>cento</strong> the second any other digit follows. And the hundreds <em>agree in gender</em> — <em>duzentas pessoas</em>, not <em>duzentos pessoas</em>.
+              Completely regular — every hundred is just the digit fused with <em>cento</em>. And <strong>never</strong> say <em>un cento</em>; the standalone word is just <em>cento</em>.
             </p>
           </div>
         </div>
         <div class="nums">
-          <div class="ncard"><span class="badge">exact 100</span><div class="n">100</div><div class="w">cem</div></div>
-          <div class="ncard irreg"><span class="badge">cem → cento</span><div class="n">101</div><div class="w">cento e um</div></div>
-          <div class="ncard"><span class="badge">gender</span><div class="n">200</div><div class="w">duzentos <span class="alt">/ duzentas</span></div></div>
-          <div class="ncard"><div class="n">300</div><div class="w">trezentos</div></div>
-          <div class="ncard"><div class="n">400</div><div class="w">quatrocentos</div></div>
-          <div class="ncard irreg"><span class="badge">irregular</span><div class="n">500</div><div class="w">quinhentos</div></div>
-          <div class="ncard"><div class="n">600</div><div class="w">seiscentos</div></div>
-          <div class="ncard"><div class="n">700</div><div class="w">setecentos</div></div>
-          <div class="ncard"><div class="n">800</div><div class="w">oitocentos</div></div>
-          <div class="ncard"><div class="n">900</div><div class="w">novecentos</div></div>
+          <div class="ncard"><span class="badge">no un</span><div class="n">100</div><div class="w">cento</div></div>
+          <div class="ncard"><div class="n">200</div><div class="w">duecento</div></div>
+          <div class="ncard"><div class="n">300</div><div class="w">trecento</div></div>
+          <div class="ncard"><div class="n">400</div><div class="w">quattrocento</div></div>
+          <div class="ncard"><div class="n">500</div><div class="w">cinquecento</div></div>
+          <div class="ncard"><div class="n">600</div><div class="w">seicento</div></div>
+          <div class="ncard"><div class="n">700</div><div class="w">settecento</div></div>
+          <div class="ncard"><div class="n">800</div><div class="w">ottocento</div></div>
+          <div class="ncard"><div class="n">900</div><div class="w">novecento</div></div>
         </div>
 
         <h3 class="serif-h3" style="margin: 30px 0 12px;">In the wild</h3>
         <div class="nums">
           <div class="ncard wide">
-            <div class="n">127</div>
-            <div class="w">cento <span class="ein">e</span> vinte <span class="ein">e</span> sete</div>
+            <div class="n">128</div>
+            <div class="w">centovent<span class="acc">·</span>otto</div>
           </div>
           <div class="ncard wide">
-            <div class="n">316</div>
-            <div class="w">trezentos <span class="ein">e</span> dezasseis</div>
+            <div class="n">215</div>
+            <div class="w">duecentoquindici</div>
           </div>
           <div class="ncard wide">
-            <div class="n">598</div>
-            <div class="w">quinhentos <span class="ein">e</span> noventa <span class="ein">e</span> oito</div>
+            <div class="n">543</div>
+            <div class="w">cinquecentoquarantatr<span class="acc">é</span></div>
           </div>
           <div class="ncard wide">
-            <div class="n">763</div>
-            <div class="w">setecentos <span class="ein">e</span> sessenta <span class="ein">e</span> três</div>
+            <div class="n">786</div>
+            <div class="w">settecentottantasei</div>
           </div>
           <div class="ncard wide">
-            <div class="n">992</div>
-            <div class="w">novecentos <span class="ein">e</span> noventa <span class="ein">e</span> dois</div>
+            <div class="n">999</div>
+            <div class="w">novecentonovantanove</div>
           </div>
         </div>
       </section>
@@ -516,70 +525,81 @@
           <div>
             <h2 class="sec-title">Thousands</h2>
             <p class="sec-blurb">
-              <strong>Mil</strong> means a thousand. Unlike Spanish, you don't say <em>um mil</em> — just <em>mil</em>. Multiples take the cardinal.
+              The one quirk worth memorizing: <strong>mille</strong> is singular, but its plural is <strong>mila</strong>. So 2.000 is <em>duemila</em>, not <em>duemille</em>. (And like <em>cento</em>, never say <em>un mille</em>.)
             </p>
           </div>
         </div>
         <div class="nums">
-          <div class="ncard"><div class="n">1 000</div><div class="w">mil</div></div>
-          <div class="ncard"><div class="n">2 000</div><div class="w">dois mil</div></div>
-          <div class="ncard"><div class="n">5 000</div><div class="w">cinco mil</div></div>
-          <div class="ncard"><div class="n">10 000</div><div class="w">dez mil</div></div>
-          <div class="ncard"><div class="n">100 000</div><div class="w">cem mil</div></div>
+          <div class="ncard"><span class="badge">no un</span><div class="n">1.000</div><div class="w">mille</div></div>
+          <div class="ncard irreg"><span class="badge">mille → mila</span><div class="n">2.000</div><div class="w">duemila</div></div>
+          <div class="ncard"><div class="n">3.000</div><div class="w">tremila</div></div>
+          <div class="ncard"><div class="n">10.000</div><div class="w">diecimila</div></div>
+          <div class="ncard"><div class="n">100.000</div><div class="w">centomila</div></div>
           <div class="ncard wide">
-            <div class="n">1 984</div>
-            <div class="w">mil novecentos <span class="ein">e</span> oitenta <span class="ein">e</span> quatro</div>
+            <div class="n">1.643</div>
+            <div class="w">milleseicentoquarantatr<span class="acc">é</span></div>
           </div>
           <div class="ncard wide">
-            <div class="n">42 158</div>
-            <div class="w">quarenta <span class="ein">e</span> dois mil cento <span class="ein">e</span> cinquenta <span class="ein">e</span> oito</div>
+            <div class="n">2.001</div>
+            <div class="w">duemil<span class="acc">·</span>uno</div>
           </div>
           <div class="ncard wide">
-            <div class="n">123 567</div>
-            <div class="w">cento <span class="ein">e</span> vinte <span class="ein">e</span> três mil quinhentos <span class="ein">e</span> sessenta <span class="ein">e</span> sete</div>
+            <div class="n">42.158</div>
+            <div class="w">quarantaduemilacentocinquant<span class="acc">·</span>otto</div>
+          </div>
+          <div class="ncard wide">
+            <div class="n">1.984</div>
+            <div class="w">millenovecent<span class="acc">·</span>ottantaquattro</div>
           </div>
           <div class="callout-card muted">
             <div class="icon">i</div>
             <div class="b">
-              <strong>The <em>e</em> rule, refined.</strong> The <em>e</em> appears between groups when the lower group is less than 100, or is exactly 100. Between hundreds and tens of the same group, always.
+              <strong>Dots and commas, flipped.</strong> Italian writes thousands with a <strong>period</strong> (1.000) and decimals with a <strong>comma</strong> (2,5 = <em>due virgola cinque</em>) — the opposite of US English.
             </div>
           </div>
         </div>
       </section>
 
-      <!-- MILLIONS — PT vs BR -->
+      <!-- MILLIONS — IT vs EN -->
       <section class="sec" id="millions">
         <div class="sec-head">
           <div class="sec-n">06</div>
           <div>
             <h2 class="sec-title">Millions &amp; billions</h2>
             <p class="sec-blurb">
-              Both Portugal and Brazil call <em>10⁶</em> a <strong>milhão</strong>. But <em>10⁹</em> is where they part ways.
+              Italian uses the European long scale — and follows it with a tiny grammatical tax: when a number is followed by a noun, you bridge it with <em>di</em>.
             </p>
           </div>
         </div>
 
         <div class="compare">
-          <div class="compare-cell pt">
-            <div class="label">PT-PT · Portugal</div>
-            <div class="digit">1 000 000 000</div>
-            <div class="says">mil milhões</div>
-            <p>Literally "a thousand millions." Used in news, finance, and everyday speech.</p>
+          <div class="compare-cell it">
+            <div class="label">Italiano</div>
+            <div class="digit">1.000.000.000</div>
+            <div class="says">un miliardo</div>
+            <p>Italian uses <em>miliardo</em>, the long-scale European form — same word as French <em>milliard</em>, German <em>Milliarde</em>.</p>
           </div>
           <div class="compare-cell">
-            <div class="label" style="color: var(--ink);">PT-BR · Brazil</div>
-            <div class="digit">1 000 000 000</div>
-            <div class="says">um bilhão</div>
-            <p>Same form as English "billion." Confusion guaranteed in cross-border conversations.</p>
+            <div class="label" style="color: var(--ink);">English (US)</div>
+            <div class="digit">1,000,000,000</div>
+            <div class="says">one billion</div>
+            <p>English short-scale "billion" is the same number, but the false-friend cognate <em>bilione</em> would be 10¹² in Italian.</p>
           </div>
         </div>
 
         <div class="nums" style="margin-top: 18px;">
-          <div class="ncard"><div class="n">1 M</div><div class="w">um milhão</div></div>
-          <div class="ncard"><div class="n">2 M</div><div class="w">dois milhões</div></div>
-          <div class="ncard"><div class="n">55 M</div><div class="w">cinquenta e cinco milhões</div></div>
-          <div class="ncard irreg"><span class="badge">PT-PT</span><div class="n">1 B</div><div class="w">mil milhões</div></div>
-          <div class="ncard irreg"><span class="badge">PT-PT</span><div class="n">1 T</div><div class="w">um bilião</div></div>
+          <div class="ncard"><div class="n">1 M</div><div class="w">un milione</div></div>
+          <div class="ncard"><div class="n">2 M</div><div class="w">due milioni</div></div>
+          <div class="ncard"><div class="n">55 M</div><div class="w">cinquantacinque milioni</div></div>
+          <div class="ncard irreg"><span class="badge">10⁹</span><div class="n">1 B</div><div class="w">un miliardo</div></div>
+          <div class="ncard"><div class="n">2 B</div><div class="w">due miliardi</div></div>
+        </div>
+
+        <div class="callout-card" style="margin-top: 12px;">
+          <div class="icon">!</div>
+          <div class="b">
+            <strong>The <em>di</em> bridge.</strong> Unlike <em>cento</em> and <em>mille</em>, the words <em>milione</em> / <em>miliardo</em> act like nouns. When you follow them with another noun, you need <em>di</em>: <em>tre milioni di euro</em>, <em>un miliardo di stelle</em>. No <em>di</em> when the number flows on: <em>tre milioni cinquecentomila</em>.
+          </div>
         </div>
       </section>
 
@@ -589,29 +609,29 @@
           <div class="sec-n">07</div>
           <div>
             <h2 class="sec-title">Things to remember</h2>
-            <p class="sec-blurb">The five rules that will save you from the most common mistakes.</p>
+            <p class="sec-blurb">Five rules that will save you from the most common mistakes.</p>
           </div>
         </div>
         <div class="nums" style="grid-template-columns: 1fr;">
           <div class="ncard wide" style="grid-column: 1 / -1;">
             <div class="n" style="font-size: 22px;">1.</div>
-            <div class="w">There's always an <strong style="color: var(--signal-red);">e</strong> ("and") between groups. <em style="font-family: var(--serif-font); color: var(--ink-soft);">Setecentos <strong style="color: var(--signal-red);">e</strong> sessenta <strong style="color: var(--signal-red);">e</strong> três.</em></div>
+            <div class="w"><strong>No spaces.</strong> Every cardinal number is one word, however long. <em style="font-family: var(--serif-font); color: var(--ink-soft);">Milleseicentoquarantatré.</em></div>
           </div>
           <div class="ncard wide" style="grid-column: 1 / -1;">
             <div class="n" style="font-size: 22px;">2.</div>
-            <div class="w"><strong>Um</strong> and <strong>dois</strong> agree in gender. So do the hundreds: <em style="font-family: var(--serif-font); color: var(--ink-soft);">duzentas pessoas</em>, not <em style="font-family: var(--serif-font); color: var(--ink-soft);">duzentos</em>.</div>
+            <div class="w"><strong>Drop the vowel</strong> before <em style="font-family: var(--serif-font); color: var(--ink-soft);">uno</em> or <em style="font-family: var(--serif-font); color: var(--ink-soft);">otto</em>: <em style="font-family: var(--serif-font); color: var(--ink-soft);">vent<strong style="color: var(--signal-red);">·</strong>uno, cinquant<strong style="color: var(--signal-red);">·</strong>otto</em>.</div>
           </div>
           <div class="ncard wide" style="grid-column: 1 / -1;">
             <div class="n" style="font-size: 22px;">3.</div>
-            <div class="w"><strong>Cem</strong> only stands alone for exactly 100. The moment you go to 101, it becomes <em style="font-family: var(--serif-font); color: var(--ink-soft);">cento</em>.</div>
+            <div class="w"><strong>Accent on <em style="font-family: var(--serif-font); color: var(--signal-red);">tré</em></strong> when a compound ends in 3: <em style="font-family: var(--serif-font); color: var(--ink-soft);">ventitré, trentatré, milleseicentoquarantatré</em>.</div>
           </div>
           <div class="ncard wide" style="grid-column: 1 / -1;">
             <div class="n" style="font-size: 22px;">4.</div>
-            <div class="w">PT-PT uses <em style="font-family: var(--serif-font); color: var(--ink-soft);">catorze, dezasseis, dezassete, dezanove</em>. Brazil drops the second 'a'.</div>
+            <div class="w"><strong>Never <em style="font-family: var(--serif-font); color: var(--ink-soft);">un</em> before <em style="font-family: var(--serif-font); color: var(--ink-soft);">cento</em> or <em style="font-family: var(--serif-font); color: var(--ink-soft);">mille</em>.</strong> And the plural of <em>mille</em> is <em style="font-family: var(--serif-font); color: var(--ink-soft);">mila</em>: <em>duemila</em>, not <em>duemille</em>.</div>
           </div>
           <div class="ncard wide" style="grid-column: 1 / -1;">
             <div class="n" style="font-size: 22px;">5.</div>
-            <div class="w">A billion in Portugal is <strong>mil milhões</strong>, not <em style="font-family: var(--serif-font); color: var(--ink-soft);">bilião</em>. <em>Bilião</em> in PT means 10¹².</div>
+            <div class="w"><strong><em style="font-family: var(--serif-font); color: var(--ink-soft);">Miliardo</em>, not <em style="font-family: var(--serif-font); color: var(--ink-soft);">bilione</em>, for 10⁹.</strong> A "billion" in Italian (<em>bilione</em>) is 10¹². With a following noun, add <em style="font-family: var(--serif-font); color: var(--signal-red);">di</em>: <em>tre milioni di euro</em>.</div>
           </div>
         </div>
       </section>
@@ -619,7 +639,7 @@
       <div class="practice-cta">
         <span class="eyebrow" style="color: var(--signal-red);">Drill it</span>
         <h3>Reading is one thing.<br>Hearing it at speed is another.</h3>
-        <p>The companion iOS app generates random numbers in your chosen range and reads them aloud in PT-PT. Five minutes a day.</p>
+        <p>The companion iOS app generates random numbers in your chosen range and reads them aloud in Italian. Five minutes a day.</p>
         <a class="btn btn-primary" href="/#download">
           <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor"><path d="M11.6 8.5c0-2 1.6-3 1.7-3-.9-1.4-2.4-1.5-2.9-1.5-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7C3.2 4 1.7 4.9 1 6.3c-1.4 2.4-.4 6 1 8 .7 1 1.5 2.1 2.5 2 1 0 1.4-.6 2.6-.6s1.5.6 2.6.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.2-2.3-.1 0-2.3-1-2.3-3.5zM9.7 2.5c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.2 1.2-.5.6-.9 1.5-.8 2.4.9.1 1.7-.4 2.2-1.1z"/></svg>
           Get the app
