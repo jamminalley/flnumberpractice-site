@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nederlands — Numbers cheat sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<style>
+  .sheet-head { padding: 40px 0 24px; display: flex; flex-direction: column; gap: 14px; }
+  .crumbs { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-soft); }
+  .crumbs a { text-decoration: none; }
+  .crumbs a:hover { color: var(--ink); }
+  .crumbs .sep { color: var(--ink-faint); }
+
+  .hero-card {
+    background: var(--ink); color: var(--paper); border-radius: 22px;
+    padding: 32px 28px 28px; position: relative; overflow: hidden;
+    display: grid; gap: 18px; margin: 8px 0 18px;
+  }
+  .hero-card h1 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: clamp(40px, 9vw, 80px); line-height: 0.96;
+    letter-spacing: -0.02em; margin: 0;
+  }
+  .hero-card .native {
+    color: rgba(241,236,224,0.6); font-family: var(--serif-font);
+    font-size: 22px; line-height: 1; margin: 6px 0 0;
+  }
+  .hero-card .stats {
+    display: flex; gap: 24px; flex-wrap: wrap; margin-top: 8px;
+    font-family: var(--num-font); font-size: 13px;
+    color: rgba(241,236,224,0.55);
+  }
+  .hero-card .stats > div { display: flex; flex-direction: column; gap: 2px; }
+  .hero-card .stats b {
+    font-size: 20px; color: var(--paper);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+  }
+  .hero-card .display {
+    border-top: 0.5px solid rgba(241,236,224,0.16); padding-top: 20px;
+    display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  }
+  .hero-card .display .num {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: clamp(56px, 12vw, 116px);
+    letter-spacing: -0.05em; line-height: 0.9;
+    color: var(--signal-red); font-variant-numeric: tabular-nums;
+  }
+  .hero-card .display .pseudo {
+    font-family: var(--serif-font); font-style: italic;
+    color: var(--paper); font-size: clamp(17px, 2.2vw, 23px);
+    line-height: 1.2; max-width: 460px; word-break: break-word;
+  }
+  .hero-card .display .pseudo .hi {
+    color: var(--signal-red); font-style: normal; font-weight: 700;
+  }
+
+  .sec { padding: 36px 0 8px; border-top: 0.5px solid var(--hair); }
+  .sec:first-of-type { border-top: 0; padding-top: 20px; }
+  .sec-head {
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 18px; align-items: baseline; margin-bottom: 18px;
+  }
+  .sec-n {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: clamp(44px, 7vw, 68px);
+    line-height: 0.8; letter-spacing: -0.05em;
+    color: var(--signal-red);
+  }
+  .sec-title {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: clamp(26px, 4vw, 34px);
+    line-height: 1.05; letter-spacing: -0.01em;
+    margin: 0 0 6px;
+  }
+  .sec-blurb {
+    font-size: 15.5px; line-height: 1.55; color: var(--ink-soft);
+    margin: 0; max-width: 600px;
+  }
+  .sec-blurb em { font-family: var(--serif-font); color: var(--ink); font-style: italic; }
+  .sec-blurb strong { color: var(--ink); font-weight: 700; }
+
+  .nums { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ncard {
+    background: var(--paper-raised); border: 0.5px solid var(--hair);
+    border-radius: 14px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 4px; position: relative;
+  }
+  .ncard .n {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 26px; letter-spacing: -0.04em;
+    color: var(--ink); line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .ncard .w {
+    font-family: var(--serif-font); font-size: 18px;
+    color: var(--ink); line-height: 1.15;
+    word-break: break-word;
+  }
+  .ncard .w .alt {
+    color: var(--ink-soft); font-size: 0.85em; margin-left: 4px;
+  }
+  .ncard.irreg { background: var(--signal-red); border-color: var(--signal-red); }
+  .ncard.irreg .n, .ncard.irreg .w { color: var(--paper); }
+  .ncard .badge {
+    position: absolute; top: 10px; right: 10px;
+    font-family: var(--ui-font); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    background: rgba(0,0,0,0.06); color: var(--ink-soft);
+  }
+  .ncard.irreg .badge { background: rgba(255,255,255,0.18); color: var(--paper); }
+
+  .ncard.wide { grid-column: span 2; }
+  .ncard.wide .n { font-size: 36px; }
+  .ncard.wide .w { font-size: 22px; }
+
+  /* The "en" connector */
+  .ncard .en {
+    color: var(--signal-red); font-weight: 700;
+    font-family: var(--ui-font); font-style: normal;
+  }
+  .ncard.irreg .en {
+    color: var(--paper);
+    text-decoration: underline; text-decoration-color: rgba(255,255,255,0.6);
+  }
+
+  /* Single-character highlight (used for diaeresis ë / stem changes) */
+  .ncard .hi {
+    color: var(--signal-red); font-weight: 800; font-style: normal;
+  }
+  .ncard.irreg .hi {
+    color: var(--paper);
+    text-decoration: underline; text-decoration-thickness: 2px;
+  }
+
+  /* Decomposition breakdown line */
+  .ncard .breakdown {
+    margin-top: 8px;
+    font-family: var(--num-font); font-size: 12px;
+    letter-spacing: 0.04em; color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .ncard.irreg .breakdown { color: rgba(255,255,255,0.7); }
+
+  /* Build steps — shows the assembly of a number from parts */
+  .ncard .build {
+    margin-top: 8px;
+    font-family: var(--num-font); font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .ncard.irreg .build { color: rgba(255,255,255,0.85); }
+  .ncard .build .arrow { color: var(--signal-red); font-weight: 700; }
+  .ncard.irreg .build .arrow { color: var(--paper); }
+
+  .callout-card {
+    grid-column: 1 / -1;
+    background: color-mix(in srgb, var(--signal-red) 8%, var(--paper-raised));
+    border: 1px solid color-mix(in srgb, var(--signal-red) 30%, transparent);
+    border-radius: 14px; padding: 16px 18px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .callout-card .icon {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--signal-red); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif-font); font-size: 18px;
+  }
+  .callout-card .b { font-size: 14.5px; line-height: 1.5; }
+  .callout-card .b strong { font-weight: 700; }
+  .callout-card .b em { font-family: var(--serif-font); font-style: italic; color: var(--ink); }
+  .callout-card.muted { background: var(--paper-sunk); border-color: var(--hair); }
+  .callout-card.muted .icon { background: var(--ink); }
+
+  .compare { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  .compare-cell {
+    padding: 22px; border-radius: 14px;
+    background: var(--paper-raised); border: 0.5px solid var(--hair);
+  }
+  .compare-cell.nl {
+    background: var(--ink); color: var(--paper); border-color: var(--ink);
+  }
+  .compare-cell .label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 700; color: var(--signal-red);
+  }
+  .compare-cell .digit {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 26px; letter-spacing: -0.04em; margin-top: 8px;
+    line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .compare-cell .says {
+    font-family: var(--serif-font); font-size: 22px;
+    margin-top: 6px; line-height: 1.15;
+  }
+  .compare-cell.nl .says { color: var(--signal-red); }
+  .compare-cell p { font-size: 13px; margin: 8px 0 0; opacity: 0.65; }
+
+  .practice-cta {
+    margin: 50px 0 0; padding: 32px;
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px;
+    display: flex; flex-direction: column; gap: 14px;
+    align-items: flex-start;
+  }
+  .practice-cta h3 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: 28px; letter-spacing: -0.01em; margin: 0;
+    max-width: 480px; line-height: 1.1;
+  }
+  .practice-cta p { color: rgba(241,236,224,0.65); font-size: 14.5px; margin: 0; max-width: 460px; }
+  .practice-cta .btn-primary { background: var(--signal-red); color: #fff; }
+
+  .toc-side { display: none; }
+
+  @media (min-width: 720px) {
+    .sheet-head { padding: 80px 0 30px; }
+    .hero-card { padding: 44px 40px 40px; }
+    .nums { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1100px) {
+    .toc-side {
+      display: block; position: sticky; top: 96px; align-self: start;
+    }
+    .toc-side .toc-list { display: flex; flex-direction: column; gap: 2px; }
+    .toc-side a {
+      display: block; padding: 8px 12px; border-radius: 8px;
+      font-size: 13.5px; color: var(--ink-soft); text-decoration: none;
+    }
+    .toc-side a:hover { background: var(--paper-sunk); color: var(--ink); }
+    .toc-side a.active { background: var(--ink); color: var(--paper); }
+    .with-sidebar { grid-template-columns: 240px 1fr; gap: 56px; }
+    .nums { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-container site-header-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL&nbsp;Number Practice</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/cheatsheets/" class="active">Cheat sheets</a>
+      <a href="/#about">About</a>
+    </nav>
+    <a class="nav-cta" href="/#download">Get the app →</a>
+    <button class="nav-toggle" aria-label="Open menu">
+      <svg width="20" height="14" viewBox="0 0 20 14"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="site-container">
+
+  <div class="sheet-head">
+    <nav class="crumbs">
+      <a href="/cheatsheets/">Cheat sheets</a>
+      <span class="sep">/</span>
+      <span>Germanic</span>
+      <span class="sep">/</span>
+      <span style="color: var(--ink);">Nederlands</span>
+    </nav>
+  </div>
+
+  <!-- HERO CARD -->
+  <div class="hero-card">
+    <div>
+      <span class="eyebrow" style="color: var(--signal-red);">Germanic · Nederland</span>
+      <h1>Numbers in<br><em style="font-style: italic;">Nederlands</em></h1>
+      <div class="native">Eerst de één, dan de tien</div>
+    </div>
+    <div class="stats">
+      <div><b>10 min</b>read</div>
+      <div><b>7</b>sections</div>
+      <div><b>1 en 20</b>= 21</div>
+    </div>
+    <div class="display">
+      <div class="num">122</div>
+      <div class="pseudo">honderdtwee<span class="hi">ë</span>ntwintig</div>
+    </div>
+  </div>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#big-picture" class="current">Big picture</a>
+    <a href="#zero-twenty">0–20</a>
+    <a href="#tens">Tens</a>
+    <a href="#flip">The flip</a>
+    <a href="#hundreds">Hundreds</a>
+    <a href="#millions">Millions</a>
+    <a href="#remember">Remember</a>
+  </nav>
+
+  <div class="with-sidebar">
+
+    <aside class="toc-side">
+      <div class="eyebrow" style="margin-bottom: 8px;">On this page</div>
+      <div class="toc-list">
+        <a href="#big-picture" class="active">The big picture</a>
+        <a href="#zero-twenty">0 – 20</a>
+        <a href="#tens">Tens (20 – 90)</a>
+        <a href="#flip">21 – 99 &amp; the diaeresis</a>
+        <a href="#hundreds">Hundreds &amp; thousands</a>
+        <a href="#millions">Millions &amp; billions</a>
+        <a href="#remember">Things to remember</a>
+      </div>
+      <div class="lang-rail lang-rail-sticky" style="margin-top: 28px;">
+        <div class="lang-rail-head"><span class="eyebrow">More languages</span></div>
+        <a href="/portuguese-pt/">Português <span class="native">PT</span></a>
+        <a href="/portuguese-br/">Português <span class="native">BR</span></a>
+        <a href="#">Español <span class="native">ES</span></a>
+        <a href="/french/">Français <span class="native">FR</span></a>
+        <a href="/italian/">Italiano <span class="native">IT</span></a>
+        <a href="/german/">Deutsch <span class="native">DE</span></a>
+        <a href="/dutch/" class="active">Nederlands <span class="native">NL</span></a>
+        <a href="/japanese/">日本語 <span class="native">JP</span></a>
+        <a href="/arabic/">العربية <span class="native">AR</span></a>
+        <a href="/cheatsheets/" style="color: var(--signal-red); font-weight: 600;">See all 14 →</a>
+      </div>
+    </aside>
+
+    <article>
+
+      <!-- BIG PICTURE -->
+      <section class="sec" id="big-picture">
+        <div class="sec-head">
+          <div class="sec-n">00</div>
+          <div>
+            <h2 class="sec-title">The big picture</h2>
+            <p class="sec-blurb">
+              Dutch and German share the same skeleton: <strong>unit before ten</strong>, joined by <em>en</em> ("and"), all written as one long word. Dutch adds two signature flourishes — a <strong>diaeresis</strong> (ë) when vowels would visually collide, and the accented <strong>één</strong> when you need to distinguish "one" from the article "a/an."
+            </p>
+          </div>
+        </div>
+        <div class="callout-card muted">
+          <div class="icon">i</div>
+          <div class="b">
+            <strong>If you only remember one thing:</strong> 22 is <em>twee<strong style="color: var(--signal-red);">ë</strong>ntwintig</em>, not <em>tweeentwintig</em>. Those two dots over the <em>ë</em> tell the reader "new syllable starts here." You'll see them on every number where 2 or 3 meets a ten.
+          </div>
+        </div>
+      </section>
+
+      <!-- 0 – 20 -->
+      <section class="sec" id="zero-twenty">
+        <div class="sec-head">
+          <div class="sec-n">01</div>
+          <div>
+            <h2 class="sec-title">Zero to twenty</h2>
+            <p class="sec-blurb">13 and 14 quietly drop letters — <em>dertien</em> (not "drietien"), <em>veertien</em> (not "viertien"). The same stem changes carry into the tens.</p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">0</div><div class="w">nul</div></div>
+          <div class="ncard"><span class="badge">accent</span><div class="n">1</div><div class="w">é<span class="hi">é</span>n</div></div>
+          <div class="ncard"><div class="n">2</div><div class="w">twee</div></div>
+          <div class="ncard"><div class="n">3</div><div class="w">drie</div></div>
+          <div class="ncard"><div class="n">4</div><div class="w">vier</div></div>
+          <div class="ncard"><div class="n">5</div><div class="w">vijf</div></div>
+          <div class="ncard"><div class="n">6</div><div class="w">zes</div></div>
+          <div class="ncard"><div class="n">7</div><div class="w">zeven</div></div>
+          <div class="ncard"><div class="n">8</div><div class="w">acht</div></div>
+          <div class="ncard"><div class="n">9</div><div class="w">negen</div></div>
+          <div class="ncard"><div class="n">10</div><div class="w">tien</div></div>
+          <div class="ncard"><div class="n">11</div><div class="w">elf</div></div>
+          <div class="ncard"><div class="n">12</div><div class="w">twaalf</div></div>
+          <div class="ncard irreg"><span class="badge">stem</span><div class="n">13</div><div class="w">d<span class="hi">e</span>rtien</div></div>
+          <div class="ncard irreg"><span class="badge">stem</span><div class="n">14</div><div class="w">v<span class="hi">ee</span>rtien</div></div>
+          <div class="ncard"><div class="n">15</div><div class="w">vijftien</div></div>
+          <div class="ncard"><div class="n">16</div><div class="w">zestien</div></div>
+          <div class="ncard"><div class="n">17</div><div class="w">zeventien</div></div>
+          <div class="ncard"><div class="n">18</div><div class="w">achttien</div></div>
+          <div class="ncard"><div class="n">19</div><div class="w">negentien</div></div>
+          <div class="ncard"><div class="n">20</div><div class="w">twintig</div></div>
+          <div class="callout-card muted">
+            <div class="icon">i</div>
+            <div class="b">
+              <strong>één vs een.</strong> Without the accent, <em>een</em> means "a/an." With the accent, <em>één</em> means the number 1. <em>Ik heb één appel</em> = "I have <strong>one</strong> apple." <em>Ik heb een appel</em> = "I have an apple." The accent is mandatory when the difference matters.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TENS (20-90) -->
+      <section class="sec" id="tens">
+        <div class="sec-head">
+          <div class="sec-n">02</div>
+          <div>
+            <h2 class="sec-title">The tens (20 – 90)</h2>
+            <p class="sec-blurb">Three oddities. <em>Dertig</em> and <em>veertig</em> mirror the 13/14 stem changes. And <strong>tachtig</strong> sprouts a <em>t-</em> in front of <em>acht</em> for reasons lost to history — there's no "achtig" for 80.</p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">20</div><div class="w">twintig</div></div>
+          <div class="ncard irreg"><span class="badge">stem</span><div class="n">30</div><div class="w">d<span class="hi">e</span>rtig</div></div>
+          <div class="ncard irreg"><span class="badge">stem</span><div class="n">40</div><div class="w">v<span class="hi">ee</span>rtig</div></div>
+          <div class="ncard"><div class="n">50</div><div class="w">vijftig</div></div>
+          <div class="ncard"><div class="n">60</div><div class="w">zestig</div></div>
+          <div class="ncard"><div class="n">70</div><div class="w">zeventig</div></div>
+          <div class="ncard irreg"><span class="badge">t- prefix</span><div class="n">80</div><div class="w"><span class="hi">t</span>achtig</div></div>
+          <div class="ncard"><div class="n">90</div><div class="w">negentig</div></div>
+        </div>
+      </section>
+
+      <!-- THE FLIP + DIAERESIS -->
+      <section class="sec" id="flip">
+        <div class="sec-head">
+          <div class="sec-n">03</div>
+          <div>
+            <h2 class="sec-title">21 – 99 &amp; the diaeresis</h2>
+            <p class="sec-blurb">
+              The flip works just like German: unit + <em>en</em> + ten, all as one word. But when <em>twee</em> or <em>drie</em> meets <em>en</em>, the vowels would visually merge — so Dutch marks the boundary with a <strong>diaeresis</strong> on the second vowel: <em>twee<strong style="color: var(--signal-red);">ë</strong>n</em>, <em>drie<strong style="color: var(--signal-red);">ë</strong>n</em>.
+            </p>
+          </div>
+        </div>
+
+        <div class="callout-card" style="margin-bottom: 18px;">
+          <div class="icon">¨</div>
+          <div class="b">
+            <strong>The diaeresis rule.</strong> Whenever a compound combines <em>twee</em> (2) or <em>drie</em> (3) with <em>en</em>, write the second <em>e</em> as <em>ë</em>. The dots signal "this is a new syllable, not part of a long vowel." Other digits — <em>vier</em>, <em>vijf</em>, <em>zes</em>, etc. — don't collide and don't need the mark.
+          </div>
+        </div>
+
+        <div class="nums">
+          <div class="ncard"><div class="n">21</div><div class="w">één<span class="en">en</span>twintig</div></div>
+          <div class="ncard irreg"><span class="badge">ë</span><div class="n">22</div><div class="w">twee<span class="hi">ë</span>n<span class="en">en</span>twintig <span class="alt">tweeëntwintig</span></div></div>
+          <div class="ncard irreg"><span class="badge">ë</span><div class="n">23</div><div class="w">drie<span class="hi">ë</span>ntwintig</div></div>
+          <div class="ncard"><div class="n">25</div><div class="w">vijf<span class="en">en</span>twintig</div></div>
+          <div class="ncard"><div class="n">28</div><div class="w">acht<span class="en">en</span>twintig</div></div>
+          <div class="ncard irreg"><span class="badge">ë</span><div class="n">32</div><div class="w">twee<span class="hi">ë</span>ndertig</div></div>
+          <div class="ncard"><div class="n">47</div><div class="w">zeven<span class="en">en</span>veertig</div></div>
+          <div class="ncard irreg"><span class="badge">ë</span><div class="n">53</div><div class="w">drie<span class="hi">ë</span>nvijftig</div></div>
+          <div class="ncard"><div class="n">68</div><div class="w">acht<span class="en">en</span>zestig</div></div>
+          <div class="ncard"><div class="n">76</div><div class="w">zes<span class="en">en</span>zeventig</div></div>
+          <div class="ncard irreg"><span class="badge">tachtig</span><div class="n">87</div><div class="w">zeven<span class="en">en</span>tachtig</div></div>
+          <div class="ncard"><div class="n">95</div><div class="w">vijf<span class="en">en</span>negentig</div></div>
+          <div class="ncard wide irreg">
+            <div class="n">22</div>
+            <div class="w">twee<span class="hi">ë</span>ntwintig</div>
+            <div class="build">twee <span class="arrow">+</span> en <span class="arrow">+</span> twintig <span class="arrow">→</span> tweeëntwintig</div>
+          </div>
+          <div class="ncard wide irreg">
+            <div class="n">99</div>
+            <div class="w">negen<span class="en">en</span>negentig</div>
+            <div class="breakdown">9 + en + 90 — flipped, fused, no ë needed</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HUNDREDS & THOUSANDS -->
+      <section class="sec" id="hundreds">
+        <div class="sec-head">
+          <div class="sec-n">04</div>
+          <div>
+            <h2 class="sec-title">Hundreds &amp; thousands</h2>
+            <p class="sec-blurb">
+              <em>Honderd</em> and <em>duizend</em> glue onto the front of the digit, exactly like the German pattern — and like German, no <em>één</em> or <em>een</em> is needed for standalone 100 / 1000. Everything stays as one continuous word.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><span class="badge">no één</span><div class="n">100</div><div class="w">honderd</div></div>
+          <div class="ncard"><div class="n">200</div><div class="w">tweehonderd</div></div>
+          <div class="ncard"><div class="n">500</div><div class="w">vijfhonderd</div></div>
+          <div class="ncard"><div class="n">900</div><div class="w">negenhonderd</div></div>
+          <div class="ncard"><div class="n">1.000</div><div class="w">duizend</div></div>
+          <div class="ncard"><div class="n">2.000</div><div class="w">tweeduizend</div></div>
+          <div class="ncard"><div class="n">10.000</div><div class="w">tienduizend</div></div>
+          <div class="ncard"><div class="n">100.000</div><div class="w">honderdduizend</div></div>
+          <div class="ncard wide">
+            <div class="n">125</div>
+            <div class="w">honderdvijf<span class="en">en</span>twintig</div>
+            <div class="breakdown">100 + (5 en 20)</div>
+          </div>
+          <div class="ncard wide">
+            <div class="n">387</div>
+            <div class="w">driehonderdzeven<span class="en">en</span>tachtig</div>
+            <div class="breakdown">300 + (7 en 80)</div>
+          </div>
+          <div class="ncard wide irreg">
+            <div class="n">2.345</div>
+            <div class="w">tweeduizenddriehonderdvijf<span class="en">en</span>veertig</div>
+            <div class="breakdown">2,000 + 300 + (5 en 40)</div>
+          </div>
+          <div class="ncard wide irreg">
+            <div class="n">1.984</div>
+            <div class="w">negentienhonderdvier<span class="en">en</span>tachtig</div>
+            <div class="breakdown">years often use 19-hundred + the rest</div>
+          </div>
+          <div class="callout-card muted">
+            <div class="icon">i</div>
+            <div class="b">
+              <strong>Dots and commas, flipped.</strong> Dutch writes thousands with a <strong>period</strong> (1.000) and decimals with a <strong>comma</strong> (2,5 = <em>twee komma vijf</em>) — same as German, French, Italian. The opposite of US English.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MILLIONS — Billion false friend -->
+      <section class="sec" id="millions">
+        <div class="sec-head">
+          <div class="sec-n">05</div>
+          <div>
+            <h2 class="sec-title">Millions &amp; billions</h2>
+            <p class="sec-blurb">
+              Long-scale Europe, again. <em>Miljoen</em> = 10⁶, <em>miljard</em> = 10⁹ (English "billion"), <em>biljoen</em> = 10¹² (English "trillion"). The cognate <strong>biljoen</strong> in a Dutch text means a <em>thousand times</em> more than an English-speaker might assume.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">1 M</div><div class="w">één miljoen</div></div>
+          <div class="ncard"><div class="n">2 M</div><div class="w">twee miljoen</div></div>
+          <div class="ncard"><div class="n">55 M</div><div class="w">vijfenvijftig miljoen</div></div>
+          <div class="ncard irreg"><span class="badge">10⁹</span><div class="n">1 B</div><div class="w">één miljard</div></div>
+          <div class="ncard"><div class="n">2 B</div><div class="w">twee miljard</div></div>
+          <div class="ncard irreg"><span class="badge">10¹²</span><div class="n">1 T</div><div class="w">één biljoen</div></div>
+        </div>
+
+        <div class="compare" style="margin-top: 18px;">
+          <div class="compare-cell nl">
+            <div class="label">Nederlands</div>
+            <div class="digit">1.000.000.000</div>
+            <div class="says">één miljard</div>
+            <p>Long-scale, same as German <em>Milliarde</em>, French <em>milliard</em>, Italian <em>miliardo</em>. Dutch <em>biljoen</em> is 1.000.000.000.000.</p>
+          </div>
+          <div class="compare-cell">
+            <div class="label" style="color: var(--ink);">English (US)</div>
+            <div class="digit">1,000,000,000</div>
+            <div class="says">one billion</div>
+            <p>Short scale. The Dutch cognate <em>biljoen</em> is the trap — in finance, news, or science writing it means a <strong>thousand times more</strong> than English "billion."</p>
+          </div>
+        </div>
+
+        <div class="callout-card" style="margin-top: 12px;">
+          <div class="icon">!</div>
+          <div class="b">
+            <strong>Miljoen / miljard stay invariable.</strong> Unlike German <em>Millionen</em>, Dutch keeps them singular with numbers: <em>twee miljoen</em>, not <em>twee miljoenen</em>. The plural form only appears when used as an abstract noun (<em>er zijn miljoenen mensen</em> = "there are millions of people").
+          </div>
+        </div>
+      </section>
+
+      <!-- REMEMBER -->
+      <section class="sec" id="remember">
+        <div class="sec-head">
+          <div class="sec-n">06</div>
+          <div>
+            <h2 class="sec-title">Things to remember</h2>
+            <p class="sec-blurb">Five rules that will save you from the most common mistakes.</p>
+          </div>
+        </div>
+        <div class="nums" style="grid-template-columns: 1fr;">
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">1.</div>
+            <div class="w"><strong>Unit before ten</strong>, joined by <em style="font-family: var(--serif-font); color: var(--signal-red);">en</em>. <em style="font-family: var(--serif-font); color: var(--ink-soft);">Eenentwintig</em> = 21. <em style="font-family: var(--serif-font); color: var(--ink-soft);">Zevenentachtig</em> = 87. All one word, however long.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">2.</div>
+            <div class="w"><strong>Diaeresis on twee+en and drie+en.</strong> <em style="font-family: var(--serif-font); color: var(--ink-soft);">Twee<strong style="color: var(--signal-red);">ë</strong>ntwintig</em> (22), <em style="font-family: var(--serif-font); color: var(--ink-soft);">drie<strong style="color: var(--signal-red);">ë</strong>ndertig</em> (33). Only those two digits trigger it.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">3.</div>
+            <div class="w"><strong>één, with accents, for the number 1.</strong> Without them, <em style="font-family: var(--serif-font); color: var(--ink-soft);">een</em> means "a/an." The accents are mandatory whenever ambiguity matters.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">4.</div>
+            <div class="w"><strong>Stem changes:</strong> 13 / 14 / 30 / 40 / 80. <em style="font-family: var(--serif-font); color: var(--ink-soft);">D<strong style="color: var(--signal-red);">e</strong>rtien</em>, <em style="font-family: var(--serif-font); color: var(--ink-soft);">v<strong style="color: var(--signal-red);">ee</strong>rtien</em>, <em style="font-family: var(--serif-font); color: var(--ink-soft);">d<strong style="color: var(--signal-red);">e</strong>rtig</em>, <em style="font-family: var(--serif-font); color: var(--ink-soft);">v<strong style="color: var(--signal-red);">ee</strong>rtig</em>, <em style="font-family: var(--serif-font); color: var(--ink-soft);"><strong style="color: var(--signal-red);">t</strong>achtig</em> (the t-prefix is the truly strange one).</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">5.</div>
+            <div class="w"><strong>Beware <em style="font-family: var(--serif-font); color: var(--signal-red);">biljoen</em>.</strong> In Dutch that's 10¹². For 10⁹ — what English calls a billion — use <em style="font-family: var(--serif-font); color: var(--ink-soft);">miljard</em>.</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="practice-cta">
+        <span class="eyebrow" style="color: var(--signal-red);">Drill it</span>
+        <h3>Reading is one thing.<br>Hearing it at speed is another.</h3>
+        <p>The companion iOS app generates random numbers in your chosen range and reads them aloud in Dutch. Five minutes a day.</p>
+        <a class="btn btn-primary" href="/#download">
+          <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor"><path d="M11.6 8.5c0-2 1.6-3 1.7-3-.9-1.4-2.4-1.5-2.9-1.5-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7C3.2 4 1.7 4.9 1 6.3c-1.4 2.4-.4 6 1 8 .7 1 1.5 2.1 2.5 2 1 0 1.4-.6 2.6-.6s1.5.6 2.6.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.2-2.3-.1 0-2.3-1-2.3-3.5zM9.7 2.5c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.2 1.2-.5.6-.9 1.5-.8 2.4.9.1 1.7-.4 2.2-1.1z"/></svg>
+          Get the app
+        </a>
+      </div>
+
+    </article>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-container footer-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL Number Practice</span>
+    </a>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>App</h4>
+        <a href="/#download">Download</a>
+        <a href="/#how">How it works</a>
+        <a href="/#about">About</a>
+      </div>
+      <div class="footer-col">
+        <h4>Cheat sheets</h4>
+        <a href="/cheatsheets/">All languages</a>
+        <a href="/portuguese-pt/">Português (PT)</a>
+        <a href="/portuguese-br/">Português (BR)</a>
+        <a href="/french/">Français</a>
+        <a href="/italian/">Italiano</a>
+        <a href="/german/">Deutsch</a>
+        <a href="/dutch/">Nederlands</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="site-container" style="margin-top: 28px; font-size: 12px; color: var(--ink-faint);">© 2026 FL Number Practice</div>
+</footer>
+
+</body>
+</html>
