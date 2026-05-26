@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中文 — Numbers cheat sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<style>
+  .sheet-head { padding: 40px 0 24px; display: flex; flex-direction: column; gap: 14px; }
+  .crumbs { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-soft); }
+  .crumbs a { text-decoration: none; }
+  .crumbs .sep { color: var(--ink-faint); }
+
+  .hero-card {
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px; padding: 32px 28px 28px;
+    display: grid; gap: 18px; margin: 8px 0 18px;
+    position: relative; overflow: hidden;
+  }
+  .hero-card h1 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: clamp(40px, 9vw, 80px); line-height: 0.96;
+    letter-spacing: -0.02em; margin: 0;
+  }
+  .hero-card .native {
+    color: rgba(241,236,224,0.6);
+    font-family: 'Noto Serif SC', var(--serif-font), serif;
+    font-size: 22px; line-height: 1.2; margin: 6px 0 0;
+  }
+  .hero-card .stats {
+    display: flex; gap: 24px; flex-wrap: wrap; margin-top: 8px;
+    font-family: var(--num-font); font-size: 13px; color: rgba(241,236,224,0.55);
+  }
+  .hero-card .stats > div {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .hero-card .stats b {
+    font-size: 20px; color: var(--paper);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+  }
+  .hero-card .stats b.zh {
+    font-family: 'Noto Serif SC', var(--serif-font), serif;
+  }
+  .hero-card .display {
+    border-top: 0.5px solid rgba(241,236,224,0.16);
+    padding-top: 20px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .hero-card .display .num {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: clamp(56px, 12vw, 116px); letter-spacing: -0.05em; line-height: 0.9;
+    color: var(--signal-red); font-variant-numeric: tabular-nums;
+  }
+  .hero-card .display .pseudo {
+    font-family: 'Noto Serif SC', var(--serif-font), serif;
+    font-size: clamp(26px, 3.8vw, 36px); line-height: 1.15;
+    color: var(--paper); font-weight: 600;
+  }
+  .hero-card .display .pinyin {
+    font-family: var(--num-font); font-weight: 500;
+    font-size: clamp(13px, 1.6vw, 16px); letter-spacing: 0.02em;
+    color: rgba(241,236,224,0.6); line-height: 1.2;
+    margin-top: 4px;
+  }
+
+  .sec { padding: 36px 0 8px; border-top: 0.5px solid var(--hair); }
+  .sec:first-of-type { border-top: 0; padding-top: 20px; }
+  .sec-head { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: baseline; margin-bottom: 18px; }
+  .sec-n { font-family: var(--num-font); font-weight: 800; font-size: clamp(44px, 7vw, 68px); line-height: 0.8; letter-spacing: -0.05em; color: var(--signal-red); }
+  .sec-title { font-family: var(--serif-font); font-weight: 400; font-size: clamp(26px, 4vw, 34px); line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 6px; }
+  .sec-title .zh { font-family: 'Noto Serif SC', var(--serif-font), serif; font-weight: 600; }
+  .sec-blurb { font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; max-width: 600px; }
+  .sec-blurb em { font-family: var(--serif-font); color: var(--ink); font-style: italic; }
+  .sec-blurb strong { color: var(--ink); font-weight: 700; }
+  .sec-blurb .zh { font-family: 'Noto Serif SC', var(--serif-font), serif; color: var(--ink); font-weight: 600; font-style: normal; }
+
+  /* Cards — Mandarin uses .w for characters, .r for pinyin */
+  .nums { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ncard {
+    background: var(--paper-raised); border: 0.5px solid var(--hair);
+    border-radius: 14px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 4px; position: relative;
+  }
+  .ncard .n {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 26px; letter-spacing: -0.04em; color: var(--ink);
+    line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .ncard .w {
+    font-family: 'Noto Serif SC', var(--serif-font), serif;
+    font-size: 24px; color: var(--ink); line-height: 1.2;
+    font-weight: 600;
+  }
+  .ncard .r {
+    font-family: var(--num-font); font-weight: 500;
+    font-size: 13px; color: var(--ink-soft); line-height: 1.2;
+    letter-spacing: 0.01em;
+  }
+  .ncard.irreg {
+    background: var(--signal-red); border-color: var(--signal-red);
+  }
+  .ncard.irreg .n,
+  .ncard.irreg .w { color: var(--paper); }
+  .ncard.irreg .r { color: rgba(255,255,255,0.85); }
+  .ncard .badge {
+    position: absolute; top: 10px; right: 10px;
+    font-family: var(--ui-font); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    background: rgba(0,0,0,0.06); color: var(--ink-soft);
+  }
+  .ncard.irreg .badge { background: rgba(255,255,255,0.18); color: var(--paper); }
+
+  .ncard.wide { grid-column: span 2; }
+  .ncard.wide .n { font-size: 36px; }
+  .ncard.wide .w { font-size: 30px; }
+  .ncard.wide .r { font-size: 14px; }
+
+  /* Highlight a character/segment in red — for tones, units, etc. */
+  .ncard .hi {
+    color: var(--signal-red); font-weight: 700;
+  }
+  .ncard.irreg .hi { color: var(--paper); text-decoration: underline; text-decoration-thickness: 2px; }
+
+  /* Decomposition breakdown line */
+  .ncard .breakdown {
+    margin-top: 8px;
+    font-family: var(--num-font); font-size: 12px;
+    letter-spacing: 0.04em; color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .ncard.irreg .breakdown { color: rgba(255,255,255,0.7); }
+
+  .callout-card {
+    grid-column: 1 / -1;
+    background: color-mix(in srgb, var(--signal-red) 8%, var(--paper-raised));
+    border: 1px solid color-mix(in srgb, var(--signal-red) 30%, transparent);
+    border-radius: 14px; padding: 16px 18px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .callout-card .icon {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--signal-red); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif-font); font-size: 18px;
+  }
+  .callout-card .b { font-size: 14.5px; line-height: 1.55; }
+  .callout-card .b strong { font-weight: 700; }
+  .callout-card .b em { font-family: var(--serif-font); font-style: italic; color: var(--ink); }
+  .callout-card .b .zh { font-family: 'Noto Serif SC', var(--serif-font), serif; font-weight: 600; color: var(--ink); font-style: normal; }
+  .callout-card.muted { background: var(--paper-sunk); border-color: var(--hair); }
+  .callout-card.muted .icon { background: var(--ink); }
+
+  /* CN vs EN grouping comparison */
+  .compare { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  .compare-cell {
+    padding: 22px; border-radius: 14px;
+    background: var(--paper-raised); border: 0.5px solid var(--hair);
+  }
+  .compare-cell.zh {
+    background: var(--ink); color: var(--paper); border-color: var(--ink);
+  }
+  .compare-cell .label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 700; color: var(--signal-red);
+  }
+  .compare-cell h4 {
+    font-family: var(--serif-font); font-weight: 400; font-size: 22px;
+    margin: 8px 0 14px; line-height: 1.2;
+  }
+  .compare-cell .units {
+    display: grid; gap: 8px;
+    font-family: var(--num-font); font-size: 13px;
+  }
+  .compare-cell .units .row {
+    display: flex; gap: 14px; align-items: baseline;
+  }
+  .compare-cell .units .power {
+    font-weight: 700; min-width: 50px; opacity: 0.85;
+  }
+  .compare-cell .units .label-sm {
+    font-family: var(--serif-font); font-size: 16px; opacity: 0.95;
+  }
+  .compare-cell.zh .units .label-sm .zh-ch {
+    font-family: 'Noto Serif SC', var(--serif-font), serif; font-weight: 600;
+  }
+  .compare-cell p { font-size: 13px; margin: 10px 0 0; opacity: 0.65; line-height: 1.5; }
+
+  .practice-cta {
+    margin: 50px 0 0; padding: 32px;
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px;
+    display: flex; flex-direction: column; gap: 14px;
+    align-items: flex-start;
+  }
+  .practice-cta h3 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: 28px; letter-spacing: -0.01em; margin: 0;
+    max-width: 480px; line-height: 1.1;
+  }
+  .practice-cta p { color: rgba(241,236,224,0.65); font-size: 14.5px; margin: 0; max-width: 460px; }
+  .practice-cta .btn-primary { background: var(--signal-red); color: #fff; }
+
+  .toc-side { display: none; }
+
+  @media (min-width: 720px) {
+    .sheet-head { padding: 80px 0 30px; }
+    .hero-card { padding: 44px 40px 40px; }
+    .nums { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1100px) {
+    .toc-side {
+      display: block; position: sticky; top: 96px; align-self: start;
+    }
+    .toc-side .toc-list { display: flex; flex-direction: column; gap: 2px; }
+    .toc-side a {
+      display: block; padding: 8px 12px; border-radius: 8px;
+      font-size: 13.5px; color: var(--ink-soft); text-decoration: none;
+    }
+    .toc-side a:hover { background: var(--paper-sunk); color: var(--ink); }
+    .toc-side a.active { background: var(--ink); color: var(--paper); }
+    .with-sidebar { grid-template-columns: 240px 1fr; gap: 56px; }
+    .nums { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-container site-header-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL&nbsp;Number Practice</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/cheatsheets/" class="active">Cheat sheets</a>
+      <a href="/#about">About</a>
+    </nav>
+    <a class="nav-cta" href="/#download">Get the app →</a>
+    <button class="nav-toggle" aria-label="Open menu">
+      <svg width="20" height="14" viewBox="0 0 20 14"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="site-container">
+
+  <div class="sheet-head">
+    <nav class="crumbs">
+      <a href="/cheatsheets/">Cheat sheets</a>
+      <span class="sep">/</span>
+      <span>CJK</span>
+      <span class="sep">/</span>
+      <span style="color: var(--ink);">中文</span>
+    </nav>
+  </div>
+
+  <!-- HERO CARD -->
+  <div class="hero-card">
+    <div>
+      <span class="eyebrow" style="color: var(--signal-red);">CJK · 中国</span>
+      <h1>Numbers in<br><em style="font-style: italic;">中文 <span style="font-family: var(--serif-font);">Mandarin</span></em></h1>
+      <div class="native">万 — group by ten-thousand</div>
+    </div>
+    <div class="stats">
+      <div><b>12 min</b>read</div>
+      <div><b>7</b>sections</div>
+      <div><b class="zh">万 = 10⁴</b>the unit that matters</div>
+    </div>
+    <div class="display">
+      <div class="num">43,256</div>
+      <div class="pseudo">四万三千二百五十六</div>
+      <div class="pinyin">sì wàn sān qiān èr bǎi wǔ shí liù</div>
+    </div>
+  </div>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#big-picture" class="current">Big picture</a>
+    <a href="#zero-ten">0–10</a>
+    <a href="#eleven-ninety-nine">11–99</a>
+    <a href="#hundreds">100–9999</a>
+    <a href="#wan">万 &amp; 亿</a>
+    <a href="#tones">Tones</a>
+    <a href="#remember">Remember</a>
+  </nav>
+
+  <div class="with-sidebar">
+
+    <aside class="toc-side">
+      <div class="eyebrow" style="margin-bottom: 8px;">On this page</div>
+      <div class="toc-list">
+        <a href="#big-picture" class="active">The big picture</a>
+        <a href="#zero-ten">0 – 10</a>
+        <a href="#eleven-ninety-nine">11 – 99: just compose</a>
+        <a href="#hundreds">Hundreds &amp; thousands</a>
+        <a href="#wan">万 &amp; 亿 — the new units</a>
+        <a href="#tones">Tones, 两/二, 幺/一</a>
+        <a href="#remember">Things to remember</a>
+      </div>
+      <div class="lang-rail lang-rail-sticky" style="margin-top: 28px;">
+        <div class="lang-rail-head"><span class="eyebrow">More languages</span></div>
+        <a href="/portuguese-pt/">Português <span class="native">PT</span></a>
+        <a href="/portuguese-br/">Português <span class="native">BR</span></a>
+        <a href="/french/">Français <span class="native">FR</span></a>
+        <a href="/italian/">Italiano <span class="native">IT</span></a>
+        <a href="/german/">Deutsch <span class="native">DE</span></a>
+        <a href="/dutch/">Nederlands <span class="native">NL</span></a>
+        <a href="/japanese/">日本語 <span class="native">JP</span></a>
+        <a href="/mandarin/" class="active">中文 <span class="native">ZH</span></a>
+        <a href="/arabic/">العربية <span class="native">AR</span></a>
+        <a href="/cheatsheets/" style="color: var(--signal-red); font-weight: 600;">See all 14 →</a>
+      </div>
+    </aside>
+
+    <article>
+
+      <!-- BIG PICTURE -->
+      <section class="sec" id="big-picture">
+        <div class="sec-head">
+          <div class="sec-n">00</div>
+          <div>
+            <h2 class="sec-title">The big picture</h2>
+            <p class="sec-blurb">
+              Mandarin numbers are <strong>radically compositional</strong> — almost no irregularities. The structural twist is that Chinese <strong>groups by ten-thousand</strong> (<span class="zh">万</span>), not by thousand. So there's no native word for "million": it's <span class="zh">一百万</span>, "one hundred ten-thousands."
+            </p>
+          </div>
+        </div>
+        <div class="callout-card muted">
+          <div class="icon">i</div>
+          <div class="b">
+            <strong>If you only remember one thing:</strong> the new big unit is <span class="zh">万</span> (wàn, 10⁴). English commas go every three digits; Chinese mental commas go every four. <em>10,000 = 1<span class="zh">万</span>. 100,000,000 = 1<span class="zh">亿</span>.</em>
+          </div>
+        </div>
+      </section>
+
+      <!-- 0 – 10 -->
+      <section class="sec" id="zero-ten">
+        <div class="sec-head">
+          <div class="sec-n">01</div>
+          <div>
+            <h2 class="sec-title">Zero to ten</h2>
+            <p class="sec-blurb">These eleven characters are the entire foundation. Learn them, plus <span class="zh">十</span> for ten, and you can already build 1 to 100.</p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">0</div><div class="w">零</div><div class="r">líng</div></div>
+          <div class="ncard"><div class="n">1</div><div class="w">一</div><div class="r">yī</div></div>
+          <div class="ncard"><span class="badge">→ 两</span><div class="n">2</div><div class="w">二</div><div class="r">èr</div></div>
+          <div class="ncard"><div class="n">3</div><div class="w">三</div><div class="r">sān</div></div>
+          <div class="ncard"><div class="n">4</div><div class="w">四</div><div class="r">sì</div></div>
+          <div class="ncard"><div class="n">5</div><div class="w">五</div><div class="r">wǔ</div></div>
+          <div class="ncard"><div class="n">6</div><div class="w">六</div><div class="r">liù</div></div>
+          <div class="ncard"><span class="badge">tone clash w/ 1</span><div class="n">7</div><div class="w">七</div><div class="r">qī</div></div>
+          <div class="ncard"><div class="n">8</div><div class="w">八</div><div class="r">bā</div></div>
+          <div class="ncard"><div class="n">9</div><div class="w">九</div><div class="r">jiǔ</div></div>
+          <div class="ncard"><div class="n">10</div><div class="w">十</div><div class="r">shí</div></div>
+          <div class="callout-card muted">
+            <div class="icon">i</div>
+            <div class="b">
+              <strong>The strokes match the value.</strong> Look at <span class="zh">一</span> (1, one stroke), <span class="zh">二</span> (2, two strokes), <span class="zh">三</span> (3, three strokes). After that the pattern breaks — but the first three are a freebie.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11-99 -->
+      <section class="sec" id="eleven-ninety-nine">
+        <div class="sec-head">
+          <div class="sec-n">02</div>
+          <div>
+            <h2 class="sec-title">11 – 99: just compose</h2>
+            <p class="sec-blurb">
+              Compose <em>ten</em> with the digit before or after it. Before <span class="zh">十</span>, you multiply: <span class="zh">三十</span> = 3×10 = 30. After <span class="zh">十</span>, you add: <span class="zh">十三</span> = 10+3 = 13. <strong>No irregular tens, no special teens — just the rule.</strong>
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">11</div><div class="w">十一</div><div class="r">shí yī</div></div>
+          <div class="ncard"><div class="n">12</div><div class="w">十二</div><div class="r">shí èr</div></div>
+          <div class="ncard irreg"><span class="badge">tones</span><div class="n">14</div><div class="w">十四</div><div class="r">shí sì</div></div>
+          <div class="ncard"><div class="n">15</div><div class="w">十五</div><div class="r">shí wǔ</div></div>
+          <div class="ncard"><div class="n">19</div><div class="w">十九</div><div class="r">shí jiǔ</div></div>
+          <div class="ncard"><div class="n">20</div><div class="w">二十</div><div class="r">èr shí</div></div>
+          <div class="ncard"><div class="n">21</div><div class="w">二十一</div><div class="r">èr shí yī</div></div>
+          <div class="ncard"><div class="n">30</div><div class="w">三十</div><div class="r">sān shí</div></div>
+          <div class="ncard irreg"><span class="badge">tones</span><div class="n">40</div><div class="w">四十</div><div class="r">sì shí</div></div>
+          <div class="ncard"><div class="n">47</div><div class="w">四十七</div><div class="r">sì shí qī</div></div>
+          <div class="ncard"><div class="n">50</div><div class="w">五十</div><div class="r">wǔ shí</div></div>
+          <div class="ncard"><div class="n">76</div><div class="w">七十六</div><div class="r">qī shí liù</div></div>
+          <div class="ncard"><div class="n">99</div><div class="w">九十九</div><div class="r">jiǔ shí jiǔ</div></div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>14 vs 40: tones matter.</strong> <span class="zh">十四</span> (shí sì, 14) and <span class="zh">四十</span> (sì shí, 40) use the same two syllables in reverse, distinguished only by which has the rising tone and which has the falling tone. Cab drivers and taxi meters will not slow down for you. Drill these as a pair.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HUNDREDS & THOUSANDS -->
+      <section class="sec" id="hundreds">
+        <div class="sec-head">
+          <div class="sec-n">03</div>
+          <div>
+            <h2 class="sec-title">Hundreds &amp; thousands</h2>
+            <p class="sec-blurb">
+              <span class="zh">百</span> = 100, <span class="zh">千</span> = 1000. Same composition rule. Two new wrinkles: <strong><span class="zh">两</span> (liǎng) replaces <span class="zh">二</span> (èr)</strong> for "two" before <span class="zh">百</span>, <span class="zh">千</span>, <span class="zh">万</span>, <span class="zh">亿</span>. And <strong><span class="zh">零</span> (líng)</strong> fills in skipped place values like a written zero.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">100</div><div class="w">一百</div><div class="r">yī bǎi</div></div>
+          <div class="ncard irreg"><span class="badge">两 not 二</span><div class="n">200</div><div class="w">两百</div><div class="r">liǎng bǎi</div></div>
+          <div class="ncard"><div class="n">300</div><div class="w">三百</div><div class="r">sān bǎi</div></div>
+          <div class="ncard"><div class="n">500</div><div class="w">五百</div><div class="r">wǔ bǎi</div></div>
+          <div class="ncard irreg"><span class="badge">零 placeholder</span><div class="n">101</div><div class="w">一百零一</div><div class="r">yī bǎi líng yī</div></div>
+          <div class="ncard"><div class="n">128</div><div class="w">一百二十八</div><div class="r">yī bǎi èr shí bā</div></div>
+          <div class="ncard"><div class="n">1,000</div><div class="w">一千</div><div class="r">yī qiān</div></div>
+          <div class="ncard irreg"><span class="badge">两 not 二</span><div class="n">2,000</div><div class="w">两千</div><div class="r">liǎng qiān</div></div>
+          <div class="ncard"><div class="n">5,000</div><div class="w">五千</div><div class="r">wǔ qiān</div></div>
+          <div class="ncard wide">
+            <div class="n">1,500</div>
+            <div class="w">一千五百</div>
+            <div class="r">yī qiān wǔ bǎi</div>
+            <div class="breakdown">1×千 + 5×百</div>
+          </div>
+          <div class="ncard wide">
+            <div class="n">3,627</div>
+            <div class="w">三千六百二十七</div>
+            <div class="r">sān qiān liù bǎi èr shí qī</div>
+            <div class="breakdown">3×千 + 6×百 + 2×十 + 7</div>
+          </div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>The <span class="zh">零</span> placeholder.</strong> When a place value is empty in the middle of a number, slot in <span class="zh">零</span> to keep the structure parseable: 101 = <span class="zh">一百零一</span>, not <span class="zh">一百一</span>. (<span class="zh">一百一</span> would be ambiguous — it could mean 110 in casual speech.)
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 万 & 亿 -->
+      <section class="sec" id="wan">
+        <div class="sec-head">
+          <div class="sec-n">04</div>
+          <div>
+            <h2 class="sec-title"><span class="zh">万</span> &amp; <span class="zh">亿</span> — the new units</h2>
+            <p class="sec-blurb">
+              This is the structural break. After <span class="zh">千</span>, Chinese doesn't reach for "ten thousand" or "million" — it gets new <em>unit words</em>. <strong><span class="zh">万</span> = 10⁴</strong> and <strong><span class="zh">亿</span> = 10⁸</strong>. Everything in between is built by composing them with the digits and small units you already know.
+            </p>
+          </div>
+        </div>
+
+        <div class="compare" style="margin-bottom: 18px;">
+          <div class="compare-cell">
+            <div class="label" style="color: var(--ink);">English groups by 10³</div>
+            <h4>thousand → million → billion</h4>
+            <div class="units">
+              <div class="row"><span class="power">10³</span><span class="label-sm">thousand</span></div>
+              <div class="row"><span class="power">10⁶</span><span class="label-sm">million</span></div>
+              <div class="row"><span class="power">10⁹</span><span class="label-sm">billion</span></div>
+              <div class="row"><span class="power">10¹²</span><span class="label-sm">trillion</span></div>
+            </div>
+            <p>Commas every 3 digits. Each comma = a new unit word.</p>
+          </div>
+          <div class="compare-cell zh">
+            <div class="label">中文 groups by 10⁴</div>
+            <h4><span style="font-family: 'Noto Serif SC', serif; font-weight: 600;">千 → 万 → 亿</span></h4>
+            <div class="units">
+              <div class="row"><span class="power">10³</span><span class="label-sm"><span class="zh-ch">千</span> qiān (thousand)</span></div>
+              <div class="row"><span class="power">10⁴</span><span class="label-sm" style="color: var(--signal-red);"><span class="zh-ch">万</span> wàn (ten-thousand)</span></div>
+              <div class="row"><span class="power">10⁸</span><span class="label-sm" style="color: var(--signal-red);"><span class="zh-ch">亿</span> yì (hundred-million)</span></div>
+              <div class="row"><span class="power">10¹²</span><span class="label-sm"><span class="zh-ch">兆</span> zhào (trillion)</span></div>
+            </div>
+            <p>Mental commas every 4 digits. There's no native word for "million" — it's <span style="font-family: 'Noto Serif SC', serif; font-weight: 600; color: var(--signal-red);">一百万</span> ("one hundred ten-thousands").</p>
+          </div>
+        </div>
+
+        <div class="nums">
+          <div class="ncard"><div class="n">10,000</div><div class="w">一万</div><div class="r">yī wàn</div></div>
+          <div class="ncard"><div class="n">50,000</div><div class="w">五万</div><div class="r">wǔ wàn</div></div>
+          <div class="ncard"><div class="n">100,000</div><div class="w">十万</div><div class="r">shí wàn</div></div>
+          <div class="ncard irreg"><span class="badge">"million"</span><div class="n">1,000,000</div><div class="w">一百万</div><div class="r">yī bǎi wàn</div></div>
+          <div class="ncard"><div class="n">10,000,000</div><div class="w">一千万</div><div class="r">yī qiān wàn</div></div>
+          <div class="ncard irreg"><span class="badge">10⁸</span><div class="n">100,000,000</div><div class="w">一亿</div><div class="r">yī yì</div></div>
+          <div class="ncard irreg"><span class="badge">"billion"</span><div class="n">1,000,000,000</div><div class="w">十亿</div><div class="r">shí yì</div></div>
+          <div class="ncard wide">
+            <div class="n">43,256</div>
+            <div class="w">四万三千二百五十六</div>
+            <div class="r">sì wàn sān qiān èr bǎi wǔ shí liù</div>
+            <div class="breakdown">4×万 + 3×千 + 2×百 + 5×十 + 6</div>
+          </div>
+          <div class="ncard wide irreg">
+            <div class="n">1,000,000</div>
+            <div class="w">一百万</div>
+            <div class="r">yī bǎi wàn</div>
+            <div class="breakdown">"one hundred ten-thousands" — there's no separate word</div>
+          </div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>Converting big numbers: shift the comma.</strong> To say a number like 5,000,000 in Mandarin, mentally re-comma it from 5,000,000 (5 million) to 500,0000 — that's 500 <span class="zh">万</span> = <span class="zh">五百万</span>. The skill is rewiring the place-value chunks; the words themselves are mechanical.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TONES + 两/二 + 幺/一 -->
+      <section class="sec" id="tones">
+        <div class="sec-head">
+          <div class="sec-n">05</div>
+          <div>
+            <h2 class="sec-title">Tones, <span class="zh">两</span>/<span class="zh">二</span>, <span class="zh">幺</span>/<span class="zh">一</span></h2>
+            <p class="sec-blurb">
+              Tones do half the work in spoken Chinese numbers. Two pairs to drill, and one substitution rule to know for phone numbers.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard wide">
+            <div class="n">14 / 40</div>
+            <div class="w">十四 / 四十</div>
+            <div class="r">shí sì / sì shí</div>
+            <div class="breakdown">rising-falling vs falling-rising — same syllables, swapped tones</div>
+          </div>
+          <div class="ncard wide irreg">
+            <div class="n">1 vs 7</div>
+            <div class="w">一 vs 七</div>
+            <div class="r">yī vs qī — both high-flat tone</div>
+            <div class="breakdown">in phone &amp; ID numbers, say 幺 (yāo) for 1 to avoid confusion</div>
+          </div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>The <span class="zh">两</span>/<span class="zh">二</span> rule, summarized.</strong> Use <span class="zh">二</span> (èr) for the digit "two" when counting and before <span class="zh">十</span> (tens). Switch to <span class="zh">两</span> (liǎng) before larger units — <span class="zh">两百</span> (200), <span class="zh">两千</span> (2000), <span class="zh">两万</span> (20,000), <span class="zh">两亿</span> (200 million). Inside compounds, <span class="zh">二</span> still appears in the tens position: <span class="zh">两百二十</span> = 220, not <span class="zh">两百两十</span>.
+            </div>
+          </div>
+          <div class="callout-card muted">
+            <div class="icon">i</div>
+            <div class="b">
+              <strong>Phone numbers: <span class="zh">幺</span> for 1.</strong> Because <span class="zh">一</span> (yī, 1) and <span class="zh">七</span> (qī, 7) share the high-flat tone and sound similar over the phone, Chinese speakers substitute <span class="zh">幺</span> (yāo) for 1 in sequences. A number like 171 might be read <em>yāo qī yāo</em>. You'll hear this constantly in numbers said aloud.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REMEMBER -->
+      <section class="sec" id="remember">
+        <div class="sec-head">
+          <div class="sec-n">06</div>
+          <div>
+            <h2 class="sec-title">Things to remember</h2>
+            <p class="sec-blurb">Five rules that will save you from the most common mistakes.</p>
+          </div>
+        </div>
+        <div class="nums" style="grid-template-columns: 1fr;">
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">1.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>Group by ten-thousand.</strong> The big mental shift: <span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600; color: var(--signal-red);">万</span> = 10⁴ is the next unit after <span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600;">千</span>, and <span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600; color: var(--signal-red);">亿</span> = 10⁸ after that. There's no separate word for "million."</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">2.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>Compose, don't memorize.</strong> Almost nothing is irregular. 47 = <em>four-ten-seven</em>, 3,627 = <em>three-thousand-six-hundred-two-ten-seven</em>. Once you have 0–10 and the unit words, you can build anything.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">3.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong><span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600; color: var(--signal-red);">两</span> for "two" before big units.</strong> 200 = <span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600;">两百</span>, 2,000 = <span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600;">两千</span>, 20,000 = <span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600;">两万</span>. But the tens position still uses <span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600;">二</span> — 20 = <span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600;">二十</span>.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">4.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong><span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600; color: var(--signal-red);">零</span> for skipped places.</strong> 101 = <span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600;">一百零一</span>, not <span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600;">一百一</span>. The <span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600;">零</span> marks the empty tens slot.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">5.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>Tones do half the work.</strong> <em>shí sì</em> (14) vs <em>sì shí</em> (40) are the canonical drill pair. And in phone numbers, swap <span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600; color: var(--signal-red);">一</span> for <span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600; color: var(--signal-red);">幺</span> (yāo) to disambiguate from <span class="zh" style="font-family: 'Noto Serif SC', serif; font-weight: 600;">七</span>.</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="practice-cta">
+        <span class="eyebrow" style="color: var(--signal-red);">Drill it</span>
+        <h3>Reading is one thing.<br>Hearing it at speed is another.</h3>
+        <p>The companion iOS app generates random numbers in your chosen range and reads them aloud in Mandarin. Five minutes a day.</p>
+        <a class="btn btn-primary" href="/#download">
+          <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor"><path d="M11.6 8.5c0-2 1.6-3 1.7-3-.9-1.4-2.4-1.5-2.9-1.5-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7C3.2 4 1.7 4.9 1 6.3c-1.4 2.4-.4 6 1 8 .7 1 1.5 2.1 2.5 2 1 0 1.4-.6 2.6-.6s1.5.6 2.6.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.2-2.3-.1 0-2.3-1-2.3-3.5zM9.7 2.5c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.2 1.2-.5.6-.9 1.5-.8 2.4.9.1 1.7-.4 2.2-1.1z"/></svg>
+          Get the app
+        </a>
+      </div>
+
+    </article>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-container footer-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL Number Practice</span>
+    </a>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>App</h4>
+        <a href="/#download">Download</a>
+        <a href="/#how">How it works</a>
+        <a href="/#about">About</a>
+      </div>
+      <div class="footer-col">
+        <h4>Cheat sheets</h4>
+        <a href="/cheatsheets/">All languages</a>
+        <a href="/portuguese-pt/">Português (PT)</a>
+        <a href="/portuguese-br/">Português (BR)</a>
+        <a href="/french/">Français</a>
+        <a href="/italian/">Italiano</a>
+        <a href="/german/">Deutsch</a>
+        <a href="/dutch/">Nederlands</a>
+        <a href="/mandarin/">中文</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="site-container" style="margin-top: 28px; font-size: 12px; color: var(--ink-faint);">© 2026 FL Number Practice</div>
+</footer>
+
+</body>
+</html>
