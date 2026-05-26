@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bahasa Indonesia — Numbers cheat sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<style>
+  .sheet-head { padding: 40px 0 24px; display: flex; flex-direction: column; gap: 14px; }
+  .crumbs { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-soft); }
+  .crumbs a { text-decoration: none; }
+  .crumbs a:hover { color: var(--ink); }
+  .crumbs .sep { color: var(--ink-faint); }
+
+  .hero-card {
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px; padding: 32px 28px 28px;
+    position: relative; overflow: hidden;
+    display: grid; gap: 18px; margin: 8px 0 18px;
+  }
+  .hero-card h1 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: clamp(40px, 9vw, 80px); line-height: 0.96;
+    letter-spacing: -0.02em; margin: 0;
+  }
+  .hero-card .native {
+    color: rgba(241,236,224,0.6); font-family: var(--serif-font);
+    font-size: 22px; line-height: 1.2; margin: 6px 0 0;
+  }
+  .hero-card .native .hi {
+    color: var(--signal-red); font-style: normal; font-weight: 700;
+  }
+  .hero-card .stats {
+    display: flex; gap: 24px; flex-wrap: wrap; margin-top: 8px;
+    font-family: var(--num-font); font-size: 13px;
+    color: rgba(241,236,224,0.55);
+  }
+  .hero-card .stats > div { display: flex; flex-direction: column; gap: 2px; }
+  .hero-card .stats b {
+    font-size: 20px; color: var(--paper);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+  }
+  .hero-card .display {
+    border-top: 0.5px solid rgba(241,236,224,0.16); padding-top: 20px;
+    display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  }
+  .hero-card .display .num {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: clamp(56px, 12vw, 116px); letter-spacing: -0.05em; line-height: 0.9;
+    color: var(--signal-red); font-variant-numeric: tabular-nums;
+  }
+  .hero-card .display .pseudo {
+    font-family: var(--serif-font); font-style: italic;
+    color: var(--paper); font-size: clamp(18px, 2.3vw, 24px);
+    line-height: 1.2; max-width: 460px;
+  }
+
+  .sec { padding: 36px 0 8px; border-top: 0.5px solid var(--hair); }
+  .sec:first-of-type { border-top: 0; padding-top: 20px; }
+  .sec-head { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: baseline; margin-bottom: 18px; }
+  .sec-n { font-family: var(--num-font); font-weight: 800; font-size: clamp(44px, 7vw, 68px); line-height: 0.8; letter-spacing: -0.05em; color: var(--signal-red); }
+  .sec-title { font-family: var(--serif-font); font-weight: 400; font-size: clamp(26px, 4vw, 34px); line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 6px; }
+  .sec-blurb { font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; max-width: 600px; }
+  .sec-blurb em { font-family: var(--serif-font); color: var(--ink); font-style: italic; }
+  .sec-blurb strong { color: var(--ink); font-weight: 700; }
+
+  .nums { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ncard {
+    background: var(--paper-raised); border: 0.5px solid var(--hair);
+    border-radius: 14px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 4px; position: relative;
+  }
+  .ncard .n {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 26px; letter-spacing: -0.04em;
+    color: var(--ink); line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .ncard .w {
+    font-family: var(--serif-font); font-size: 18px;
+    color: var(--ink); line-height: 1.2;
+  }
+  .ncard .w .alt {
+    color: var(--ink-soft); font-size: 0.85em; margin-left: 4px;
+  }
+  .ncard.irreg { background: var(--signal-red); border-color: var(--signal-red); }
+  .ncard.irreg .n, .ncard.irreg .w { color: var(--paper); }
+  .ncard .badge {
+    position: absolute; top: 10px; right: 10px;
+    font-family: var(--ui-font); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    background: rgba(0,0,0,0.06); color: var(--ink-soft);
+  }
+  .ncard.irreg .badge { background: rgba(255,255,255,0.18); color: var(--paper); }
+
+  .ncard.wide { grid-column: span 2; }
+  .ncard.wide .n { font-size: 36px; }
+  .ncard.wide .w { font-size: 22px; }
+
+  /* The "se-" prefix highlight (means "one") */
+  .ncard .se {
+    color: var(--signal-red); font-weight: 800; font-style: normal;
+  }
+  .ncard.irreg .se {
+    color: var(--paper);
+    text-decoration: underline; text-decoration-thickness: 2px;
+  }
+
+  /* The "ke-" prefix highlight (ordinal marker) */
+  .ncard .ke {
+    color: var(--signal-red); font-weight: 800; font-style: normal;
+  }
+  .ncard.irreg .ke {
+    color: var(--paper);
+    text-decoration: underline; text-decoration-thickness: 2px;
+  }
+
+  .ncard .breakdown {
+    margin-top: 8px;
+    font-family: var(--num-font); font-size: 12px;
+    letter-spacing: 0.04em; color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .ncard.irreg .breakdown { color: rgba(255,255,255,0.7); }
+
+  .callout-card {
+    grid-column: 1 / -1;
+    background: color-mix(in srgb, var(--signal-red) 8%, var(--paper-raised));
+    border: 1px solid color-mix(in srgb, var(--signal-red) 30%, transparent);
+    border-radius: 14px; padding: 16px 18px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .callout-card .icon {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--signal-red); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif-font); font-size: 18px;
+  }
+  .callout-card .b { font-size: 14.5px; line-height: 1.55; }
+  .callout-card .b strong { font-weight: 700; }
+  .callout-card .b em { font-family: var(--serif-font); font-style: italic; color: var(--ink); }
+  .callout-card.muted { background: var(--paper-sunk); border-color: var(--hair); }
+  .callout-card.muted .icon { background: var(--ink); }
+
+  /* The "se- ladder" — shows se- across all the units in one stack */
+  .se-ladder {
+    display: grid; gap: 8px;
+    grid-template-columns: 1fr;
+    margin-top: 14px;
+  }
+  .se-row {
+    background: var(--paper-raised);
+    border: 0.5px solid var(--hair);
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 14px; align-items: center;
+  }
+  .se-row.dark {
+    background: var(--ink); color: var(--paper); border-color: var(--ink);
+  }
+  .se-row .digit {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 16px; letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+  .se-row .word {
+    font-family: var(--serif-font); font-size: 20px;
+    line-height: 1.2;
+  }
+  .se-row .word .se {
+    color: var(--signal-red); font-weight: 800;
+  }
+  .se-row .gloss {
+    font-family: var(--num-font); font-size: 12px;
+    color: var(--ink-soft); text-align: right;
+  }
+  .se-row.dark .gloss { color: rgba(241,236,224,0.5); }
+
+  .practice-cta {
+    margin: 50px 0 0; padding: 32px;
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px;
+    display: flex; flex-direction: column; gap: 14px;
+    align-items: flex-start;
+  }
+  .practice-cta h3 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: 28px; letter-spacing: -0.01em; margin: 0;
+    max-width: 480px; line-height: 1.1;
+  }
+  .practice-cta p { color: rgba(241,236,224,0.65); font-size: 14.5px; margin: 0; max-width: 460px; }
+  .practice-cta .btn-primary { background: var(--signal-red); color: #fff; }
+
+  .toc-side { display: none; }
+
+  @media (min-width: 720px) {
+    .sheet-head { padding: 80px 0 30px; }
+    .hero-card { padding: 44px 40px 40px; }
+    .nums { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1100px) {
+    .toc-side {
+      display: block; position: sticky; top: 96px; align-self: start;
+    }
+    .toc-side .toc-list { display: flex; flex-direction: column; gap: 2px; }
+    .toc-side a {
+      display: block; padding: 8px 12px; border-radius: 8px;
+      font-size: 13.5px; color: var(--ink-soft); text-decoration: none;
+    }
+    .toc-side a:hover { background: var(--paper-sunk); color: var(--ink); }
+    .toc-side a.active { background: var(--ink); color: var(--paper); }
+    .with-sidebar { grid-template-columns: 240px 1fr; gap: 56px; }
+    .nums { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-container site-header-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL&nbsp;Number Practice</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/cheatsheets/" class="active">Cheat sheets</a>
+      <a href="/#about">About</a>
+    </nav>
+    <a class="nav-cta" href="/#download">Get the app →</a>
+    <button class="nav-toggle" aria-label="Open menu">
+      <svg width="20" height="14" viewBox="0 0 20 14"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="site-container">
+
+  <div class="sheet-head">
+    <nav class="crumbs">
+      <a href="/cheatsheets/">Cheat sheets</a>
+      <span class="sep">/</span>
+      <span>Austronesian</span>
+      <span class="sep">/</span>
+      <span style="color: var(--ink);">Bahasa Indonesia</span>
+    </nav>
+  </div>
+
+  <!-- HERO CARD -->
+  <div class="hero-card">
+    <div>
+      <span class="eyebrow" style="color: var(--signal-red);">Austronesian · Indonesia</span>
+      <h1>Numbers in<br><em style="font-style: italic;">Bahasa <span style="font-family: var(--serif-font);">Indonesia</span></em></h1>
+      <div class="native"><span class="hi">Se</span>puluh, <span class="hi">se</span>ratus, <span class="hi">se</span>ribu, <span class="hi">se</span>juta</div>
+    </div>
+    <div class="stats">
+      <div><b>8 min</b>read</div>
+      <div><b>6</b>sections</div>
+      <div><b>se- = 1</b>before every big unit</div>
+    </div>
+    <div class="display">
+      <div class="num">2.743</div>
+      <div class="pseudo">dua ribu tujuh ratus empat puluh tiga</div>
+    </div>
+  </div>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#big-picture" class="current">Big picture</a>
+    <a href="#zero-ten">0–10</a>
+    <a href="#tens">11–99</a>
+    <a href="#hundreds">100+</a>
+    <a href="#ordinals">Ordinals</a>
+    <a href="#remember">Remember</a>
+  </nav>
+
+  <div class="with-sidebar">
+
+    <aside class="toc-side">
+      <div class="eyebrow" style="margin-bottom: 8px;">On this page</div>
+      <div class="toc-list">
+        <a href="#big-picture" class="active">The big picture</a>
+        <a href="#zero-ten">0 – 10</a>
+        <a href="#tens">11 – 99: belas &amp; puluh</a>
+        <a href="#hundreds">Hundreds, thousands, millions</a>
+        <a href="#ordinals">Ordinals: ke- prefix</a>
+        <a href="#remember">Things to remember</a>
+      </div>
+      <div class="lang-rail lang-rail-sticky" style="margin-top: 28px;">
+        <div class="lang-rail-head"><span class="eyebrow">More languages</span></div>
+        <a href="/portuguese-pt/">Português <span class="native">PT</span></a>
+        <a href="/portuguese-br/">Português <span class="native">BR</span></a>
+        <a href="/spanish/">Español <span class="native">ES</span></a>
+        <a href="/french/">Français <span class="native">FR</span></a>
+        <a href="/italian/">Italiano <span class="native">IT</span></a>
+        <a href="/german/">Deutsch <span class="native">DE</span></a>
+        <a href="/dutch/">Nederlands <span class="native">NL</span></a>
+        <a href="/english/">English <span class="native">EN</span></a>
+        <a href="/russian/">Русский <span class="native">RU</span></a>
+        <a href="/japanese/">日本語 <span class="native">JP</span></a>
+        <a href="/korean/">한국어 <span class="native">KO</span></a>
+        <a href="/mandarin/">中文 <span class="native">ZH</span></a>
+        <a href="/arabic/">العربية <span class="native">AR</span></a>
+        <a href="/indonesian/" class="active">Bahasa <span class="native">ID</span></a>
+        <a href="/cheatsheets/" style="color: var(--signal-red); font-weight: 600;">See all 14 →</a>
+      </div>
+    </aside>
+
+    <article>
+
+      <!-- BIG PICTURE -->
+      <section class="sec" id="big-picture">
+        <div class="sec-head">
+          <div class="sec-n">00</div>
+          <div>
+            <h2 class="sec-title">The big picture</h2>
+            <p class="sec-blurb">
+              Indonesian has the most regular number system in this catalog. Compounds are built like Lego: stack <em>digit + unit-word + digit + unit-word</em>, separated by spaces. The one morpheme worth learning is <strong>se-</strong>, a prefix meaning "one" that attaches to every unit word — <em>sepuluh</em>, <em>seratus</em>, <em>seribu</em>, <em>sejuta</em>.
+            </p>
+          </div>
+        </div>
+        <div class="callout-card muted">
+          <div class="icon">i</div>
+          <div class="b">
+            <strong>If you only remember one thing:</strong> <em><strong style="color: var(--signal-red);">se</strong>-</em> means "one" before unit words. So 10 is <em>sepuluh</em> (not <em>satu puluh</em>), 100 is <em>seratus</em>, 1.000 is <em>seribu</em>, 1.000.000 is <em>sejuta</em>. Past one of each unit, switch back to the regular digit: <em>dua puluh</em>, <em>dua ratus</em>, <em>dua ribu</em>.
+          </div>
+        </div>
+      </section>
+
+      <!-- 0 – 10 -->
+      <section class="sec" id="zero-ten">
+        <div class="sec-head">
+          <div class="sec-n">01</div>
+          <div>
+            <h2 class="sec-title">Zero to ten</h2>
+            <p class="sec-blurb">Eleven words to memorize — the only items in the entire system that don't follow a rule. After this, everything composes.</p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">0</div><div class="w">nol</div></div>
+          <div class="ncard"><div class="n">1</div><div class="w">satu</div></div>
+          <div class="ncard"><div class="n">2</div><div class="w">dua</div></div>
+          <div class="ncard"><div class="n">3</div><div class="w">tiga</div></div>
+          <div class="ncard"><div class="n">4</div><div class="w">empat</div></div>
+          <div class="ncard"><div class="n">5</div><div class="w">lima</div></div>
+          <div class="ncard"><div class="n">6</div><div class="w">enam</div></div>
+          <div class="ncard"><div class="n">7</div><div class="w">tujuh</div></div>
+          <div class="ncard"><div class="n">8</div><div class="w">delapan</div></div>
+          <div class="ncard"><div class="n">9</div><div class="w">sembilan</div></div>
+          <div class="ncard irreg"><span class="badge">se- + puluh</span><div class="n">10</div><div class="w"><span class="se">se</span>puluh</div></div>
+        </div>
+      </section>
+
+      <!-- 11 – 99 -->
+      <section class="sec" id="tens">
+        <div class="sec-head">
+          <div class="sec-n">02</div>
+          <div>
+            <h2 class="sec-title">11 – 99: <em>belas</em> &amp; <em>puluh</em></h2>
+            <p class="sec-blurb">
+              Teens use <strong>belas</strong> (digit + belas). Tens use <strong>puluh</strong> (digit + puluh). Compounds just stack: <em>dua puluh satu</em> = 21 ("two ten one"). All written as <strong>separate words</strong>, not fused.
+            </p>
+          </div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 8px 0 12px;">11 – 19: <em>digit + belas</em></h3>
+        <div class="nums">
+          <div class="ncard irreg"><span class="badge">se- + belas</span><div class="n">11</div><div class="w"><span class="se">se</span>belas</div></div>
+          <div class="ncard"><div class="n">12</div><div class="w">dua belas</div></div>
+          <div class="ncard"><div class="n">13</div><div class="w">tiga belas</div></div>
+          <div class="ncard"><div class="n">14</div><div class="w">empat belas</div></div>
+          <div class="ncard"><div class="n">15</div><div class="w">lima belas</div></div>
+          <div class="ncard"><div class="n">17</div><div class="w">tujuh belas</div></div>
+          <div class="ncard"><div class="n">19</div><div class="w">sembilan belas</div></div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 30px 0 12px;">20 – 90: <em>digit + puluh</em></h3>
+        <div class="nums">
+          <div class="ncard"><div class="n">20</div><div class="w">dua puluh</div></div>
+          <div class="ncard"><div class="n">30</div><div class="w">tiga puluh</div></div>
+          <div class="ncard"><div class="n">40</div><div class="w">empat puluh</div></div>
+          <div class="ncard"><div class="n">50</div><div class="w">lima puluh</div></div>
+          <div class="ncard"><div class="n">60</div><div class="w">enam puluh</div></div>
+          <div class="ncard"><div class="n">70</div><div class="w">tujuh puluh</div></div>
+          <div class="ncard"><div class="n">80</div><div class="w">delapan puluh</div></div>
+          <div class="ncard"><div class="n">90</div><div class="w">sembilan puluh</div></div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 30px 0 12px;">21 – 99: just stack</h3>
+        <div class="nums">
+          <div class="ncard"><div class="n">21</div><div class="w">dua puluh satu</div></div>
+          <div class="ncard"><div class="n">35</div><div class="w">tiga puluh lima</div></div>
+          <div class="ncard"><div class="n">47</div><div class="w">empat puluh tujuh</div></div>
+          <div class="ncard"><div class="n">68</div><div class="w">enam puluh delapan</div></div>
+          <div class="ncard"><div class="n">76</div><div class="w">tujuh puluh enam</div></div>
+          <div class="ncard"><div class="n">99</div><div class="w">sembilan puluh sembilan</div></div>
+          <div class="callout-card muted">
+            <div class="icon">i</div>
+            <div class="b">
+              <strong>No "and" connector, no hyphens, no fused word.</strong> Just three (or more) separate words, in left-to-right place-value order. <em>Empat puluh tujuh</em> reads literally as "four ten seven" = 47. The structure is the meaning.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 100+ -->
+      <section class="sec" id="hundreds">
+        <div class="sec-head">
+          <div class="sec-n">03</div>
+          <div>
+            <h2 class="sec-title">Hundreds, thousands, millions</h2>
+            <p class="sec-blurb">
+              Same rule, scaled up. Every new unit word — <em>ratus</em>, <em>ribu</em>, <em>juta</em>, <em>miliar</em>, <em>triliun</em> — takes <strong>se-</strong> for "one of." Compose left-to-right, biggest unit first.
+            </p>
+          </div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 8px 0 12px;">The <em><span style="color: var(--signal-red);">se-</span></em> ladder</h3>
+        <div class="se-ladder">
+          <div class="se-row dark">
+            <span class="digit">10</span>
+            <span class="word"><span class="se">se</span>puluh</span>
+            <span class="gloss">se + puluh (ten)</span>
+          </div>
+          <div class="se-row">
+            <span class="digit">11</span>
+            <span class="word"><span class="se">se</span>belas</span>
+            <span class="gloss">se + belas (teen)</span>
+          </div>
+          <div class="se-row dark">
+            <span class="digit">100</span>
+            <span class="word"><span class="se">se</span>ratus</span>
+            <span class="gloss">se + ratus (hundred)</span>
+          </div>
+          <div class="se-row">
+            <span class="digit">1.000</span>
+            <span class="word"><span class="se">se</span>ribu</span>
+            <span class="gloss">se + ribu (thousand)</span>
+          </div>
+          <div class="se-row dark">
+            <span class="digit">1.000.000</span>
+            <span class="word"><span class="se">se</span>juta</span>
+            <span class="gloss">se + juta (million)</span>
+          </div>
+          <div class="se-row">
+            <span class="digit">1.000.000.000</span>
+            <span class="word"><span class="se">se</span>miliar</span>
+            <span class="gloss">se + miliar (billion)</span>
+          </div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 30px 0 12px;">Multiples</h3>
+        <div class="nums">
+          <div class="ncard"><div class="n">200</div><div class="w">dua ratus</div></div>
+          <div class="ncard"><div class="n">500</div><div class="w">lima ratus</div></div>
+          <div class="ncard"><div class="n">900</div><div class="w">sembilan ratus</div></div>
+          <div class="ncard"><div class="n">2.000</div><div class="w">dua ribu</div></div>
+          <div class="ncard"><div class="n">10.000</div><div class="w">sepuluh ribu</div></div>
+          <div class="ncard"><div class="n">100.000</div><div class="w">seratus ribu</div></div>
+          <div class="ncard"><div class="n">2 M</div><div class="w">dua juta</div></div>
+          <div class="ncard"><div class="n">1 B</div><div class="w"><span class="se">se</span>miliar <span class="alt">/ satu miliar</span></div></div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 30px 0 12px;">In the wild</h3>
+        <div class="nums">
+          <div class="ncard wide">
+            <div class="n">345</div>
+            <div class="w">tiga ratus empat puluh lima</div>
+            <div class="breakdown">3 × ratus + 4 × puluh + 5</div>
+          </div>
+          <div class="ncard wide">
+            <div class="n">2.743</div>
+            <div class="w">dua ribu tujuh ratus empat puluh tiga</div>
+            <div class="breakdown">2 × ribu + 7 × ratus + 4 × puluh + 3</div>
+          </div>
+          <div class="ncard wide">
+            <div class="n">8.015</div>
+            <div class="w">delapan ribu lima belas</div>
+            <div class="breakdown">8 × ribu + (5 + belas) — no zero filler needed</div>
+          </div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>Long-scale, like its European counterparts.</strong> Indonesian <em>miliar</em> = 10⁹ (matches French <em>milliard</em>, German <em>Milliarde</em>, Russian <em>миллиард</em>). For 10¹², Indonesian uses <em>triliun</em>. The borrowed terms come from Dutch — a colonial legacy that aligned the country with long-scale Europe.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ORDINALS -->
+      <section class="sec" id="ordinals">
+        <div class="sec-head">
+          <div class="sec-n">04</div>
+          <div>
+            <h2 class="sec-title">Ordinals: <em><span style="color: var(--signal-red);">ke-</span></em> prefix</h2>
+            <p class="sec-blurb">
+              Just prefix <strong>ke-</strong> to the cardinal. <em>kedua</em> (2nd), <em>ketiga</em> (3rd), <em>kelima</em> (5th). The one exception is "first" — <strong>pertama</strong>, not <em>kesatu</em> (though kesatu is acceptable in some contexts). Written form often uses a hyphen with digits: <em>abad ke-21</em>.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard irreg"><span class="badge">special</span><div class="n">1st</div><div class="w">pertama</div></div>
+          <div class="ncard"><div class="n">2nd</div><div class="w"><span class="ke">ke</span>dua</div></div>
+          <div class="ncard"><div class="n">3rd</div><div class="w"><span class="ke">ke</span>tiga</div></div>
+          <div class="ncard"><div class="n">4th</div><div class="w"><span class="ke">ke</span>empat</div></div>
+          <div class="ncard"><div class="n">5th</div><div class="w"><span class="ke">ke</span>lima</div></div>
+          <div class="ncard"><div class="n">6th</div><div class="w"><span class="ke">ke</span>enam</div></div>
+          <div class="ncard"><div class="n">7th</div><div class="w"><span class="ke">ke</span>tujuh</div></div>
+          <div class="ncard"><div class="n">10th</div><div class="w"><span class="ke">ke</span>sepuluh</div></div>
+          <div class="ncard wide">
+            <div class="n">21st</div>
+            <div class="w"><span class="ke">ke</span>-21 / <span class="ke">ke</span>-dua puluh satu</div>
+            <div class="breakdown">written form uses hyphen + digit; spoken form spells it out</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REMEMBER -->
+      <section class="sec" id="remember">
+        <div class="sec-head">
+          <div class="sec-n">05</div>
+          <div>
+            <h2 class="sec-title">Things to remember</h2>
+            <p class="sec-blurb">Five rules that cover essentially the entire system.</p>
+          </div>
+        </div>
+        <div class="nums" style="grid-template-columns: 1fr;">
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">1.</div>
+            <div class="w"><strong><em style="font-family: var(--serif-font); color: var(--signal-red);">Se-</em> for "one of"</strong> before every unit word: <em style="font-family: var(--serif-font); color: var(--ink-soft);">sepuluh, seratus, seribu, sejuta, semiliar, sebelas</em>. Past one of each unit, switch back to a regular digit (<em style="font-family: var(--serif-font); color: var(--ink-soft);">dua puluh, dua ratus</em>).</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">2.</div>
+            <div class="w"><strong>Separate words, no fusion.</strong> 47 = <em style="font-family: var(--serif-font); color: var(--ink-soft);">empat puluh tujuh</em> (three words). 2.743 = <em style="font-family: var(--serif-font); color: var(--ink-soft);">dua ribu tujuh ratus empat puluh tiga</em> (six words). Unlike German or Italian, never fused into one.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">3.</div>
+            <div class="w"><strong>No "and", no hyphens, no irregulars 2-99.</strong> Just stack place values left-to-right. <em style="font-family: var(--serif-font); color: var(--ink-soft);">Tiga ratus empat puluh lima</em> reads exactly like "three hundred four ten five" = 345.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">4.</div>
+            <div class="w"><strong>Long-scale, via Dutch.</strong> <em style="font-family: var(--serif-font); color: var(--ink-soft);">Miliar</em> = 10⁹, <em style="font-family: var(--serif-font); color: var(--ink-soft);">triliun</em> = 10¹². If you came from English, your <em>billion</em> is <em>miliar</em>, not <em>triliun</em>.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">5.</div>
+            <div class="w"><strong>Ordinals: prefix <em style="font-family: var(--serif-font); color: var(--signal-red);">ke-</em></strong> to the cardinal. One exception: <em style="font-family: var(--serif-font); color: var(--ink-soft);">pertama</em> for "first." Written form often uses <em style="font-family: var(--serif-font); color: var(--ink-soft);">ke-21</em>, <em style="font-family: var(--serif-font); color: var(--ink-soft);">ke-100</em> with hyphen + digit.</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="practice-cta">
+        <span class="eyebrow" style="color: var(--signal-red);">Drill it</span>
+        <h3>Reading is one thing.<br>Hearing it at speed is another.</h3>
+        <p>The companion iOS app generates random numbers in your chosen range and reads them aloud in Indonesian. Five minutes a day.</p>
+        <a class="btn btn-primary" href="/#download">
+          <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor"><path d="M11.6 8.5c0-2 1.6-3 1.7-3-.9-1.4-2.4-1.5-2.9-1.5-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7C3.2 4 1.7 4.9 1 6.3c-1.4 2.4-.4 6 1 8 .7 1 1.5 2.1 2.5 2 1 0 1.4-.6 2.6-.6s1.5.6 2.6.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.2-2.3-.1 0-2.3-1-2.3-3.5zM9.7 2.5c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.2 1.2-.5.6-.9 1.5-.8 2.4.9.1 1.7-.4 2.2-1.1z"/></svg>
+          Get the app
+        </a>
+      </div>
+
+    </article>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-container footer-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL Number Practice</span>
+    </a>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>App</h4>
+        <a href="/#download">Download</a>
+        <a href="/#how">How it works</a>
+        <a href="/#about">About</a>
+      </div>
+      <div class="footer-col">
+        <h4>Cheat sheets</h4>
+        <a href="/cheatsheets/">All languages</a>
+        <a href="/portuguese-pt/">Português (PT)</a>
+        <a href="/portuguese-br/">Português (BR)</a>
+        <a href="/spanish/">Español</a>
+        <a href="/french/">Français</a>
+        <a href="/italian/">Italiano</a>
+        <a href="/german/">Deutsch</a>
+        <a href="/dutch/">Nederlands</a>
+        <a href="/english/">English</a>
+        <a href="/russian/">Русский</a>
+        <a href="/mandarin/">中文</a>
+        <a href="/korean/">한국어</a>
+        <a href="/indonesian/">Bahasa Indonesia</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="site-container" style="margin-top: 28px; font-size: 12px; color: var(--ink-faint);">© 2026 FL Number Practice</div>
+</footer>
+
+</body>
+</html>
