@@ -2,6 +2,43 @@
 
 A small static site for the iOS app. Mobile-first, hand-coded HTML/CSS. No build step, no framework, no JavaScript required at runtime.
 
+## Status as of 2026-05-26
+
+**All 14 cheat sheets are now live.** Every language tile on the cheatsheets index links to a real page (no `#` placeholders remain). The site is deployed via GitHub Pages on the `jamminalley/flnumberpractice-site` repo and served from the custom domain **https://flnumberpractice.com** (DNS already wired up, CNAME committed). Every push to `main` auto-deploys.
+
+### Live pages and URLs
+
+| Language | URL slug | Notes |
+|---|---|---|
+| Português (Portugal) | `/portuguese-pt/` | Latin script |
+| Português (Brasil) | `/portuguese-br/` | Latin script |
+| Español | `/spanish/` | Latin script |
+| Français | `/french/` | Latin script |
+| Italiano | `/italian/` | Latin script |
+| Deutsch | `/german/` | Latin script |
+| Nederlands | `/dutch/` | Latin script |
+| English | `/english/` | Latin script |
+| Русский | `/russian/` | Cyrillic + BGN/PCGN romanization, Noto Serif |
+| 日本語 | `/japanese/` | Hiragana/Kanji + Hepburn romanization, Noto Serif JP |
+| 한국어 | `/korean/` | Hangul + revised romanization, Noto Serif KR |
+| 中文 | `/mandarin/` | Simplified Chinese + pinyin with tones, Noto Serif SC |
+| العربية | `/arabic/` | RTL Arabic + simple romanization, Noto Naskh Arabic |
+| Bahasa Indonesia | `/indonesian/` | Latin script |
+
+All pages link to each other via a sticky "language rail" sidebar (desktop only, ≥1100px) and via the footer's "Cheat sheets" column. The cheatsheets index at `/cheatsheets/` is the canonical "all languages" view.
+
+### Deep-linking from the iOS app
+
+URL slugs are stable. If the app needs to link out to a specific cheat sheet, use `https://flnumberpractice.com/<slug>/` (trailing slash matters on GitHub Pages). The slugs in the table above are guaranteed to keep working.
+
+### What's still TODO (unchanged from original handoff)
+
+- **App Store link** in landing CTA and footer still goes to `#` — replace with the real URL once the app ships.
+- **Privacy / Terms** footer links go to `#` — write those pages when ready.
+- **No Open Graph tags** on any page yet. Worth adding to each `<head>` before sharing the site widely. The icon at `AppIcon-1024.png` is the obvious og:image.
+
+The rest of the doc below describes the design system, cloning conventions, and accessibility notes — **still accurate** and useful if the app needs to match the site's visual identity. The "What's NOT done" section listing 11 remaining sheets is now obsolete (all built).
+
 ## File tree
 
 ```
