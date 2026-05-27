@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>हिन्दी — Numbers cheat sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<style>
+  .sheet-head { padding: 40px 0 24px; display: flex; flex-direction: column; gap: 14px; }
+  .crumbs { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-soft); }
+  .crumbs a { text-decoration: none; }
+  .crumbs .sep { color: var(--ink-faint); }
+
+  .hero-card {
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px; padding: 32px 28px 28px;
+    display: grid; gap: 18px; margin: 8px 0 18px;
+    position: relative; overflow: hidden;
+  }
+  .hero-card h1 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: clamp(40px, 9vw, 80px); line-height: 0.96;
+    letter-spacing: -0.02em; margin: 0;
+  }
+  .hero-card .native {
+    color: rgba(241,236,224,0.6);
+    font-family: 'Noto Serif Devanagari', var(--serif-font), serif;
+    font-size: 22px; line-height: 1.2; margin: 6px 0 0;
+  }
+  .hero-card .stats {
+    display: flex; gap: 24px; flex-wrap: wrap; margin-top: 8px;
+    font-family: var(--num-font); font-size: 13px; color: rgba(241,236,224,0.55);
+  }
+  .hero-card .stats > div { display: flex; flex-direction: column; gap: 2px; }
+  .hero-card .stats b {
+    font-size: 20px; color: var(--paper);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+  }
+  .hero-card .stats b.hi {
+    font-family: 'Noto Serif Devanagari', var(--serif-font), serif;
+  }
+  .hero-card .display {
+    border-top: 0.5px solid rgba(241,236,224,0.16);
+    padding-top: 20px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .hero-card .display .num {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: clamp(56px, 12vw, 108px); letter-spacing: -0.05em; line-height: 0.9;
+    color: var(--signal-red); font-variant-numeric: tabular-nums;
+  }
+  .hero-card .display .pseudo {
+    font-family: 'Noto Serif Devanagari', var(--serif-font), serif;
+    font-size: clamp(28px, 4vw, 40px); line-height: 1.2;
+    color: var(--paper); font-weight: 600;
+  }
+  .hero-card .display .roman {
+    font-family: var(--num-font); font-weight: 500;
+    font-size: clamp(13px, 1.6vw, 16px); letter-spacing: 0.02em;
+    color: rgba(241,236,224,0.6); line-height: 1.2;
+    margin-top: 4px;
+  }
+
+  .sec { padding: 36px 0 8px; border-top: 0.5px solid var(--hair); }
+  .sec:first-of-type { border-top: 0; padding-top: 20px; }
+  .sec-head { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: baseline; margin-bottom: 18px; }
+  .sec-n { font-family: var(--num-font); font-weight: 800; font-size: clamp(44px, 7vw, 68px); line-height: 0.8; letter-spacing: -0.05em; color: var(--signal-red); }
+  .sec-title { font-family: var(--serif-font); font-weight: 400; font-size: clamp(26px, 4vw, 34px); line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 6px; }
+  .sec-title .hi { font-family: 'Noto Serif Devanagari', var(--serif-font), serif; font-weight: 600; }
+  .sec-blurb { font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; max-width: 600px; }
+  .sec-blurb em { font-family: var(--serif-font); color: var(--ink); font-style: italic; }
+  .sec-blurb strong { color: var(--ink); font-weight: 700; }
+  .sec-blurb .hi { font-family: 'Noto Serif Devanagari', var(--serif-font), serif; color: var(--ink); font-weight: 600; font-style: normal; }
+
+  .nums { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ncard {
+    background: var(--paper-raised); border: 0.5px solid var(--hair);
+    border-radius: 14px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 4px; position: relative;
+  }
+  .ncard .n {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 26px; letter-spacing: -0.04em; color: var(--ink);
+    line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .ncard .w {
+    font-family: 'Noto Serif Devanagari', var(--serif-font), serif;
+    font-size: 24px; color: var(--ink); line-height: 1.2;
+    font-weight: 600;
+  }
+  .ncard .r {
+    font-family: var(--num-font); font-weight: 500;
+    font-size: 13px; color: var(--ink-soft); line-height: 1.2;
+    letter-spacing: 0.01em;
+  }
+  .ncard.irreg { background: var(--signal-red); border-color: var(--signal-red); }
+  .ncard.irreg .n, .ncard.irreg .w { color: var(--paper); }
+  .ncard.irreg .r { color: rgba(255,255,255,0.85); }
+  .ncard .badge {
+    position: absolute; top: 10px; right: 10px;
+    font-family: var(--ui-font); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    background: rgba(0,0,0,0.06); color: var(--ink-soft);
+  }
+  .ncard.irreg .badge { background: rgba(255,255,255,0.18); color: var(--paper); }
+
+  .ncard.wide { grid-column: span 2; }
+  .ncard.wide .n { font-size: 36px; }
+  .ncard.wide .w { font-size: 30px; }
+  .ncard.wide .r { font-size: 14px; }
+
+  .ncard .breakdown {
+    margin-top: 8px;
+    font-family: var(--num-font); font-size: 12px;
+    letter-spacing: 0.04em; color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .ncard.irreg .breakdown { color: rgba(255,255,255,0.7); }
+
+  .callout-card {
+    grid-column: 1 / -1;
+    background: color-mix(in srgb, var(--signal-red) 8%, var(--paper-raised));
+    border: 1px solid color-mix(in srgb, var(--signal-red) 30%, transparent);
+    border-radius: 14px; padding: 16px 18px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .callout-card .icon {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--signal-red); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif-font); font-size: 18px;
+  }
+  .callout-card .b { font-size: 14.5px; line-height: 1.55; }
+  .callout-card .b strong { font-weight: 700; }
+  .callout-card .b em { font-family: var(--serif-font); font-style: italic; color: var(--ink); }
+  .callout-card .b .hi { font-family: 'Noto Serif Devanagari', var(--serif-font), serif; font-weight: 600; color: var(--ink); font-style: normal; }
+  .callout-card.muted { background: var(--paper-sunk); border-color: var(--hair); }
+  .callout-card.muted .icon { background: var(--ink); }
+
+  /* Indian comma compare card */
+  .compare { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  .compare-cell {
+    padding: 22px; border-radius: 14px;
+    background: var(--paper-raised); border: 0.5px solid var(--hair);
+  }
+  .compare-cell.hi {
+    background: var(--ink); color: var(--paper); border-color: var(--ink);
+  }
+  .compare-cell .label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 700; color: var(--signal-red);
+  }
+  .compare-cell .digit {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 26px; letter-spacing: -0.04em; margin-top: 8px;
+    line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .compare-cell .says {
+    font-family: 'Noto Serif Devanagari', var(--serif-font), serif;
+    font-size: 22px; margin-top: 6px; line-height: 1.2;
+    font-weight: 600;
+  }
+  .compare-cell.hi .says { color: var(--signal-red); }
+  .compare-cell p { font-size: 13px; margin: 8px 0 0; opacity: 0.65; }
+  .compare-cell .units {
+    margin-top: 14px;
+    display: grid; gap: 6px;
+    font-family: var(--num-font); font-size: 13px;
+  }
+  .compare-cell .units .row { display: flex; gap: 12px; align-items: baseline; }
+  .compare-cell .units .digit-sm {
+    font-weight: 700; min-width: 88px;
+    font-variant-numeric: tabular-nums;
+  }
+  .compare-cell .units .says-sm {
+    font-family: 'Noto Serif Devanagari', var(--serif-font), serif; font-size: 15px; font-weight: 600;
+  }
+  .compare-cell .units .gloss {
+    font-family: var(--num-font); font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .compare-cell.hi .units .gloss { color: rgba(241,236,224,0.55); }
+
+  .practice-cta {
+    margin: 50px 0 0; padding: 32px;
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px;
+    display: flex; flex-direction: column; gap: 14px;
+    align-items: flex-start;
+  }
+  .practice-cta h3 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: 28px; letter-spacing: -0.01em; margin: 0;
+    max-width: 480px; line-height: 1.1;
+  }
+  .practice-cta p { color: rgba(241,236,224,0.65); font-size: 14.5px; margin: 0; max-width: 460px; }
+  .practice-cta .btn-primary { background: var(--signal-red); color: #fff; }
+
+  .toc-side { display: none; }
+
+  @media (min-width: 720px) {
+    .sheet-head { padding: 80px 0 30px; }
+    .hero-card { padding: 44px 40px 40px; }
+    .nums { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1100px) {
+    .toc-side {
+      display: block; position: sticky; top: 96px; align-self: start;
+    }
+    .toc-side .toc-list { display: flex; flex-direction: column; gap: 2px; }
+    .toc-side a {
+      display: block; padding: 8px 12px; border-radius: 8px;
+      font-size: 13.5px; color: var(--ink-soft); text-decoration: none;
+    }
+    .toc-side a:hover { background: var(--paper-sunk); color: var(--ink); }
+    .toc-side a.active { background: var(--ink); color: var(--paper); }
+    .with-sidebar { grid-template-columns: 240px 1fr; gap: 56px; }
+    .nums { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-container site-header-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL&nbsp;Number Practice</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/cheatsheets/" class="active">Cheat sheets</a>
+      <a href="/#about">About</a>
+    </nav>
+    <a class="nav-cta" href="/#download">Get the app →</a>
+    <button class="nav-toggle" aria-label="Open menu">
+      <svg width="20" height="14" viewBox="0 0 20 14"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="site-container">
+
+  <div class="sheet-head">
+    <nav class="crumbs">
+      <a href="/cheatsheets/">Cheat sheets</a>
+      <span class="sep">/</span>
+      <span>Indo-Iranian</span>
+      <span class="sep">/</span>
+      <span style="color: var(--ink);">हिन्दी</span>
+    </nav>
+  </div>
+
+  <!-- HERO CARD -->
+  <div class="hero-card">
+    <div>
+      <span class="eyebrow" style="color: var(--signal-red);">Indo-Iranian · भारत</span>
+      <h1>Numbers in<br><em style="font-style: italic;">हिन्दी <span style="font-family: var(--serif-font);">Hindi</span></em></h1>
+      <div class="native">लाख = 10⁵, करोड़ = 10⁷</div>
+    </div>
+    <div class="stats">
+      <div><b>12 min</b>read</div>
+      <div><b>7</b>sections</div>
+      <div><b class="hi">1,00,000</b>= 1 lakh</div>
+    </div>
+    <div class="display">
+      <div class="num">1,00,000</div>
+      <div class="pseudo">एक लाख</div>
+      <div class="roman">ek lākh — one hundred thousand</div>
+    </div>
+  </div>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#big-picture" class="current">Big picture</a>
+    <a href="#zero-twenty">0–20</a>
+    <a href="#tens">21–99</a>
+    <a href="#hundreds">100+</a>
+    <a href="#lakh-crore">Lakh &amp; crore</a>
+    <a href="#ordinals">Ordinals</a>
+    <a href="#remember">Remember</a>
+  </nav>
+
+  <div class="with-sidebar">
+
+    <aside class="toc-side">
+      <div class="eyebrow" style="margin-bottom: 8px;">On this page</div>
+      <div class="toc-list">
+        <a href="#big-picture" class="active">The big picture</a>
+        <a href="#zero-twenty">0 – 20</a>
+        <a href="#tens">21 – 99: the irregular zone</a>
+        <a href="#hundreds">100+: composition returns</a>
+        <a href="#lakh-crore">Lakh &amp; crore</a>
+        <a href="#ordinals">Ordinals</a>
+        <a href="#remember">Things to remember</a>
+      </div>
+      <div class="lang-rail lang-rail-sticky" style="margin-top: 28px;">
+        <div class="lang-rail-head"><span class="eyebrow">More languages</span></div>
+        <a href="/portuguese-pt/">Português <span class="native">PT</span></a>
+        <a href="/portuguese-br/">Português <span class="native">BR</span></a>
+        <a href="/spanish/">Español <span class="native">ES</span></a>
+        <a href="/french/">Français <span class="native">FR</span></a>
+        <a href="/italian/">Italiano <span class="native">IT</span></a>
+        <a href="/german/">Deutsch <span class="native">DE</span></a>
+        <a href="/dutch/">Nederlands <span class="native">NL</span></a>
+        <a href="/english/">English <span class="native">EN</span></a>
+        <a href="/russian/">Русский <span class="native">RU</span></a>
+        <a href="/hindi/" class="active">हिन्दी <span class="native">HI</span></a>
+        <a href="#">فارسی <span class="native">FA</span></a>
+        <a href="/japanese/">日本語 <span class="native">JP</span></a>
+        <a href="/korean/">한국어 <span class="native">KO</span></a>
+        <a href="/mandarin/">中文 <span class="native">ZH</span></a>
+        <a href="/arabic/">العربية <span class="native">AR</span></a>
+        <a href="/indonesian/">Bahasa <span class="native">ID</span></a>
+        <a href="#">Tagalog <span class="native">TL</span></a>
+        <a href="#">Tiếng Việt <span class="native">VI</span></a>
+        <a href="/cheatsheets/" style="color: var(--signal-red); font-weight: 600;">See all 18 →</a>
+      </div>
+    </aside>
+
+    <article>
+
+      <!-- BIG PICTURE -->
+      <section class="sec" id="big-picture">
+        <div class="sec-head">
+          <div class="sec-n">00</div>
+          <div>
+            <h2 class="sec-title">The big picture</h2>
+            <p class="sec-blurb">
+              Hindi numbers are <strong>famously hard</strong>. Almost every number from 1 to 99 is its own unique word — you can't predict <em>chālīs</em> (40) from <em>chār</em> (4), or <em>sattāvan</em> (57) from <em>sāt</em> (7). Past 100, things compose like English. The structural twist is the <strong>Indian numbering system</strong>: numbers group by <span class="hi">लाख</span> (10⁵) and <span class="hi">करोड़</span> (10⁷), with commas placed differently than Western format.
+            </p>
+          </div>
+        </div>
+        <div class="callout-card muted">
+          <div class="icon">i</div>
+          <div class="b">
+            <strong>If you only remember one thing:</strong> the 1–99 range is essentially a memorization table — there are no shortcuts. The reward: once you cross 100, the system becomes additive and predictable, with <em>sau</em> (hundred), <em>hazār</em> (thousand), <em>lākh</em>, <em>karod</em> as building blocks.
+          </div>
+        </div>
+      </section>
+
+      <!-- 0 – 20 -->
+      <section class="sec" id="zero-twenty">
+        <div class="sec-head">
+          <div class="sec-n">01</div>
+          <div>
+            <h2 class="sec-title">Zero to twenty</h2>
+            <p class="sec-blurb">All 21 cards below are unique words. The teens (11–19) loosely echo their unit-digit roots (<em>tīn</em> → <em>terah</em>, <em>chār</em> → <em>chaudah</em>) but with enough sound changes that they're best memorized as individual items.</p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">0</div><div class="w">शून्य</div><div class="r">shūnya</div></div>
+          <div class="ncard"><div class="n">1</div><div class="w">एक</div><div class="r">ek</div></div>
+          <div class="ncard"><div class="n">2</div><div class="w">दो</div><div class="r">do</div></div>
+          <div class="ncard"><div class="n">3</div><div class="w">तीन</div><div class="r">tīn</div></div>
+          <div class="ncard"><div class="n">4</div><div class="w">चार</div><div class="r">chār</div></div>
+          <div class="ncard"><div class="n">5</div><div class="w">पाँच</div><div class="r">pā̃ch</div></div>
+          <div class="ncard"><div class="n">6</div><div class="w">छह</div><div class="r">chhah</div></div>
+          <div class="ncard"><div class="n">7</div><div class="w">सात</div><div class="r">sāt</div></div>
+          <div class="ncard"><div class="n">8</div><div class="w">आठ</div><div class="r">āṭh</div></div>
+          <div class="ncard"><div class="n">9</div><div class="w">नौ</div><div class="r">nau</div></div>
+          <div class="ncard"><div class="n">10</div><div class="w">दस</div><div class="r">das</div></div>
+          <div class="ncard"><div class="n">11</div><div class="w">ग्यारह</div><div class="r">gyārah</div></div>
+          <div class="ncard"><div class="n">12</div><div class="w">बारह</div><div class="r">bārah</div></div>
+          <div class="ncard"><div class="n">13</div><div class="w">तेरह</div><div class="r">terah</div></div>
+          <div class="ncard"><div class="n">14</div><div class="w">चौदह</div><div class="r">chaudah</div></div>
+          <div class="ncard"><div class="n">15</div><div class="w">पंद्रह</div><div class="r">pandrah</div></div>
+          <div class="ncard"><div class="n">16</div><div class="w">सोलह</div><div class="r">solah</div></div>
+          <div class="ncard"><div class="n">17</div><div class="w">सत्रह</div><div class="r">satrah</div></div>
+          <div class="ncard"><div class="n">18</div><div class="w">अठारह</div><div class="r">aṭhārah</div></div>
+          <div class="ncard"><div class="n">19</div><div class="w">उन्नीस</div><div class="r">unnīs</div></div>
+          <div class="ncard"><div class="n">20</div><div class="w">बीस</div><div class="r">bīs</div></div>
+          <div class="callout-card muted">
+            <div class="icon">i</div>
+            <div class="b">
+              <strong>Devanagari digits exist too.</strong> Hindi has its own numerals — <span class="hi">०, १, २, ३, ४, ५, ६, ७, ८, ९</span> — but Arabic-Indic digits (0–9) are far more common in everyday writing, including in India. You'll mostly see standard digits in newspapers, signs, and texting. Devanagari numerals appear in religious or formal contexts.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 21 - 99: the irregular zone -->
+      <section class="sec" id="tens">
+        <div class="sec-head">
+          <div class="sec-n">02</div>
+          <div>
+            <h2 class="sec-title">21 – 99: the irregular zone</h2>
+            <p class="sec-blurb">
+              Every tens word (30–90) is unique, and every compound (21–99) is its own fused form. The compounds <em>echo</em> their parts but with consonant changes, vowel shifts, and sound substitutions you can't predict. Most learners just memorize them in chunks of ten.
+            </p>
+          </div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 8px 0 12px;">The tens (all unique)</h3>
+        <div class="nums">
+          <div class="ncard irreg"><div class="n">20</div><div class="w">बीस</div><div class="r">bīs</div></div>
+          <div class="ncard irreg"><div class="n">30</div><div class="w">तीस</div><div class="r">tīs</div></div>
+          <div class="ncard irreg"><div class="n">40</div><div class="w">चालीस</div><div class="r">chālīs</div></div>
+          <div class="ncard irreg"><div class="n">50</div><div class="w">पचास</div><div class="r">pacās</div></div>
+          <div class="ncard irreg"><div class="n">60</div><div class="w">साठ</div><div class="r">sāṭh</div></div>
+          <div class="ncard irreg"><div class="n">70</div><div class="w">सत्तर</div><div class="r">sattar</div></div>
+          <div class="ncard irreg"><div class="n">80</div><div class="w">अस्सी</div><div class="r">assī</div></div>
+          <div class="ncard irreg"><div class="n">90</div><div class="w">नब्बे</div><div class="r">nabbe</div></div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 30px 0 12px;">A taste of the compounds (also all unique)</h3>
+        <div class="nums">
+          <div class="ncard"><div class="n">21</div><div class="w">इकीस</div><div class="r">ikīs</div></div>
+          <div class="ncard"><div class="n">22</div><div class="w">बाईस</div><div class="r">bāīs</div></div>
+          <div class="ncard"><div class="n">25</div><div class="w">पच्चीस</div><div class="r">pacīs</div></div>
+          <div class="ncard"><div class="n">29</div><div class="w">उनतीस</div><div class="r">unatīs</div></div>
+          <div class="ncard"><div class="n">31</div><div class="w">इकतीस</div><div class="r">ikatīs</div></div>
+          <div class="ncard"><div class="n">47</div><div class="w">सैंतालीस</div><div class="r">saiñtālīs</div></div>
+          <div class="ncard"><div class="n">57</div><div class="w">सत्तावन</div><div class="r">sattāvan</div></div>
+          <div class="ncard"><div class="n">68</div><div class="w">अड़सठ</div><div class="r">aṛsaṭh</div></div>
+          <div class="ncard"><div class="n">76</div><div class="w">छिहत्तर</div><div class="r">chhihattar</div></div>
+          <div class="ncard"><div class="n">89</div><div class="w">नवासी</div><div class="r">navāsī</div></div>
+          <div class="ncard"><div class="n">98</div><div class="w">अट्ठानवे</div><div class="r">aṭṭhānave</div></div>
+          <div class="ncard wide">
+            <div class="n">99</div>
+            <div class="w">निन्यानवे</div>
+            <div class="r">ninyānave</div>
+            <div class="breakdown">9 + 90, but you'd never guess this from <em>nau</em> + <em>nabbe</em></div>
+          </div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>No shortcuts.</strong> Unlike Mandarin's <em>sì-shí-qī</em> (4-10-7 = 47) or Italian's <em>quarantasette</em> (40+7), Hindi's 47 is <span class="hi">सैंतालीस</span> (<em>saiñtālīs</em>) — recognizably related to <em>sāt</em> (7) and <em>chālīs</em> (40), but with so much sound change it has to be memorized as a unit. Multiply by 80 numbers. This is the price of admission.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 100+ -->
+      <section class="sec" id="hundreds">
+        <div class="sec-head">
+          <div class="sec-n">03</div>
+          <div>
+            <h2 class="sec-title">100+: composition returns</h2>
+            <p class="sec-blurb">
+              Past 100, Hindi becomes additive again. <span class="hi">सौ</span> (sau) = 100. <span class="hi">हज़ार</span> (hazār) = 1,000. Just stack them with the 1–99 vocab you already memorized.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">100</div><div class="w">एक सौ</div><div class="r">ek sau</div></div>
+          <div class="ncard"><div class="n">200</div><div class="w">दो सौ</div><div class="r">do sau</div></div>
+          <div class="ncard"><div class="n">500</div><div class="w">पाँच सौ</div><div class="r">pā̃ch sau</div></div>
+          <div class="ncard"><div class="n">900</div><div class="w">नौ सौ</div><div class="r">nau sau</div></div>
+          <div class="ncard"><div class="n">1,000</div><div class="w">एक हज़ार</div><div class="r">ek hazār</div></div>
+          <div class="ncard"><div class="n">3,000</div><div class="w">तीन हज़ार</div><div class="r">tīn hazār</div></div>
+          <div class="ncard"><div class="n">10,000</div><div class="w">दस हज़ार</div><div class="r">das hazār</div></div>
+          <div class="ncard"><div class="n">99,000</div><div class="w">निन्यानवे हज़ार</div><div class="r">ninyānave hazār</div></div>
+          <div class="ncard wide">
+            <div class="n">122</div>
+            <div class="w">एक सौ बाईस</div>
+            <div class="r">ek sau bāīs</div>
+            <div class="breakdown">100 + 22 (still need to know 22 = bāīs)</div>
+          </div>
+          <div class="ncard wide">
+            <div class="n">4,120</div>
+            <div class="w">चार हज़ार एक सौ बीस</div>
+            <div class="r">chār hazār ek sau bīs</div>
+            <div class="breakdown">4,000 + 100 + 20</div>
+          </div>
+          <div class="callout-card muted">
+            <div class="icon">i</div>
+            <div class="b">
+              <strong>Standard commas hold up to 999.</strong> For numbers below 100,000, Hindi uses the same comma convention as English: 4,120. Past that point — once you cross <span class="hi">लाख</span> — the comma placement switches to the Indian system. We'll cover that next.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LAKH & CRORE -->
+      <section class="sec" id="lakh-crore">
+        <div class="sec-head">
+          <div class="sec-n">04</div>
+          <div>
+            <h2 class="sec-title"><span class="hi">लाख</span> &amp; <span class="hi">करोड़</span></h2>
+            <p class="sec-blurb">
+              The structural pivot. Indian-style numbers group not by 10³ (Western: thousand → million → billion) but by adding new unit-words at 10⁵ (<span class="hi">लाख</span>) and 10⁷ (<span class="hi">करोड़</span>). Comma placement matches the grouping: <strong>1,00,000</strong>, not 100,000.
+            </p>
+          </div>
+        </div>
+
+        <div class="compare" style="margin-bottom: 18px;">
+          <div class="compare-cell">
+            <div class="label" style="color: var(--ink);">Western · groups of 3</div>
+            <div class="digit">100,000</div>
+            <div class="says" style="font-family: var(--serif-font); color: var(--ink-soft); font-weight: 400;">one hundred thousand</div>
+            <div class="units">
+              <div class="row"><span class="digit-sm">10³</span><span class="says-sm" style="font-family: var(--serif-font); font-weight: 400;">thousand</span></div>
+              <div class="row"><span class="digit-sm">10⁶</span><span class="says-sm" style="font-family: var(--serif-font); font-weight: 400;">million</span></div>
+              <div class="row"><span class="digit-sm">10⁹</span><span class="says-sm" style="font-family: var(--serif-font); font-weight: 400;">billion</span></div>
+            </div>
+            <p>Each new "-illion" word multiplies the previous by 1,000. Commas every three digits.</p>
+          </div>
+          <div class="compare-cell hi">
+            <div class="label">Indian · groups of 2 after the thousand</div>
+            <div class="digit">1,00,000</div>
+            <div class="says">एक लाख</div>
+            <div class="units">
+              <div class="row"><span class="digit-sm">10³</span><span class="says-sm"><span class="hi">हज़ार</span> hazār</span></div>
+              <div class="row"><span class="digit-sm">10⁵</span><span class="says-sm" style="color: var(--signal-red);"><span class="hi">लाख</span> lākh</span></div>
+              <div class="row"><span class="digit-sm">10⁷</span><span class="says-sm" style="color: var(--signal-red);"><span class="hi">करोड़</span> karod</span></div>
+            </div>
+            <p>Comma after the thousand, then every <strong>two</strong> digits after that. 1,00,000 is one lakh; 10,00,000 is ten lakh.</p>
+          </div>
+        </div>
+
+        <div class="nums">
+          <div class="ncard"><div class="n">1,00,000</div><div class="w">एक लाख</div><div class="r">ek lākh — 10⁵</div></div>
+          <div class="ncard"><div class="n">2,00,000</div><div class="w">दो लाख</div><div class="r">do lākh</div></div>
+          <div class="ncard irreg"><span class="badge">"million"</span><div class="n">10,00,000</div><div class="w">दस लाख</div><div class="r">das lākh — 10 lakhs</div></div>
+          <div class="ncard"><div class="n">1,00,00,000</div><div class="w">एक करोड़</div><div class="r">ek karod — 10⁷</div></div>
+          <div class="ncard"><div class="n">10,00,00,000</div><div class="w">दस करोड़</div><div class="r">das karod — 100 million</div></div>
+          <div class="ncard irreg"><span class="badge">"billion"</span><div class="n">1,00,00,00,000</div><div class="w">सौ करोड़</div><div class="r">sau karod — 100 crore = 1 billion</div></div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>Mental comma drill.</strong> If an English speaker says "one million," that's <strong>1,000,000</strong> (six zeros). The Indian re-comma: <strong>10,00,000</strong> — read as <span class="hi">दस लाख</span> ("ten lakh"). Same number, different chunking. The skill is recognizing the chunks.
+            </div>
+          </div>
+          <div class="callout-card muted">
+            <div class="icon">i</div>
+            <div class="b">
+              <strong>Lakh / crore are widely used.</strong> Indian English speakers will say "twenty lakh rupees" or "two crore people" in casual conversation. These are not formal-only terms — they're the everyday way of expressing 10⁵ and 10⁷ across most of South Asia.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ORDINALS -->
+      <section class="sec" id="ordinals">
+        <div class="sec-head">
+          <div class="sec-n">05</div>
+          <div>
+            <h2 class="sec-title">Ordinals</h2>
+            <p class="sec-blurb">
+              First three are irregular: <span class="hi">पहला</span> (pehlā), <span class="hi">दूसरा</span> (dūsrā), <span class="hi">तीसरा</span> (tīsrā). From 4th onward, add a <span class="hi">-वाँ</span> suffix to the cardinal. And like adjectives, they <strong>agree in gender</strong> with the noun — masculine takes <em>-ā</em>, feminine takes <em>-ī</em>.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard irreg"><span class="badge">irreg</span><div class="n">1st</div><div class="w">पहला</div><div class="r">pehlā <span style="opacity:0.7;">/ pehlī (fem.)</span></div></div>
+          <div class="ncard irreg"><span class="badge">irreg</span><div class="n">2nd</div><div class="w">दूसरा</div><div class="r">dūsrā / dūsrī</div></div>
+          <div class="ncard irreg"><span class="badge">irreg</span><div class="n">3rd</div><div class="w">तीसरा</div><div class="r">tīsrā / tīsrī</div></div>
+          <div class="ncard"><div class="n">4th</div><div class="w">चौथा</div><div class="r">chauthā</div></div>
+          <div class="ncard"><div class="n">5th</div><div class="w">पाँचवाँ</div><div class="r">pā̃chvā̃</div></div>
+          <div class="ncard irreg"><span class="badge">irreg</span><div class="n">6th</div><div class="w">छठा</div><div class="r">chaṭhā</div></div>
+          <div class="ncard"><div class="n">7th</div><div class="w">सातवाँ</div><div class="r">sātvā̃</div></div>
+          <div class="ncard"><div class="n">8th</div><div class="w">आठवाँ</div><div class="r">āṭhvā̃</div></div>
+          <div class="ncard"><div class="n">9th</div><div class="w">नौवाँ</div><div class="r">nauvā̃</div></div>
+          <div class="ncard"><div class="n">10th</div><div class="w">दसवाँ</div><div class="r">dasvā̃</div></div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>Gender agreement is mandatory.</strong> "Second turn" with masculine <span class="hi">मोड़</span> (turn): <span class="hi">दूसरा मोड़</span> (<em>dūsrā moṛ</em>). "Third floor" with feminine <span class="hi">मंज़िल</span>: <span class="hi">तीसरी मंज़िल</span> (<em>tīsrī manzil</em>). The <em>-ā</em>/<em>-ī</em> ending shifts to match.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REMEMBER -->
+      <section class="sec" id="remember">
+        <div class="sec-head">
+          <div class="sec-n">06</div>
+          <div>
+            <h2 class="sec-title">Things to remember</h2>
+            <p class="sec-blurb">Five rules that frame the challenge.</p>
+          </div>
+        </div>
+        <div class="nums" style="grid-template-columns: 1fr;">
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">1.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>1-99 is a memorization table.</strong> No compositional shortcuts. Every tens word and every compound is unique. The good news: there are only ~99 of them, and they're frequency-weighted to be common.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">2.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>100+ is additive.</strong> <span class="hi" style="font-family: 'Noto Serif Devanagari', serif; font-weight: 600;">सौ</span> (sau) = 100, <span class="hi" style="font-family: 'Noto Serif Devanagari', serif; font-weight: 600;">हज़ार</span> (hazār) = 1,000. Just stack: <em>chār hazār ek sau bīs</em> = 4,120.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">3.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong><span class="hi" style="font-family: 'Noto Serif Devanagari', serif; font-weight: 600; color: var(--signal-red);">लाख</span> = 10⁵, <span class="hi" style="font-family: 'Noto Serif Devanagari', serif; font-weight: 600; color: var(--signal-red);">करोड़</span> = 10⁷.</strong> Western "million" = <span class="hi" style="font-family: 'Noto Serif Devanagari', serif; font-weight: 600;">दस लाख</span> (ten lakh). Western "billion" = 100 crore. No 1-to-1 word match.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">4.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>Commas shift past 1 lakh.</strong> 4,120 looks the same in both systems. But 100,000 (Western) is <strong>1,00,000</strong> in Indian — comma after the thousand, then every two digits.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">5.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>Ordinals add <em style="font-family: 'Noto Serif Devanagari', serif; color: var(--signal-red); font-weight: 600;">-वाँ</em> with gender agreement.</strong> Except <em style="font-family: 'Noto Serif Devanagari', serif; font-weight: 600;">पहला, दूसरा, तीसरा, छठा</em> (1st, 2nd, 3rd, 6th), which are irregular. Match the noun's gender: <em>-ā</em> masc, <em>-ī</em> fem.</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="practice-cta">
+        <span class="eyebrow" style="color: var(--signal-red);">Drill it</span>
+        <h3>Reading is one thing.<br>Hearing it at speed is another.</h3>
+        <p>The companion iOS app generates random numbers in your chosen range and reads them aloud in Hindi. Five minutes a day.</p>
+        <a class="btn btn-primary" href="/#download">
+          <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor"><path d="M11.6 8.5c0-2 1.6-3 1.7-3-.9-1.4-2.4-1.5-2.9-1.5-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7C3.2 4 1.7 4.9 1 6.3c-1.4 2.4-.4 6 1 8 .7 1 1.5 2.1 2.5 2 1 0 1.4-.6 2.6-.6s1.5.6 2.6.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.2-2.3-.1 0-2.3-1-2.3-3.5zM9.7 2.5c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.2 1.2-.5.6-.9 1.5-.8 2.4.9.1 1.7-.4 2.2-1.1z"/></svg>
+          Get the app
+        </a>
+      </div>
+
+    </article>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-container footer-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL Number Practice</span>
+    </a>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>App</h4>
+        <a href="/#download">Download</a>
+        <a href="/#how">How it works</a>
+        <a href="/#about">About</a>
+      </div>
+      <div class="footer-col">
+        <h4>Cheat sheets</h4>
+        <a href="/cheatsheets/">All languages</a>
+        <a href="/portuguese-pt/">Português (PT)</a>
+        <a href="/portuguese-br/">Português (BR)</a>
+        <a href="/spanish/">Español</a>
+        <a href="/french/">Français</a>
+        <a href="/italian/">Italiano</a>
+        <a href="/german/">Deutsch</a>
+        <a href="/dutch/">Nederlands</a>
+        <a href="/english/">English</a>
+        <a href="/russian/">Русский</a>
+        <a href="/hindi/">हिन्दी</a>
+        <a href="/mandarin/">中文</a>
+        <a href="/korean/">한국어</a>
+        <a href="/indonesian/">Bahasa Indonesia</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="site-container" style="margin-top: 28px; font-size: 12px; color: var(--ink-faint);">© 2026 FL Number Practice</div>
+</footer>
+
+</body>
+</html>
