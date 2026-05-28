@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tiếng Việt — Numbers cheat sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&family=Noto+Serif:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<style>
+  .sheet-head { padding: 40px 0 24px; display: flex; flex-direction: column; gap: 14px; }
+  .crumbs { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-soft); }
+  .crumbs a { text-decoration: none; }
+  .crumbs .sep { color: var(--ink-faint); }
+
+  .hero-card {
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px; padding: 32px 28px 28px;
+    display: grid; gap: 18px; margin: 8px 0 18px;
+    position: relative; overflow: hidden;
+  }
+  .hero-card h1 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: clamp(40px, 9vw, 80px); line-height: 0.96;
+    letter-spacing: -0.02em; margin: 0;
+  }
+  .hero-card .native {
+    color: rgba(241,236,224,0.6);
+    font-family: 'Noto Serif', var(--serif-font), serif;
+    font-size: 22px; line-height: 1.3; margin: 6px 0 0;
+  }
+  .hero-card .native .hi {
+    color: var(--signal-red); font-style: normal; font-weight: 700;
+  }
+  .hero-card .stats {
+    display: flex; gap: 24px; flex-wrap: wrap; margin-top: 8px;
+    font-family: var(--num-font); font-size: 13px; color: rgba(241,236,224,0.55);
+  }
+  .hero-card .stats > div { display: flex; flex-direction: column; gap: 2px; }
+  .hero-card .stats b {
+    font-size: 20px; color: var(--paper);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+  }
+  .hero-card .stats b.vi {
+    font-family: 'Noto Serif', var(--serif-font), serif;
+  }
+  .hero-card .display {
+    border-top: 0.5px solid rgba(241,236,224,0.16);
+    padding-top: 20px;
+    display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  }
+  .hero-card .display .num {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: clamp(56px, 12vw, 116px); letter-spacing: -0.05em; line-height: 0.9;
+    color: var(--signal-red); font-variant-numeric: tabular-nums;
+  }
+  .hero-card .display .pseudo {
+    font-family: 'Noto Serif', var(--serif-font), serif;
+    font-size: clamp(20px, 2.8vw, 30px); line-height: 1.25;
+    color: var(--paper); font-weight: 600;
+    max-width: 480px;
+  }
+  .hero-card .display .pseudo .shift {
+    color: var(--signal-red); font-weight: 700;
+  }
+
+  .sec { padding: 36px 0 8px; border-top: 0.5px solid var(--hair); }
+  .sec:first-of-type { border-top: 0; padding-top: 20px; }
+  .sec-head { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: baseline; margin-bottom: 18px; }
+  .sec-n { font-family: var(--num-font); font-weight: 800; font-size: clamp(44px, 7vw, 68px); line-height: 0.8; letter-spacing: -0.05em; color: var(--signal-red); }
+  .sec-title { font-family: var(--serif-font); font-weight: 400; font-size: clamp(26px, 4vw, 34px); line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 6px; }
+  .sec-title .vi { font-family: 'Noto Serif', var(--serif-font), serif; font-weight: 600; }
+  .sec-blurb { font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; max-width: 620px; }
+  .sec-blurb em { font-family: var(--serif-font); color: var(--ink); font-style: italic; }
+  .sec-blurb strong { color: var(--ink); font-weight: 700; }
+  .sec-blurb .vi { font-family: 'Noto Serif', var(--serif-font), serif; color: var(--ink); font-weight: 600; font-style: normal; }
+
+  .nums { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ncard {
+    background: var(--paper-raised); border: 0.5px solid var(--hair);
+    border-radius: 14px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 4px; position: relative;
+  }
+  .ncard .n {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 26px; letter-spacing: -0.04em; color: var(--ink);
+    line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .ncard .w {
+    font-family: 'Noto Serif', var(--serif-font), serif;
+    font-size: 20px; color: var(--ink); line-height: 1.25;
+    font-weight: 600;
+  }
+  .ncard .r {
+    font-family: var(--num-font); font-weight: 500;
+    font-size: 13px; color: var(--ink-soft); line-height: 1.2;
+    letter-spacing: 0.01em;
+  }
+  .ncard.irreg { background: var(--signal-red); border-color: var(--signal-red); }
+  .ncard.irreg .n, .ncard.irreg .w { color: var(--paper); }
+  .ncard.irreg .r { color: rgba(255,255,255,0.85); }
+  .ncard .badge {
+    position: absolute; top: 10px; right: 10px;
+    font-family: var(--ui-font); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    background: rgba(0,0,0,0.06); color: var(--ink-soft);
+  }
+  .ncard.irreg .badge { background: rgba(255,255,255,0.18); color: var(--paper); }
+
+  .ncard.wide { grid-column: span 2; }
+  .ncard.wide .n { font-size: 36px; }
+  .ncard.wide .w { font-size: 24px; }
+  .ncard.wide .r { font-size: 14px; }
+
+  /* Sound shifts: highlight mốt, lăm, tư in red */
+  .ncard .shift {
+    color: var(--signal-red); font-weight: 800; font-style: normal;
+  }
+  .ncard.irreg .shift { color: var(--paper); text-decoration: underline; text-decoration-thickness: 2px; }
+
+  .ncard .breakdown {
+    margin-top: 8px;
+    font-family: var(--num-font); font-size: 12px;
+    letter-spacing: 0.04em; color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .ncard.irreg .breakdown { color: rgba(255,255,255,0.7); }
+
+  .callout-card {
+    grid-column: 1 / -1;
+    background: color-mix(in srgb, var(--signal-red) 8%, var(--paper-raised));
+    border: 1px solid color-mix(in srgb, var(--signal-red) 30%, transparent);
+    border-radius: 14px; padding: 16px 18px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .callout-card .icon {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--signal-red); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif-font); font-size: 18px;
+  }
+  .callout-card .b { font-size: 14.5px; line-height: 1.55; }
+  .callout-card .b strong { font-weight: 700; }
+  .callout-card .b em { font-family: var(--serif-font); font-style: italic; color: var(--ink); }
+  .callout-card .b .vi { font-family: 'Noto Serif', var(--serif-font), serif; font-weight: 600; color: var(--ink); font-style: normal; }
+  .callout-card.muted { background: var(--paper-sunk); border-color: var(--hair); }
+  .callout-card.muted .icon { background: var(--ink); }
+
+  /* North/South compare */
+  .compare { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  .compare-cell {
+    padding: 22px; border-radius: 14px;
+    background: var(--paper-raised); border: 0.5px solid var(--hair);
+  }
+  .compare-cell.vi {
+    background: var(--ink); color: var(--paper); border-color: var(--ink);
+  }
+  .compare-cell .label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 700; color: var(--signal-red);
+  }
+  .compare-cell .digit {
+    font-family: var(--num-font); font-weight: 800;
+    font-size: 24px; letter-spacing: -0.04em; margin-top: 8px;
+    line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .compare-cell .says {
+    font-family: 'Noto Serif', var(--serif-font), serif;
+    font-size: 20px; margin-top: 6px; line-height: 1.25;
+    font-weight: 600;
+  }
+  .compare-cell.vi .says { color: var(--signal-red); }
+  .compare-cell p { font-size: 13px; margin: 8px 0 0; opacity: 0.65; }
+  .compare-cell .rows {
+    margin-top: 14px; display: grid; gap: 6px;
+    font-family: var(--num-font); font-size: 13px;
+  }
+  .compare-cell .rows .row {
+    display: flex; gap: 14px; align-items: baseline;
+  }
+  .compare-cell .rows .label-sm {
+    font-weight: 700; min-width: 60px; opacity: 0.85;
+  }
+  .compare-cell .rows .word-sm {
+    font-family: 'Noto Serif', var(--serif-font), serif; font-size: 15px;
+    font-weight: 600; opacity: 0.95;
+  }
+
+  .practice-cta {
+    margin: 50px 0 0; padding: 32px;
+    background: var(--ink); color: var(--paper);
+    border-radius: 22px;
+    display: flex; flex-direction: column; gap: 14px;
+    align-items: flex-start;
+  }
+  .practice-cta h3 {
+    font-family: var(--serif-font); font-weight: 400;
+    font-size: 28px; letter-spacing: -0.01em; margin: 0;
+    max-width: 480px; line-height: 1.1;
+  }
+  .practice-cta p { color: rgba(241,236,224,0.65); font-size: 14.5px; margin: 0; max-width: 460px; }
+  .practice-cta .btn-primary { background: var(--signal-red); color: #fff; }
+
+  .toc-side { display: none; }
+
+  @media (min-width: 720px) {
+    .sheet-head { padding: 80px 0 30px; }
+    .hero-card { padding: 44px 40px 40px; }
+    .nums { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1100px) {
+    .toc-side {
+      display: block; position: sticky; top: 96px; align-self: start;
+    }
+    .toc-side .toc-list { display: flex; flex-direction: column; gap: 2px; }
+    .toc-side a {
+      display: block; padding: 8px 12px; border-radius: 8px;
+      font-size: 13.5px; color: var(--ink-soft); text-decoration: none;
+    }
+    .toc-side a:hover { background: var(--paper-sunk); color: var(--ink); }
+    .toc-side a.active { background: var(--ink); color: var(--paper); }
+    .with-sidebar { grid-template-columns: 240px 1fr; gap: 56px; }
+    .nums { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-container site-header-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL&nbsp;Number Practice</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/cheatsheets/" class="active">Cheat sheets</a>
+      <a href="/#about">About</a>
+    </nav>
+    <a class="nav-cta" href="/#download">Get the app →</a>
+    <button class="nav-toggle" aria-label="Open menu">
+      <svg width="20" height="14" viewBox="0 0 20 14"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="site-container">
+
+  <div class="sheet-head">
+    <nav class="crumbs">
+      <a href="/cheatsheets/">Cheat sheets</a>
+      <span class="sep">/</span>
+      <span>Southeast Asian</span>
+      <span class="sep">/</span>
+      <span style="color: var(--ink);">Tiếng Việt</span>
+    </nav>
+  </div>
+
+  <!-- HERO CARD -->
+  <div class="hero-card">
+    <div>
+      <span class="eyebrow" style="color: var(--signal-red);">Southeast Asian · Việt Nam</span>
+      <h1>Numbers in<br><em style="font-style: italic;">Tiếng Việt</em></h1>
+      <div class="native">Hai mươi <span class="hi">mốt</span>, hai mươi <span class="hi">lăm</span></div>
+    </div>
+    <div class="stats">
+      <div><b>12 min</b>read</div>
+      <div><b>7</b>sections</div>
+      <div><b>3 shifts</b>mốt, lăm, tư</div>
+    </div>
+    <div class="display">
+      <div class="num">155</div>
+      <div class="pseudo">một trăm năm mươi <span class="shift">lăm</span></div>
+    </div>
+  </div>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#big-picture" class="current">Big picture</a>
+    <a href="#zero-ten">0–10</a>
+    <a href="#teens">11–19</a>
+    <a href="#tens">20–99</a>
+    <a href="#hundreds">100+</a>
+    <a href="#ordinals">Ordinals</a>
+    <a href="#remember">Remember</a>
+  </nav>
+
+  <div class="with-sidebar">
+
+    <aside class="toc-side">
+      <div class="eyebrow" style="margin-bottom: 8px;">On this page</div>
+      <div class="toc-list">
+        <a href="#big-picture" class="active">The big picture</a>
+        <a href="#zero-ten">0 – 10</a>
+        <a href="#teens">11 – 19: mười + digit</a>
+        <a href="#tens">20 – 99: mươi + shifts</a>
+        <a href="#hundreds">100+ with linh / lẻ</a>
+        <a href="#ordinals">Ordinals</a>
+        <a href="#remember">Things to remember</a>
+      </div>
+      <div class="lang-rail lang-rail-sticky" style="margin-top: 28px;">
+        <div class="lang-rail-head"><span class="eyebrow">More languages</span></div>
+        <a href="/portuguese-pt/">Português <span class="native">PT</span></a>
+        <a href="/portuguese-br/">Português <span class="native">BR</span></a>
+        <a href="/spanish/">Español <span class="native">ES</span></a>
+        <a href="/french/">Français <span class="native">FR</span></a>
+        <a href="/italian/">Italiano <span class="native">IT</span></a>
+        <a href="/german/">Deutsch <span class="native">DE</span></a>
+        <a href="/dutch/">Nederlands <span class="native">NL</span></a>
+        <a href="/english/">English <span class="native">EN</span></a>
+        <a href="/russian/">Русский <span class="native">RU</span></a>
+        <a href="/hindi/">हिन्दी <span class="native">HI</span></a>
+        <a href="/persian/">فارسی <span class="native">FA</span></a>
+        <a href="/japanese/">日本語 <span class="native">JP</span></a>
+        <a href="/korean/">한국어 <span class="native">KO</span></a>
+        <a href="/mandarin/">中文 <span class="native">ZH</span></a>
+        <a href="/arabic/">العربية <span class="native">AR</span></a>
+        <a href="/indonesian/">Bahasa <span class="native">ID</span></a>
+        <a href="/tagalog/">Tagalog <span class="native">TL</span></a>
+        <a href="/vietnamese/" class="active">Tiếng Việt <span class="native">VI</span></a>
+        <a href="/cheatsheets/" style="color: var(--signal-red); font-weight: 600;">See all 18 →</a>
+      </div>
+    </aside>
+
+    <article>
+
+      <!-- BIG PICTURE -->
+      <section class="sec" id="big-picture">
+        <div class="sec-head">
+          <div class="sec-n">00</div>
+          <div>
+            <h2 class="sec-title">The big picture</h2>
+            <p class="sec-blurb">
+              Vietnamese numbers are <strong>compositional and predictable</strong> in their structure — but three signature <strong>sound shifts</strong> happen in compounds: <strong>một → <span style="color: var(--signal-red);">mốt</span></strong> (1 in units after 20), <strong>năm → <span style="color: var(--signal-red);">lăm</span></strong> (5 in units past 10), and <strong>bốn → <span style="color: var(--signal-red);">tư</span></strong> (4 in ordinals and some idioms). Latin script with rich diacritics — every tone mark matters.
+            </p>
+          </div>
+        </div>
+        <div class="callout-card muted">
+          <div class="icon">i</div>
+          <div class="b">
+            <strong>If you only remember one thing:</strong> in compound numbers, the digits 1 and 5 change form. <span class="vi">21 = hai mươi <strong style="color: var(--signal-red);">mốt</strong></span> (not <span class="vi">hai mươi một</span>). <span class="vi">25 = hai mươi <strong style="color: var(--signal-red);">lăm</strong></span> (not <span class="vi">hai mươi năm</span>). The shift is consistent past 20.
+          </div>
+        </div>
+      </section>
+
+      <!-- 0 – 10 -->
+      <section class="sec" id="zero-ten">
+        <div class="sec-head">
+          <div class="sec-n">01</div>
+          <div>
+            <h2 class="sec-title">Zero to ten</h2>
+            <p class="sec-blurb">Eleven base words. Pay attention to the diacritics — tone marks distinguish meaning and must be written/heard accurately.</p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">0</div><div class="w">không</div><div class="r">"none/zero"</div></div>
+          <div class="ncard"><div class="n">1</div><div class="w">một</div><div class="r">→ mốt in compounds</div></div>
+          <div class="ncard"><div class="n">2</div><div class="w">hai</div></div>
+          <div class="ncard"><div class="n">3</div><div class="w">ba</div></div>
+          <div class="ncard"><div class="n">4</div><div class="w">bốn</div><div class="r">→ tư in ordinals</div></div>
+          <div class="ncard"><div class="n">5</div><div class="w">năm</div><div class="r">→ lăm in compounds</div></div>
+          <div class="ncard"><div class="n">6</div><div class="w">sáu</div></div>
+          <div class="ncard"><div class="n">7</div><div class="w">bảy</div></div>
+          <div class="ncard"><div class="n">8</div><div class="w">tám</div></div>
+          <div class="ncard"><div class="n">9</div><div class="w">chín</div></div>
+          <div class="ncard"><div class="n">10</div><div class="w">mười</div><div class="r">→ mươi in tens 20+</div></div>
+        </div>
+      </section>
+
+      <!-- 11 – 19 -->
+      <section class="sec" id="teens">
+        <div class="sec-head">
+          <div class="sec-n">02</div>
+          <div>
+            <h2 class="sec-title">11 – 19: <em><span class="vi">mười</span></em> + digit</h2>
+            <p class="sec-blurb">
+              Add the unit after <span class="vi">mười</span>. One anomaly: <strong>15 = <span class="vi">mười lăm</span></strong>, not <span class="vi">mười năm</span>. The five → <span style="color: var(--signal-red);">lăm</span> shift kicks in already at 15 because <span class="vi">mười năm</span> happens to also mean "ten years."
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">11</div><div class="w">mười một</div></div>
+          <div class="ncard"><div class="n">12</div><div class="w">mười hai</div></div>
+          <div class="ncard"><div class="n">13</div><div class="w">mười ba</div></div>
+          <div class="ncard"><div class="n">14</div><div class="w">mười bốn</div></div>
+          <div class="ncard irreg"><span class="badge">5 → lăm</span><div class="n">15</div><div class="w">mười <span class="shift">lăm</span></div><div class="r">not <em>mười năm</em> (= "ten years")</div></div>
+          <div class="ncard"><div class="n">16</div><div class="w">mười sáu</div></div>
+          <div class="ncard"><div class="n">17</div><div class="w">mười bảy</div></div>
+          <div class="ncard"><div class="n">18</div><div class="w">mười tám</div></div>
+          <div class="ncard"><div class="n">19</div><div class="w">mười chín</div></div>
+          <div class="callout-card muted">
+            <div class="icon">i</div>
+            <div class="b">
+              <strong>Notice 11 is still <span class="vi">mười một</span>.</strong> The 1 → <span class="vi" style="color: var(--signal-red);">mốt</span> shift only kicks in from 21 onward (when the tens digit is 2 or higher). 11 keeps the plain <span class="vi">một</span>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 20 – 99 -->
+      <section class="sec" id="tens">
+        <div class="sec-head">
+          <div class="sec-n">03</div>
+          <div>
+            <h2 class="sec-title">20 – 99: <em><span class="vi">mươi</span></em> + shifts</h2>
+            <p class="sec-blurb">
+              Past 20, the tens word changes spelling: <span class="vi">mười</span> → <span class="vi">mươi</span> (different vowel and tone). And both sound shifts activate: <strong>1 → <span style="color: var(--signal-red);">mốt</span></strong> and <strong>5 → <span style="color: var(--signal-red);">lăm</span></strong> when they sit in the units position.
+            </p>
+          </div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 8px 0 12px;">The tens: digit + <span class="vi" style="font-family: 'Noto Serif', serif; font-weight: 600;">mươi</span></h3>
+        <div class="nums">
+          <div class="ncard"><div class="n">20</div><div class="w">hai mươi</div></div>
+          <div class="ncard"><div class="n">30</div><div class="w">ba mươi</div></div>
+          <div class="ncard"><div class="n">40</div><div class="w">bốn mươi</div></div>
+          <div class="ncard"><div class="n">50</div><div class="w">năm mươi</div></div>
+          <div class="ncard"><div class="n">60</div><div class="w">sáu mươi</div></div>
+          <div class="ncard"><div class="n">70</div><div class="w">bảy mươi</div></div>
+          <div class="ncard"><div class="n">80</div><div class="w">tám mươi</div></div>
+          <div class="ncard"><div class="n">90</div><div class="w">chín mươi</div></div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 30px 0 12px;">Compounds: where 1 and 5 shift</h3>
+        <div class="nums">
+          <div class="ncard irreg"><span class="badge">1 → mốt</span><div class="n">21</div><div class="w">hai mươi <span class="shift">mốt</span></div></div>
+          <div class="ncard"><div class="n">22</div><div class="w">hai mươi hai</div></div>
+          <div class="ncard"><div class="n">23</div><div class="w">hai mươi ba</div></div>
+          <div class="ncard"><div class="n">24</div><div class="w">hai mươi bốn</div></div>
+          <div class="ncard irreg"><span class="badge">5 → lăm</span><div class="n">25</div><div class="w">hai mươi <span class="shift">lăm</span></div></div>
+          <div class="ncard"><div class="n">29</div><div class="w">hai mươi chín</div></div>
+          <div class="ncard irreg"><div class="n">31</div><div class="w">ba mươi <span class="shift">mốt</span></div></div>
+          <div class="ncard irreg"><div class="n">35</div><div class="w">ba mươi <span class="shift">lăm</span></div></div>
+          <div class="ncard"><div class="n">42</div><div class="w">bốn mươi hai</div></div>
+          <div class="ncard irreg"><div class="n">51</div><div class="w">năm mươi <span class="shift">mốt</span></div></div>
+          <div class="ncard irreg"><div class="n">55</div><div class="w">năm mươi <span class="shift">lăm</span></div></div>
+          <div class="ncard wide">
+            <div class="n">99</div>
+            <div class="w">chín mươi chín</div>
+            <div class="breakdown">no shifts here — 9 in units position stays <em>chín</em></div>
+          </div>
+          <div class="callout-card">
+            <div class="icon">!</div>
+            <div class="b">
+              <strong>The shifts are positional, not lexical.</strong> 5 in the <em>tens</em> position stays as <span class="vi">năm</span> (50 = <span class="vi">năm mươi</span>). 5 in the <em>units</em> position becomes <span class="vi"><strong style="color: var(--signal-red);">lăm</strong></span> (25 = <span class="vi">hai mươi <strong style="color: var(--signal-red);">lăm</strong></span>). 55 shows both: <span class="vi">năm mươi <strong style="color: var(--signal-red);">lăm</strong></span>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 100+ -->
+      <section class="sec" id="hundreds">
+        <div class="sec-head">
+          <div class="sec-n">04</div>
+          <div>
+            <h2 class="sec-title">100+ with <em><span class="vi">linh</span></em> / <em><span class="vi">lẻ</span></em></h2>
+            <p class="sec-blurb">
+              <span class="vi">trăm</span> = 100. <span class="vi">nghìn</span> (North) or <span class="vi">ngàn</span> (South) = 1,000. <span class="vi">triệu</span> = million. <span class="vi">tỷ</span> = billion (10⁹, short scale). When a tens digit is zero in the middle of a number, fill the gap with <strong><span class="vi">linh</span></strong> (North) or <strong><span class="vi">lẻ</span></strong> (South) — the spoken equivalent of the missing place value.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard"><div class="n">100</div><div class="w">một trăm</div></div>
+          <div class="ncard"><div class="n">200</div><div class="w">hai trăm</div></div>
+          <div class="ncard"><div class="n">500</div><div class="w">năm trăm</div></div>
+          <div class="ncard"><div class="n">900</div><div class="w">chín trăm</div></div>
+          <div class="ncard wide">
+            <div class="n">123</div>
+            <div class="w">một trăm hai mươi ba</div>
+            <div class="breakdown">100 + 23 — no filler needed</div>
+          </div>
+          <div class="ncard wide irreg">
+            <div class="n">105</div>
+            <div class="w">một trăm <span class="shift">linh</span> <span class="shift">lăm</span></div>
+            <div class="breakdown">100 + 0 (linh) + 5 (lăm shift kicks in)</div>
+          </div>
+          <div class="ncard wide irreg">
+            <div class="n">2,000,001</div>
+            <div class="w">hai triệu <span class="shift">không trăm linh</span> một</div>
+            <div class="breakdown">"two million zero hundred linh one" — chain of fillers</div>
+          </div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 30px 0 12px;">North / South split</h3>
+        <div class="compare">
+          <div class="compare-cell vi">
+            <div class="label">Bắc · North &amp; Central</div>
+            <div class="says">linh · nghìn</div>
+            <div class="rows">
+              <div class="row"><span class="label-sm">filler</span><span class="word-sm">linh</span></div>
+              <div class="row"><span class="label-sm">1,000</span><span class="word-sm">nghìn</span></div>
+              <div class="row"><span class="label-sm">ex.</span><span class="word-sm">một trăm linh ba (103)</span></div>
+            </div>
+            <p>Standard in Hanoi, the Mekong Delta is mixed, and most formal/news Vietnamese.</p>
+          </div>
+          <div class="compare-cell">
+            <div class="label" style="color: var(--ink);">Nam · South</div>
+            <div class="says" style="font-family: 'Noto Serif', serif; color: var(--ink); font-weight: 600;">lẻ · ngàn</div>
+            <div class="rows">
+              <div class="row"><span class="label-sm">filler</span><span class="word-sm">lẻ</span></div>
+              <div class="row"><span class="label-sm">1,000</span><span class="word-sm">ngàn</span></div>
+              <div class="row"><span class="label-sm">ex.</span><span class="word-sm">một trăm lẻ ba (103)</span></div>
+            </div>
+            <p>Standard in Saigon/Ho Chi Minh City and most southern regions. Both versions are mutually intelligible.</p>
+          </div>
+        </div>
+
+        <h3 class="serif-h3" style="margin: 30px 0 12px;">Larger units</h3>
+        <div class="nums">
+          <div class="ncard"><div class="n">1,000</div><div class="w">một nghìn <span class="alt" style="color: var(--ink-soft); font-size: 0.8em;">/ ngàn</span></div></div>
+          <div class="ncard"><div class="n">2,000</div><div class="w">hai nghìn</div></div>
+          <div class="ncard"><div class="n">10,000</div><div class="w">mười nghìn</div></div>
+          <div class="ncard"><div class="n">1 M</div><div class="w">một triệu</div></div>
+          <div class="ncard irreg"><span class="badge">10⁹</span><div class="n">1 B</div><div class="w">một tỷ</div></div>
+          <div class="ncard wide">
+            <div class="n">1,234</div>
+            <div class="w">một nghìn hai trăm ba mươi <span class="shift">tư</span></div>
+            <div class="breakdown">note the 4 → tư shift after a tens-word in this construction (also valid: <em>ba mươi bốn</em>)</div>
+          </div>
+          <div class="ncard wide">
+            <div class="n">56,789</div>
+            <div class="w">năm mươi sáu nghìn bảy trăm tám mươi chín</div>
+          </div>
+          <div class="callout-card muted">
+            <div class="icon">i</div>
+            <div class="b">
+              <strong>Short-scale, like English.</strong> Vietnamese <span class="vi">tỷ</span> = 10⁹ matches what English speakers call "billion." For 10¹², compound it as <span class="vi">nghìn tỷ</span> (literally "thousand billion"). No false-friend trap with European long-scale languages here.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ORDINALS -->
+      <section class="sec" id="ordinals">
+        <div class="sec-head">
+          <div class="sec-n">05</div>
+          <div>
+            <h2 class="sec-title">Ordinals</h2>
+            <p class="sec-blurb">
+              Add <strong><span class="vi">thứ</span></strong> before the cardinal. Two substitutions happen, both from Sino-Vietnamese: <strong><span class="vi">một → nhất</span></strong> for "first" and <strong><span class="vi">bốn → tư</span></strong> for "fourth." Everything else just takes the prefix as-is.
+            </p>
+          </div>
+        </div>
+        <div class="nums">
+          <div class="ncard irreg"><span class="badge">→ nhất</span><div class="n">1st</div><div class="w">thứ <span class="shift">nhất</span></div><div class="r">not <em>thứ một</em></div></div>
+          <div class="ncard"><div class="n">2nd</div><div class="w">thứ hai <span class="alt" style="color: var(--ink-soft); font-size: 0.8em;">/ thứ nhì</span></div></div>
+          <div class="ncard"><div class="n">3rd</div><div class="w">thứ ba</div></div>
+          <div class="ncard irreg"><span class="badge">→ tư</span><div class="n">4th</div><div class="w">thứ <span class="shift">tư</span></div><div class="r">not <em>thứ bốn</em></div></div>
+          <div class="ncard"><div class="n">5th</div><div class="w">thứ năm</div></div>
+          <div class="ncard"><div class="n">6th</div><div class="w">thứ sáu</div></div>
+          <div class="ncard"><div class="n">7th</div><div class="w">thứ bảy</div></div>
+          <div class="ncard"><div class="n">8th</div><div class="w">thứ tám</div></div>
+          <div class="ncard"><div class="n">9th</div><div class="w">thứ chín</div></div>
+          <div class="ncard"><div class="n">10th</div><div class="w">thứ mười</div></div>
+          <div class="callout-card muted">
+            <div class="icon">i</div>
+            <div class="b">
+              <strong>Formal alternative: <span class="vi">đệ-</span>.</strong> For monarchs, dynasties, and ceremonial titles, replace <span class="vi">thứ</span> with the Sino-Vietnamese prefix <span class="vi">đệ-</span>: <span class="vi">đệ nhất</span>, <span class="vi">đệ nhị</span>, etc. You'll see it on royal name plates and in classical texts. For everyday "first, second, third…" — stick with <span class="vi">thứ</span>.
+            </div>
+          </div>
+          <div class="callout-card muted">
+            <div class="icon">i</div>
+            <div class="b">
+              <strong>"The very first" is <span class="vi">đầu tiên</span>.</strong> A separate phrase that emphasizes "the first one" in a sequence: <span class="vi">lần đầu tiên</span> = "the first time." Use <span class="vi">thứ nhất</span> for ranking, <span class="vi">đầu tiên</span> for chronological-first.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REMEMBER -->
+      <section class="sec" id="remember">
+        <div class="sec-head">
+          <div class="sec-n">06</div>
+          <div>
+            <h2 class="sec-title">Things to remember</h2>
+            <p class="sec-blurb">Five rules covering the shifts, filler, and ordinal substitutions.</p>
+          </div>
+        </div>
+        <div class="nums" style="grid-template-columns: 1fr;">
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">1.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>1 → <em style="font-family: 'Noto Serif', serif; color: var(--signal-red); font-weight: 600;">mốt</em></strong> in units past 20. <em style="font-family: 'Noto Serif', serif;">Hai mươi mốt</em> (21), not <em style="font-family: 'Noto Serif', serif;">hai mươi một</em>. 11 keeps <em style="font-family: 'Noto Serif', serif;">một</em>.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">2.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>5 → <em style="font-family: 'Noto Serif', serif; color: var(--signal-red); font-weight: 600;">lăm</em></strong> in units past 10. <em style="font-family: 'Noto Serif', serif;">Mười lăm</em> (15), <em style="font-family: 'Noto Serif', serif;">hai mươi lăm</em> (25). 5 in the tens position (<em style="font-family: 'Noto Serif', serif;">năm mươi</em> = 50) stays <em style="font-family: 'Noto Serif', serif;">năm</em>.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">3.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>4 → <em style="font-family: 'Noto Serif', serif; color: var(--signal-red); font-weight: 600;">tư</em></strong> in ordinals and some compound contexts. <em style="font-family: 'Noto Serif', serif;">Thứ tư</em> (4th), <em style="font-family: 'Noto Serif', serif;">ba mươi tư</em> (also accepted for 34).</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">4.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>Fill skipped tens with <em style="font-family: 'Noto Serif', serif; color: var(--signal-red); font-weight: 600;">linh</em> (North) or <em style="font-family: 'Noto Serif', serif; color: var(--signal-red); font-weight: 600;">lẻ</em> (South).</strong> 105 = <em style="font-family: 'Noto Serif', serif;">một trăm linh lăm</em>. Both forms are universally understood.</div>
+          </div>
+          <div class="ncard wide" style="grid-column: 1 / -1;">
+            <div class="n" style="font-size: 22px;">5.</div>
+            <div class="w" style="font-family: var(--serif-font); font-weight: 400;"><strong>Ordinals: <em style="font-family: 'Noto Serif', serif; color: var(--signal-red); font-weight: 600;">thứ</em> + cardinal</strong>, with Sino-Vietnamese <em style="font-family: 'Noto Serif', serif;">nhất</em> (1st) and <em style="font-family: 'Noto Serif', serif;">tư</em> (4th) replacing <em style="font-family: 'Noto Serif', serif;">một</em> and <em style="font-family: 'Noto Serif', serif;">bốn</em>. Tone marks are non-negotiable — write them all.</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="practice-cta">
+        <span class="eyebrow" style="color: var(--signal-red);">Drill it</span>
+        <h3>Reading is one thing.<br>Hearing it at speed is another.</h3>
+        <p>The companion iOS app generates random numbers in your chosen range and reads them aloud in Vietnamese. Five minutes a day.</p>
+        <a class="btn btn-primary" href="/#download">
+          <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor"><path d="M11.6 8.5c0-2 1.6-3 1.7-3-.9-1.4-2.4-1.5-2.9-1.5-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7C3.2 4 1.7 4.9 1 6.3c-1.4 2.4-.4 6 1 8 .7 1 1.5 2.1 2.5 2 1 0 1.4-.6 2.6-.6s1.5.6 2.6.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.2-2.3-.1 0-2.3-1-2.3-3.5zM9.7 2.5c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.2 1.2-.5.6-.9 1.5-.8 2.4.9.1 1.7-.4 2.2-1.1z"/></svg>
+          Get the app
+        </a>
+      </div>
+
+    </article>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-container footer-row">
+    <a class="brand" href="/">
+      <span class="mark">№</span>
+      <span class="name">FL Number Practice</span>
+    </a>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>App</h4>
+        <a href="/#download">Download</a>
+        <a href="/#how">How it works</a>
+        <a href="/#about">About</a>
+      </div>
+      <div class="footer-col">
+        <h4>Cheat sheets</h4>
+        <a href="/cheatsheets/">All languages</a>
+        <a href="/portuguese-pt/">Português (PT)</a>
+        <a href="/portuguese-br/">Português (BR)</a>
+        <a href="/spanish/">Español</a>
+        <a href="/french/">Français</a>
+        <a href="/italian/">Italiano</a>
+        <a href="/german/">Deutsch</a>
+        <a href="/dutch/">Nederlands</a>
+        <a href="/english/">English</a>
+        <a href="/russian/">Русский</a>
+        <a href="/hindi/">हिन्दी</a>
+        <a href="/persian/">فارسی</a>
+        <a href="/mandarin/">中文</a>
+        <a href="/korean/">한국어</a>
+        <a href="/indonesian/">Bahasa Indonesia</a>
+        <a href="/tagalog/">Tagalog</a>
+        <a href="/vietnamese/">Tiếng Việt</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="site-container" style="margin-top: 28px; font-size: 12px; color: var(--ink-faint);">© 2026 FL Number Practice</div>
+</footer>
+
+</body>
+</html>
