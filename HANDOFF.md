@@ -2,6 +2,50 @@
 
 A small static site for the iOS app. Mobile-first, hand-coded HTML/CSS. No build step, no framework, no JavaScript required at runtime.
 
+## Status as of 2026-05-28
+
+**Catalog expanded from 14 to 18 languages.** Four new sheets shipped: Hindi, Persian, Tagalog, Vietnamese. Every cheat-sheet tile in the index, every detail-page rail, and every footer "Cheat sheets" column has been updated. The "All 14" filter chip and "See all 14 →" rail links across the site are now "All 18" / "See all 18 →".
+
+### New URLs (in addition to the 14 listed in the 2026-05-26 section)
+
+| Language | URL slug | Notes |
+|---|---|---|
+| हिन्दी | `/hindi/` | Devanagari + IAST romanization, Noto Serif Devanagari. Three-layer cards (digit + Devanagari + IAST). |
+| فارسی | `/persian/` | Perso-Arabic RTL + Eastern Arabic-Indic digits + romanization, Noto Naskh Arabic. Cards show dual digit forms (e.g. "165 ۱۶۵"). |
+| Tagalog | `/tagalog/` | Latin script. Covers both native Austronesian and Spanish-borrowed forms. |
+| Tiếng Việt | `/vietnamese/` | Latin + diacritics (chữ Quốc ngữ), Noto Serif. |
+
+Same URL conventions as before: trailing-slash required, slugs stable. Deep-link from the app via `https://flnumberpractice.com/<slug>/`.
+
+### Family-group restructure on the cheatsheets index
+
+The 2026-05-26 grouping was Romance / Germanic / Slavic / CJK / Semitic & other. The expanded structure is:
+
+- Romance (5): PT-PT, PT-BR, Spanish, French, Italian
+- Germanic (3): German, Dutch, English
+- Slavic (1): Russian
+- **Indo-Iranian (2): Hindi, Persian** ← new group
+- CJK (3): Japanese, Korean, Mandarin
+- Semitic (1): Arabic ← split off into its own group
+- **Southeast Asian (3): Indonesian, Tagalog, Vietnamese** ← new group; Indonesian moved here from the old "Semitic & other"
+
+Filter chips on the cheatsheets index now read: All 18 / Romance / Germanic / Slavic / Indo-Iranian / CJK / Semitic / SE Asian.
+
+### What's still TODO (unchanged from before)
+
+- App Store link still `#`
+- Privacy / Terms still `#`
+- No Open Graph tags
+
+### Distinctive features of the new four (in case the app references them)
+
+- **Hindi**: 1–99 is essentially a memorization table (no compositional shortcuts). Indian numbering system kicks in at 10⁵ — लाख (lakh) and करोड़ (crore = 10⁷), with comma format `1,00,000` (comma after thousands, then every 2 digits).
+- **Persian**: و (written "va", said "o") connects every place value of a compound number. milyârd = 10⁹ matches English's "billion" — no false-friend trap.
+- **Tagalog**: Three connector idioms — `'t` (contracted "at" between tens and units), full `at` (between place-value groups), and the `-ng` / `na` linker (varies by digit ending). Parallel Spanish-borrowed system for time/money/age.
+- **Vietnamese**: Three positional sound shifts in compounds — `một → mốt` (1 in units past 20), `năm → lăm` (5 in units past 10), `bốn → tư` (4 in ordinals). `linh` / `lẻ` fills skipped place values; North uses `linh`/`nghìn`, South uses `lẻ`/`ngàn`.
+
+---
+
 ## Status as of 2026-05-26
 
 **All 14 cheat sheets are now live.** Every language tile on the cheatsheets index links to a real page (no `#` placeholders remain). The site is deployed via GitHub Pages on the `jamminalley/flnumberpractice-site` repo and served from the custom domain **https://flnumberpractice.com** (DNS already wired up, CNAME committed). Every push to `main` auto-deploys.
